@@ -1,0 +1,245 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Delivery Line — agent prototype</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  body { font: 15px/1.5 system-ui, sans-serif; max-width: 760px; margin: 0 auto; padding: 24px 16px 80px; }
+  h2 { margin: 28px 0 8px; font-size: 16px; }
+  textarea, input, select, button { font: inherit; }
+  textarea { width: 100%; min-height: 90px; padding: 8px; }
+  input[type=password], input[type=text] { width: 100%; padding: 8px; box-sizing: border-box; }
+  button { padding: 8px 14px; cursor: pointer; }
+  button.big { padding: 12px 20px; font-size: 16px; }
+  .row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin: 8px 0; }
+  .card { border: 1px solid #ccc; border-radius: 6px; padding: 12px; margin: 10px 0; background: #fafafa; }
+  .log div { padding: 6px 0; border-bottom: 1px solid #eee; }
+  .who { font-weight: 600; }
+  .driver .who { color: #b25000; }
+  .agent .who { color: #0a6; }
+  .sys { color: #777; font-size: 13px; }
+  .why { color: #777; font-size: 13px; }
+  code { background: #eee; padding: 1px 4px; }
+  .ar { direction: rtl; text-align: right; }
+</style>
+
+<h1>Delivery Line — agent prototype</h1>
+<p class="sys">Record how you guide drivers to your home, once. Then press call and talk to the agent
+like a driver would. It answers from your recording, and escalates to you when it should not guess.</p>
+
+<h2>0. Anthropic API key</h2>
+<input type="password" id="key" placeholder="sk-ant-...">
+<p class="sys">Stored in this browser only (localStorage). Prototype shortcut — a real product keeps the key server-side.</p>
+
+<h2>1. Teach your agent</h2>
+<div class="row">
+  <select id="teachLang">
+    <option value="en-US">I'll speak English</option>
+    <option value="ar-SA">أتكلم عربي</option>
+    <option value="ur-PK">اردو</option>
+  </select>
+  <button id="recBtn">🎙 Record</button>
+  <span id="recState" class="sys"></span>
+</div>
+<textarea id="transcript" placeholder="Speak, or just type it here. e.g. When you reach the location there are two black gates, use the second gate, tell security apartment 14, go to building B, fourth floor, you can leave the order outside the door."></textarea>
+<div class="row">
+  <input type="text" id="phone" placeholder="Your escalation number, e.g. 0512345678" style="max-width:260px">
+  <button id="buildBtn" class="big">Build my agent →</button>
+</div>
+<div id="knowledge"></div>
+
+<h2>2. Driver calls</h2>
+<div class="row">
+  <select id="driverLang">
+    <option value="ar-SA">Driver speaks Arabic</option>
+    <option value="en-US">Driver speaks English</option>
+    <option value="ur-PK">Driver speaks Urdu</option>
+  </select>
+  <button id="callBtn" class="big" disabled>📞 Driver calls</button>
+  <button id="talkBtn" disabled>🎤 Tap to talk</button>
+  <button id="hangBtn" disabled>End call</button>
+</div>
+<div class="row">
+  <input type="text" id="typed" placeholder="…or type what the driver says and hit Enter" style="max-width:420px" disabled>
+</div>
+<div class="card log" id="log"></div>
+
+<script>
+const $ = id => document.getElementById(id);
+const LANGS = { ar: 'ar-SA', en: 'en-US', ur: 'ur-PK', hi: 'hi-IN', bn: 'bn-BD' };
+
+// ---- key ----
+$('key').value = localStorage.getItem('dl_key') || '';
+$('key').oninput = () => localStorage.setItem('dl_key', $('key').value.trim());
+
+// ---- Claude ----
+async function claude(system, messages) {
+  const res = await fetch('https://api.anthropic.com/v1/messages', {
+    method: 'POST',
+    headers: {
+      'content-type': 'application/json',
+      'x-api-key': $('key').value.trim(),
+      'anthropic-version': '2023-06-01',
+      'anthropic-dangerous-direct-browser-access': 'true',
+    },
+    body: JSON.stringify({ model: 'claude-sonnet-5', max_tokens: 800, system, messages }),
+  });
+  if (!res.ok) throw new Error(await res.text());
+  const data = await res.json();
+  return data.content.map(b => b.text || '').join('');
+}
+const asJson = t => JSON.parse(t.slice(t.indexOf('{'), t.lastIndexOf('}') + 1));
+
+// ---- speech in ----
+const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+function listen(lang, onText) {
+  if (!SR) { alert('This browser has no speech recognition. Use Chrome, or type instead.'); return null; }
+  const r = new SR();
+  r.lang = lang; r.interimResults = false; r.maxAlternatives = 1;
+  r.onresult = e => onText(e.results[0][0].transcript);
+  r.start();
+  return r;
+}
+
+// ---- speech out ----
+function speak(text, lang) {
+  return new Promise(done => {
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = LANGS[lang] || 'en-US';
+    const v = speechSynthesis.getVoices().find(v => v.lang.replace('_', '-').startsWith(u.lang.slice(0, 2)));
+    if (v) u.voice = v;
+    u.onend = u.onerror = () => done();
+    speechSynthesis.speak(u);
+  });
+}
+speechSynthesis.getVoices();
+
+// ---- log ----
+function log(who, text, cls, why) {
+  const d = document.createElement('div');
+  d.className = cls || '';
+  const rtl = /[؀-ۿ]/.test(text) ? ' class="ar"' : '';
+  d.innerHTML = `<span class="who">${who}</span> <span${rtl}>${text.replace(/</g, '&lt;')}</span>` +
+    (why ? `<div class="why">↳ ${why.replace(/</g, '&lt;')}</div>` : '');
+  $('log').appendChild(d);
+  d.scrollIntoView({ block: 'nearest' });
+}
+
+// ---- step 1: teach ----
+let rec = null;
+$('recBtn').onclick = () => {
+  if (rec) { rec.stop(); rec = null; $('recBtn').textContent = '🎙 Record'; $('recState').textContent = ''; return; }
+  $('recState').textContent = 'listening…';
+  rec = listen($('teachLang').value, t => {
+    $('transcript').value = ($('transcript').value + ' ' + t).trim();
+    $('recState').textContent = 'got it';
+    $('recBtn').textContent = '🎙 Record';
+    rec = null;
+  });
+  if (rec) $('recBtn').textContent = '⏹ Stop';
+};
+
+let household = JSON.parse(localStorage.getItem('dl_household') || 'null');
+
+const TEACH_SYSTEM = `You turn a resident's spoken directions into a delivery agent's knowledge base.
+Return ONLY JSON:
+{
+ "summary_en": "one line",
+ "facts": [{"topic":"gate|building|floor|apartment|security|parking|drop_off|landmark|other",
+            "en":"...","ar":"...","ur":"..."}],
+ "greeting": {"en":"...","ar":"...","ur":"..."}
+}
+Rules:
+- Every fact must come from the resident's words. Never invent a detail.
+- Keep each fact one short spoken sentence a driver can act on.
+- greeting is what the agent says the moment it picks up: a short hello, then the two or three
+  most important instructions front-loaded, so most drivers need no further conversation.
+- ar is Saudi-friendly spoken Arabic. ur is spoken Urdu. Keep all three natural, not literal.`;
+
+$('buildBtn').onclick = async () => {
+  const text = $('transcript').value.trim();
+  if (!text) return alert('Record or type your directions first.');
+  if (!$('key').value.trim()) return alert('Paste your API key first.');
+  $('buildBtn').disabled = true; $('buildBtn').textContent = 'Thinking…';
+  try {
+    const out = asJson(await claude(TEACH_SYSTEM, [{ role: 'user', content: text }]));
+    household = { ...out, raw: text, phone: $('phone').value.trim() };
+    localStorage.setItem('dl_household', JSON.stringify(household));
+    renderKnowledge();
+  } catch (e) { alert('Failed: ' + e.message); }
+  $('buildBtn').disabled = false; $('buildBtn').textContent = 'Build my agent →';
+};
+
+function renderKnowledge() {
+  if (!household) return;
+  $('knowledge').innerHTML = `<div class="card"><b>What the agent understood</b><br><span class="sys">${household.summary_en}</span>
+    <ul>${household.facts.map(f => `<li><b>${f.topic}:</b> ${f.en}<div class="ar">${f.ar}</div></li>`).join('')}</ul>
+    <b>It will open the call with:</b><div class="ar">${household.greeting.ar}</div><div>${household.greeting.en}</div></div>`;
+  $('callBtn').disabled = false;
+}
+renderKnowledge();
+
+// ---- step 2: the call ----
+let history = [], live = false;
+
+const callSystem = () => `You answer the home phone for a household in Saudi Arabia. Callers are delivery drivers.
+Your goal: get the delivery completed WITHOUT disturbing the resident.
+
+Household knowledge (the resident recorded this themselves — it is the only truth you have):
+${household.facts.map(f => `- ${f.topic}: ${f.en} | AR: ${f.ar} | UR: ${f.ur}`).join('\n')}
+Resident's escalation number: ${household.phone || 'not set'}
+
+Reply with ONLY JSON: {"action":"answer|repeat_simpler|escalate|end_call","language":"ar|en|ur|hi|bn","say":"...","why":"short English note for the resident's log"}
+
+Rules:
+- Speak the driver's language. Short sentences. ONE instruction at a time.
+- Answer only from the household knowledge above. Never invent a gate, floor, number or landmark.
+- If the driver seems not to have understood, use repeat_simpler: same fact, simpler words.
+- escalate (ring the resident) when: the answer is not in the knowledge, security refuses entry,
+  there is a payment or order problem, the driver asks for the customer, or you cannot make out
+  what he said twice. Then "say" is the short line you tell the driver before transferring.
+- end_call when the driver says the order is delivered or left at the door.`;
+
+async function driverSays(text) {
+  log('Driver', text, 'driver');
+  history.push({ role: 'user', content: text });
+  let d;
+  try {
+    d = asJson(await claude(callSystem(), history));
+  } catch (e) { log('system', 'model error: ' + e.message, 'sys'); return; }
+  history.push({ role: 'assistant', content: JSON.stringify(d) });
+  log('Agent', d.say, 'agent', `${d.action} — ${d.why}`);
+  await speak(d.say, d.language);
+  if (d.action === 'escalate') {
+    log('system', `📲 Ringing the resident (${household.phone || 'no number set'}) — ${d.why}`, 'sys');
+    endCall();
+  }
+  if (d.action === 'end_call') { log('system', '✅ Delivery done, call ended.', 'sys'); endCall(); }
+}
+
+$('callBtn').onclick = async () => {
+  history = []; live = true; $('log').innerHTML = '';
+  $('talkBtn').disabled = false; $('hangBtn').disabled = false; $('typed').disabled = false;
+  const g = household.greeting;
+  const lang = $('driverLang').value.slice(0, 2);
+  const line = g[lang] || g.en;
+  log('Agent', line, 'agent', 'greeting — front-loads the key instructions before any listening is needed');
+  history.push({ role: 'user', content: '[call connected, you already said: ' + line + ']' });
+  history.push({ role: 'assistant', content: JSON.stringify({ action: 'answer', language: lang, say: line, why: 'greeting' }) });
+  await speak(line, lang);
+};
+
+$('talkBtn').onclick = () => {
+  if (!live) return;
+  $('talkBtn').textContent = '🔴 listening…';
+  listen($('driverLang').value, t => { $('talkBtn').textContent = '🎤 Tap to talk'; driverSays(t); });
+};
+$('typed').onkeydown = e => {
+  if (e.key === 'Enter' && e.target.value.trim()) { const v = e.target.value.trim(); e.target.value = ''; driverSays(v); }
+};
+$('hangBtn').onclick = () => endCall();
+function endCall() {
+  live = false;
+  $('talkBtn').disabled = true; $('hangBtn').disabled = true; $('typed').disabled = true;
+  $('talkBtn').textContent = '🎤 Tap to talk';
+}
+</script>
