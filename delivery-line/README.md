@@ -4,7 +4,14 @@ A phone number for your home that handles delivery drivers. This is the agent pa
 no telephony, no UI polish. You record your directions once, then you talk to the agent
 out loud the way a driver would, and you hear it answer.
 
-## Run
+## Fastest way to try it
+
+Open the published page: **https://claude.ai/artifact/2Y6UWuZ4q8kjxWvso4SS3a**
+
+It runs on Claude directly, so there is no API key and nothing to install. Click
+**Build my agent**, then **Answer the call**, then type what a driver would say and listen.
+
+## Run it locally instead (needed for the microphone)
 
 ```bash
 cd delivery-line
@@ -13,6 +20,8 @@ python3 -m http.server 8000
 
 Open **http://localhost:8000** in **Chrome** (mic + speech recognition need Chrome and a
 localhost/https origin — opening the file directly will not work).
+
+`index.html` is the local version — it calls the Anthropic API directly, so it needs a key.
 
 1. Paste an Anthropic API key (kept in localStorage; prototype shortcut only).
 2. **Teach your agent** — hit Record and say how you guide drivers to your house, the way
@@ -42,6 +51,8 @@ it escalates rather than guesses.
 
 ## Known limits (deliberate)
 
+- The published page can always *speak*; the *microphone* may be blocked inside the embed, so
+  typing the driver's line is the reliable input there. Run the local `index.html` for mic input.
 - Browser speech recognition is one language at a time — you pick the driver's language.
   Real product does this over the phone line with a multilingual ASR.
 - Arabic/Urdu text-to-speech depends on the voices your OS has. macOS and Windows have Arabic;

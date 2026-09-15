@@ -1,0 +1,380 @@
+<title>Delivery Line</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+  :root {
+    --ground: #f4f7f6;
+    --surface: #ffffff;
+    --sunk: #eaefee;
+    --line: #d5dedb;
+    --ink: #141f1d;
+    --ink-soft: #5c6e6a;
+    --accent: #0b6b5a;
+    --accent-soft: #e2f0ec;
+    --alert: #a8451c;
+    --alert-soft: #f8e9e1;
+    --on-accent: #ffffff;
+    --radius: 10px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground: #0e1615; --surface: #16201e; --sunk: #1d2926; --line: #2c3a37;
+      --ink: #e7efec; --ink-soft: #94a8a3; --accent: #4ec2a6; --accent-soft: #16302a;
+      --alert: #e79268; --alert-soft: #33201a; --on-accent: #0e1615;
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground: #0e1615; --surface: #16201e; --sunk: #1d2926; --line: #2c3a37;
+    --ink: #e7efec; --ink-soft: #94a8a3; --accent: #4ec2a6; --accent-soft: #16302a;
+    --alert: #e79268; --alert-soft: #33201a; --on-accent: #0e1615;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    background: var(--ground); color: var(--ink);
+    font-family: "IBM Plex Sans", "IBM Plex Sans Arabic", system-ui, sans-serif;
+    font-size: 15px; line-height: 1.55;
+    max-width: 720px; margin: 0 auto; padding-block: 32px 64px; padding-left: 20px; padding-right: 20px;
+  }
+  :lang(ar), [dir="rtl"] { font-family: "IBM Plex Sans Arabic", "IBM Plex Sans", system-ui, sans-serif; }
+
+  h1 { font-size: 26px; font-weight: 600; letter-spacing: -0.02em; margin: 0 0 6px; text-wrap: balance; }
+  .lede { color: var(--ink-soft); margin: 0 0 28px; max-width: 58ch; }
+  .step { display: flex; align-items: baseline; gap: 10px; margin: 32px 0 12px; }
+  .step-n {
+    font-family: "IBM Plex Mono", monospace; font-size: 11px; letter-spacing: 0.08em;
+    color: var(--accent); border: 1px solid var(--line); border-radius: 4px; padding: 1px 6px;
+  }
+  .step h2 { font-size: 15px; font-weight: 600; margin: 0; }
+
+  .panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px; }
+  .row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+  .row + .row { margin-top: 10px; }
+  .grow { flex: 1 1 200px; min-width: 0; }
+
+  textarea, input, select {
+    font: inherit; color: var(--ink); background: var(--sunk);
+    border: 1px solid var(--line); border-radius: 6px; padding: 9px 10px; width: 100%;
+  }
+  textarea { min-height: 104px; resize: vertical; line-height: 1.5; }
+  button {
+    font: 500 14px "IBM Plex Sans", system-ui, sans-serif; cursor: pointer;
+    background: var(--sunk); color: var(--ink); border: 1px solid var(--line);
+    border-radius: 6px; padding: 9px 14px;
+  }
+  button.primary { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+  button:disabled { opacity: 0.45; cursor: not-allowed; }
+  button:focus-visible, textarea:focus-visible, input:focus-visible, select:focus-visible {
+    outline: 2px solid var(--accent); outline-offset: 2px;
+  }
+  .hint { color: var(--ink-soft); font-size: 13px; }
+
+  /* knowledge */
+  .facts { list-style: none; margin: 12px 0 0; padding: 0; display: grid; gap: 1px; background: var(--line);
+           border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
+  .facts li { background: var(--surface); padding: 10px 12px; display: grid; gap: 2px; }
+  .topic { font-family: "IBM Plex Mono", monospace; font-size: 10.5px; letter-spacing: 0.06em;
+           text-transform: uppercase; color: var(--ink-soft); }
+  .ar-line { font-size: 15px; }
+
+  /* transcript */
+  .log { display: grid; gap: 0; margin-top: 12px; }
+  .turn { padding: 10px 0 10px 12px; border-left: 2px solid var(--line); }
+  .turn + .turn { border-top: 1px solid var(--line); }
+  .turn.driver { border-left-color: var(--line); }
+  .turn.agent { border-left-color: var(--accent); }
+  .turn.escalated { border-left-color: var(--alert); background: var(--alert-soft); }
+  .speaker { font-family: "IBM Plex Mono", monospace; font-size: 10.5px; letter-spacing: 0.07em;
+             text-transform: uppercase; color: var(--ink-soft); }
+  .line { margin-top: 2px; }
+  .chip { display: inline-block; font-family: "IBM Plex Mono", monospace; font-size: 10.5px;
+          padding: 1px 6px; border-radius: 4px; background: var(--accent-soft); color: var(--accent);
+          margin-right: 6px; }
+  .chip.warn { background: var(--alert-soft); color: var(--alert); }
+  .why { color: var(--ink-soft); font-size: 13px; margin-top: 4px; }
+  .empty { color: var(--ink-soft); font-size: 13px; padding: 14px 0; }
+
+  .status { font-size: 13px; color: var(--ink-soft); margin-top: 10px; }
+  .status b { color: var(--ink); font-weight: 500; }
+  @media (prefers-reduced-motion: no-preference) {
+    .turn { animation: in 0.18s ease-out; }
+    @keyframes in { from { opacity: 0; transform: translateY(-3px); } }
+  }
+</style>
+
+<h1>Delivery Line</h1>
+<p class="lede">A phone number for your home that handles delivery drivers. Record how you guide
+them in, once. Then talk to the agent the way a driver would — and listen to it answer.</p>
+
+<div class="step"><span class="step-n">01</span><h2>Teach your agent</h2></div>
+<div class="panel">
+  <label class="hint" for="transcript">Say it the way you already say it on the phone. Edit freely — this is an example.</label>
+  <textarea id="transcript" style="margin-top:6px">When you reach the location there are two black gates. Use the second gate, not the first one. Tell the security guard apartment 14. Then go to building B, fourth floor. You can leave the order outside the door, no need to call me.</textarea>
+  <div class="row">
+    <select id="teachLang" style="flex:0 1 190px">
+      <option value="en-US">I speak English</option>
+      <option value="ar-SA">أتكلم عربي</option>
+      <option value="ur-PK">اردو بولتا ہوں</option>
+    </select>
+    <button id="recBtn">Record instead</button>
+    <input id="phone" class="grow" value="0512345678" aria-label="Your escalation number">
+  </div>
+  <div class="row">
+    <button id="buildBtn" class="primary">Build my agent</button>
+    <span id="buildState" class="hint"></span>
+  </div>
+  <div id="knowledge"></div>
+</div>
+
+<div class="step"><span class="step-n">02</span><h2>A driver calls</h2></div>
+<div class="panel">
+  <div class="row">
+    <select id="driverLang" style="flex:0 1 200px">
+      <option value="ar">Driver speaks Arabic</option>
+      <option value="en">Driver speaks English</option>
+      <option value="ur">Driver speaks Urdu</option>
+    </select>
+    <button id="callBtn" class="primary" disabled>Answer the call</button>
+    <button id="micBtn" disabled>Speak as the driver</button>
+    <button id="hangBtn" disabled>Hang up</button>
+  </div>
+  <div class="row">
+    <input id="typed" class="grow" placeholder="Type what the driver says, press Enter" disabled>
+  </div>
+  <div class="log" id="log"><div class="empty">Build the agent above, then answer the call. It speaks first.</div></div>
+  <div class="status" id="status"></div>
+</div>
+
+<div class="step"><span class="step-n">03</span><h2>What it is allowed to do</h2></div>
+<div class="panel">
+  <ul class="facts">
+    <li><span class="topic">answer</span><span>The driver's question is covered by your recording.</span></li>
+    <li><span class="topic">repeat_simpler</span><span>He did not understand. Same fact, shorter words.</span></li>
+    <li><span class="topic">escalate</span><span>Not in your recording, security refuses him, a payment or order problem, or he asks for you directly — <b>your phone rings</b>.</span></li>
+    <li><span class="topic">end_call</span><span>He says it is delivered.</span></li>
+  </ul>
+  <p class="hint" style="margin-bottom:0">The agent is told never to invent a gate, floor or landmark. If it is not in your
+  recording, it escalates rather than guesses — that constraint is the product.</p>
+</div>
+
+<script>
+const $ = id => document.getElementById(id);
+const BCP = { ar: "ar-SA", en: "en-US", ur: "ur-PK", hi: "hi-IN", bn: "bn-BD" };
+
+let sample = null;
+(window.claude && window.claude.use ? claude.use("sample") : Promise.resolve(null)).then(s => {
+  sample = s;
+  if (!s) { $("buildState").textContent = "Claude is not reachable from this view."; $("buildBtn").disabled = true; }
+});
+
+/* ---------- speech out ---------- */
+let voices = [];
+const loadVoices = () => { voices = speechSynthesis.getVoices(); reportVoice(); };
+speechSynthesis.onvoiceschanged = loadVoices; loadVoices();
+
+function voiceFor(lang) {
+  const tag = BCP[lang] || "en-US";
+  return voices.find(v => v.lang.replace("_", "-").toLowerCase() === tag.toLowerCase())
+      || voices.find(v => v.lang.replace("_", "-").toLowerCase().startsWith(tag.slice(0, 2)))
+      || null;
+}
+function reportVoice() {
+  const lang = $("driverLang").value, v = voiceFor(lang);
+  const name = { ar: "Arabic", en: "English", ur: "Urdu" }[lang];
+  $("status").innerHTML = v
+    ? `Speaking with <b>${v.name}</b> (${v.lang}).`
+    : `No ${name} voice installed on this device — you will hear the ${name} text read by a default voice. macOS and Windows ship Arabic voices.`;
+}
+$("driverLang").onchange = reportVoice;
+
+function speak(text, lang) {
+  return new Promise(done => {
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = BCP[lang] || "en-US";
+    const v = voiceFor(lang); if (v) u.voice = v;
+    u.rate = 0.95;
+    u.onend = u.onerror = () => done();
+    speechSynthesis.speak(u);
+    setTimeout(done, 12000);
+  });
+}
+
+/* ---------- speech in (best effort: blocked in some embeds) ---------- */
+const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+function listen(tag, btn, onText) {
+  if (!SR) { btn.disabled = true; btn.textContent = "Mic unavailable here"; return; }
+  let r;
+  try { r = new SR(); } catch { btn.disabled = true; btn.textContent = "Mic unavailable here"; return; }
+  const label = btn.textContent;
+  r.lang = tag; r.interimResults = false; r.maxAlternatives = 1;
+  r.onresult = e => onText(e.results[0][0].transcript);
+  r.onerror = ev => {
+    btn.textContent = ev.error === "not-allowed" || ev.error === "service-not-allowed"
+      ? "Mic blocked in this frame" : label;
+  };
+  r.onend = () => { if (btn.textContent === "Listening…") btn.textContent = label; };
+  btn.textContent = "Listening…";
+  try { r.start(); } catch { btn.textContent = label; }
+}
+$("recBtn").onclick = () => listen($("teachLang").value, $("recBtn"), t => {
+  $("transcript").value = ($("transcript").value.trim() + " " + t).trim();
+  $("recBtn").textContent = "Record instead";
+});
+$("micBtn").onclick = () => listen(BCP[$("driverLang").value], $("micBtn"), t => {
+  $("micBtn").textContent = "Speak as the driver";
+  driverSays(t);
+});
+
+/* ---------- step 1: teach ---------- */
+let home = null;
+try { home = JSON.parse(localStorage.getItem("dl_home") || "null"); } catch {}
+
+const TEACH = t => `You are setting up a phone agent that answers delivery drivers for a household in Saudi Arabia.
+Below is the resident describing, in their own words, how they guide a driver to their door.
+
+Turn it into the agent's knowledge base. Reply with only JSON of this shape:
+{"summary_en":"one line",
+ "facts":[{"topic":"gate|security|building|floor|apartment|parking|drop_off|landmark|other",
+           "en":"...","ar":"...","ur":"..."}],
+ "greeting":{"en":"...","ar":"...","ur":"..."}}
+
+Rules:
+- Every fact must come from the resident's words. Never add a detail they did not say.
+- One short spoken sentence per fact, the way you would say it to a driver on the phone.
+- "ar" is spoken Saudi Arabic, "ur" is spoken Urdu. Natural, not literal translation.
+- "greeting" is what the agent says the instant it picks up: a two-word hello, then the two or
+  three most important instructions front-loaded, so most drivers never need to ask anything.
+
+The resident said:
+${t}`;
+
+$("buildBtn").onclick = async () => {
+  const text = $("transcript").value.trim();
+  if (!text) { $("buildState").textContent = "Write or record your directions first."; return; }
+  if (!sample) { $("buildState").textContent = "Claude is not reachable from this view."; return; }
+  $("buildBtn").disabled = true; $("buildState").textContent = "Reading your directions…";
+  try {
+    const out = await sample.json(TEACH(text), { modelTier: "default" });
+    home = { ...out, phone: $("phone").value.trim() };
+    try { localStorage.setItem("dl_home", JSON.stringify(home)); } catch {}
+    renderHome();
+    $("buildState").textContent = "";
+  } catch (e) {
+    $("buildState").textContent = errCopy(e);
+  }
+  $("buildBtn").disabled = false;
+};
+
+function renderHome() {
+  if (!home || !home.facts) return;
+  $("knowledge").innerHTML =
+    `<p class="hint" style="margin:14px 0 0">What it understood — ${esc(home.summary_en || "")}</p>
+     <ul class="facts">${home.facts.map(f => `
+       <li><span class="topic">${esc(f.topic)}</span>
+           <span dir="auto">${esc(f.en)}</span>
+           <span class="ar-line" dir="auto">${esc(f.ar)}</span></li>`).join("")}
+       <li><span class="topic">opening line</span>
+           <span class="ar-line" dir="auto">${esc(home.greeting.ar)}</span>
+           <span dir="auto" class="hint">${esc(home.greeting.en)}</span></li>
+     </ul>`;
+  $("callBtn").disabled = false;
+}
+renderHome();
+
+/* ---------- step 2: the call ---------- */
+let turns = [], live = false;
+
+const RULES = () => `You answer the home phone for a household in Saudi Arabia. Every caller is a delivery driver.
+Your goal: finish the delivery WITHOUT disturbing the resident.
+
+The resident recorded this themselves. It is the only thing you know about the home:
+${home.facts.map(f => `- ${f.topic}: ${f.en} | AR: ${f.ar} | UR: ${f.ur}`).join("\n")}
+Resident's number, for transfers only: ${home.phone || "not set"}
+
+Every time I give you a driver's words, reply with only JSON:
+{"action":"answer|repeat_simpler|escalate|end_call","language":"ar|en|ur|hi|bn","say":"what you say out loud","why":"short English note for the resident's call log"}
+
+Rules:
+- Speak the driver's language. Short sentences. One instruction at a time.
+- Answer only from the facts above. Never invent a gate, floor, number or landmark.
+- If he did not understand, use repeat_simpler: the same fact in simpler words.
+- Use escalate when the answer is not in the facts, the security guard refuses him entry, there is a
+  payment or order problem, he asks for the customer, or you could not make out his words twice.
+  Then "say" is the one short line you tell him before transferring.
+- Use end_call when he says it is delivered or left at the door.`;
+
+function esc(s) { return String(s ?? "").replace(/[&<>]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c])); }
+
+function addTurn(speaker, text, cls, chip, why) {
+  if ($("log").firstElementChild && $("log").firstElementChild.className === "empty") $("log").innerHTML = "";
+  const d = document.createElement("div");
+  d.className = "turn " + cls;
+  d.innerHTML = `<div class="speaker">${esc(speaker)}</div>
+    <div class="line" dir="auto">${chip ? `<span class="chip${chip.warn ? " warn" : ""}">${esc(chip.text)}</span>` : ""}${esc(text)}</div>
+    ${why ? `<div class="why">${esc(why)}</div>` : ""}`;
+  $("log").appendChild(d);
+  d.scrollIntoView({ block: "nearest" });
+  return d;
+}
+
+$("callBtn").onclick = async () => {
+  turns = []; live = true; $("log").innerHTML = "";
+  $("micBtn").disabled = false; $("hangBtn").disabled = false; $("typed").disabled = false;
+  $("typed").focus();
+  const lang = $("driverLang").value;
+  const line = home.greeting[lang] || home.greeting.en;
+  addTurn("Agent picks up", line, "agent", { text: "greeting" },
+    "Front-loads the key instructions before the driver has to ask, or be understood.");
+  turns.push({ role: "assistant", content: JSON.stringify({ action: "answer", language: lang, say: line, why: "greeting" }) });
+  await speak(line, lang);
+};
+
+async function driverSays(text) {
+  if (!live || !sample) return;
+  addTurn("Driver", text, "driver");
+  turns.push({ role: "user", content: text });
+  const pending = addTurn("Agent", "Thinking…", "agent");
+  let d;
+  try {
+    d = await sample.json([{ role: "user", content: RULES() }, ...turns], { modelTier: "quick", cache: false });
+  } catch (e) {
+    pending.remove();
+    addTurn("Agent", errCopy(e), "agent escalated", { text: "error", warn: true });
+    return;
+  }
+  pending.remove();
+  const warn = d.action === "escalate";
+  addTurn("Agent", d.say, "agent" + (warn ? " escalated" : ""), { text: d.action, warn }, d.why);
+  turns.push({ role: "assistant", content: JSON.stringify(d) });
+  await speak(d.say, d.language);
+  if (warn) {
+    addTurn("Your phone", `Ringing ${home.phone || "you"} — ${d.why}`, "escalated", { text: "transfer", warn: true });
+    endCall();
+  } else if (d.action === "end_call") {
+    addTurn("Call ended", "Delivered. You were never disturbed.", "agent", { text: "done" });
+    endCall();
+  }
+}
+
+$("typed").onkeydown = e => {
+  if (e.key !== "Enter") return;
+  const v = e.target.value.trim(); if (!v) return;
+  e.target.value = ""; driverSays(v);
+};
+$("hangBtn").onclick = endCall;
+function endCall() {
+  live = false;
+  speechSynthesis.cancel();
+  $("micBtn").disabled = true; $("hangBtn").disabled = true; $("typed").disabled = true;
+  $("micBtn").textContent = "Speak as the driver";
+}
+
+function errCopy(e) {
+  const c = e && e.code;
+  if (c === "not_granted") return "You declined Claude access, so the agent cannot think. Reload to be asked again.";
+  if (c === "rate_limited") return "Too many requests in a row. Wait a moment and try again.";
+  if (c === "invalid_json") return "The reply came back malformed. Try that line again.";
+  if (c === "session_expired") return "Your Claude session expired. Sign in again.";
+  if (c === "sampling_disabled" || c === "not_declared") return "Claude is not available for this page.";
+  return "Something went wrong reaching Claude. Try again.";
+}
+</script>
