@@ -1,3 +1,4 @@
+import { asset } from '../../lib/asset';
 import { leapLine, leapMode, site } from '../../data/site';
 import { MaskReveal } from '../Motion/Reveal';
 import './Contact.css';
@@ -76,7 +77,7 @@ export function Contact() {
               <li>
                 <a
                   className="contact__link"
-                  href={site.resume.path}
+                  href={asset(site.resume.path)}
                   target="_blank"
                   rel="noreferrer noopener"
                 >

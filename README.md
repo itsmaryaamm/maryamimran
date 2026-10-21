@@ -212,3 +212,31 @@ in both places, so the row total (51) is higher than the distinct record count
 - Don't invent metrics, dates, partnerships or outcomes. If something isn't
   confirmed, leave the field out or mark it `verified: false`.
 - Open TODOs are marked `TODO(maryam)` in the data files only — never in the UI.
+
+---
+
+## Publishing to GitHub Pages
+
+Push to `main` (or this branch) and the workflow in `.github/workflows/pages.yml`
+builds and publishes. Enable it once, in the repo:
+
+**Settings → Pages → Build and deployment → Source: GitHub Actions**
+
+The site then lives at `https://<user>.github.io/<repo>/`.
+
+The workflow works out the base path from the repo name, so it is correct
+wherever the repo lives — a repo called `maryamimran` is served from
+`/maryamimran/`, and one called `<user>.github.io` from the root. Nothing needs
+editing if the repo moves or is renamed.
+
+The build writes a real `index.html` into a directory per route, so
+`/business` returns a genuine 200 and is crawlable rather than relying on the
+usual `404.html` redirect trick. `404.html` is still written, as the catch-all
+for paths that really don't exist.
+
+### Pointing mayamirman.com at it later
+
+Add the domain under Settings → Pages, create a `CNAME` file in `public/`
+containing `mayamirman.com`, and set the DNS records GitHub shows you. A custom
+domain is served from the root, so set `BASE_PATH=/` — or just let the workflow
+rename handle it.

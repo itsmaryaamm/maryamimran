@@ -1,3 +1,4 @@
+import { asset } from '../../lib/asset';
 import { useEffect, useRef, useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { useNavGround } from '../../hooks/useNavGround';
@@ -101,7 +102,7 @@ export function Navigation() {
               <li>
                 <a
                   className="nav__link"
-                  href={site.resume.path}
+                  href={asset(site.resume.path)}
                   target="_blank"
                   rel="noreferrer noopener"
                 >
@@ -195,7 +196,7 @@ export function Navigation() {
           </a>
           {site.resume.available && (
             <a
-              href={site.resume.path}
+              href={asset(site.resume.path)}
               target="_blank"
               rel="noreferrer noopener"
               className="textlink textlink--quiet"

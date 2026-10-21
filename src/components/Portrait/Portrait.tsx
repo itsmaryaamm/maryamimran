@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { asset } from '../../lib/asset';
 import { site } from '../../data/site';
 import './Portrait.css';
 
@@ -29,7 +30,7 @@ export const PORTRAIT_ABOUT_SRC = site.portrait.aboutSrc;
 /** "/a/b/name.jpg" -> "/a/b/name-800.webp" (largest width keeps the base name). */
 function variant(src: string, width: number | null, ext: string) {
   const base = src.replace(/\.[^./]+$/, '');
-  return width === null ? `${base}.${ext}` : `${base}-${width}.${ext}`;
+  return asset(width === null ? `${base}.${ext}` : `${base}-${width}.${ext}`);
 }
 
 function buildSrcSet(src: string, widths: readonly number[], ext: string) {
@@ -99,7 +100,7 @@ export function Portrait({
           <img
             key={current}
             className="portrait__img"
-            src={current}
+            src={asset(current)}
             srcSet={hasSet ? buildSrcSet(current, widths, 'jpg') : undefined}
             sizes={hasSet ? sizes : undefined}
             alt={alt}

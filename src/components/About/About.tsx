@@ -1,3 +1,4 @@
+import { asset } from '../../lib/asset';
 import { Link } from 'react-router-dom';
 import { Portrait, PORTRAIT_ABOUT_SRC, PORTRAIT_SRC } from '../Portrait/Portrait';
 import { MaskReveal, Reveal } from '../Motion/Reveal';
@@ -89,7 +90,7 @@ export function About() {
               </Link>
               {site.resume.available && (
                 <a
-                  href={site.resume.path}
+                  href={asset(site.resume.path)}
                   target="_blank"
                   rel="noreferrer noopener"
                   className="textlink"

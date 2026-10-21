@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { asset } from '../../lib/asset';
 import type { MediaItem } from '../../data/types';
 import './Figure.css';
 
@@ -48,10 +49,10 @@ export function Figure({
             {/* npm run images writes a WebP beside every JPEG — roughly half
                 the bytes wherever the browser supports it. If only the JPEG
                 exists the source is skipped and the img still resolves. */}
-            <source type="image/webp" srcSet={media.src.replace(/\.[^./]+$/, '.webp')} />
+            <source type="image/webp" srcSet={asset(media.src.replace(/\.[^./]+$/, '.webp'))} />
             <img
               className="figure__img"
-              src={media.src}
+              src={asset(media.src)}
               alt={media.alt}
               sizes={sizes}
               loading={priority ? 'eager' : 'lazy'}

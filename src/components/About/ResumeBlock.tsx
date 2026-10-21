@@ -1,3 +1,4 @@
+import { asset } from '../../lib/asset';
 import { site } from '../../data/site';
 import './ResumeBlock.css';
 
@@ -21,7 +22,7 @@ export function ResumeBlock() {
 
         <a
           className="resumeblock__link"
-          href={site.resume.path}
+          href={asset(site.resume.path)}
           target="_blank"
           rel="noreferrer noopener"
         >

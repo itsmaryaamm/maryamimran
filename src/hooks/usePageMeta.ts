@@ -19,7 +19,17 @@ function setMeta(selector: string, attr: string, value: string) {
  */
 export function usePageMeta({ title, description, path }: PageMeta) {
   useEffect(() => {
-    const url = `${site.url}${path}`;
+    /* site.url is the eventual custom domain. Until DNS points there the site
+       may be served from somewhere else (a GitHub Pages project path, a
+       preview deploy), and a canonical naming a host that doesn't resolve is
+       worse than none — so describe where the page actually is. */
+    const onCustomDomain =
+      typeof window !== 'undefined' && window.location.origin === site.url;
+    const origin =
+      onCustomDomain || typeof window === 'undefined'
+        ? site.url
+        : `${window.location.origin}${import.meta.env.BASE_URL.replace(/\/$/, '')}`;
+    const url = `${origin}${path}`;
 
     document.title = title;
     setMeta('meta[name="description"]', 'content', description);
