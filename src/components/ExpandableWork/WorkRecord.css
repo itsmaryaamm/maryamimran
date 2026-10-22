@@ -166,6 +166,11 @@
     flex-direction: column;
   }
 
+  .record__phases--stepped .record__phase {
+    flex: none;
+    min-width: 0;
+  }
+
   .record__phase:not(:last-child)::after {
     content: '↓';
     right: auto;
