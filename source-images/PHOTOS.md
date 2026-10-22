@@ -16,4 +16,3 @@ The photo of Maryam speaking with students at a Sustainability Club event (`0bcf
 8. A redacted Sustainability Reporting document or relevant campus photo.
 
 Use a section prefix when adding images. For example, `business-tiin-product.png` becomes `/assets/business/tiin-product.jpg` and `.webp` after `npm run images`. Only label photos with the event or project that they actually show. Avoid private information in screenshots.
-
