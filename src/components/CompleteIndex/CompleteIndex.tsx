@@ -200,10 +200,7 @@ export function CompleteIndex() {
         </div>
       </div>
 
-      {/* Unfiltered, the honest headline number is distinct records — the row
-          total is higher because Speaking re-lists work already counted under
-          its category. Once anything is filtered, the row count is what the
-          reader is actually looking at. */}
+      {/* Every entry appears once. Speaking is an activity filter across entries. */}
       <p className="cindex__count label" role="status" aria-live="polite">
         {filtered ? (
           <>

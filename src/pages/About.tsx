@@ -10,7 +10,7 @@ import { usePageMeta } from '../hooks/usePageMeta';
    ABOUT
    ------------------------------------------------------------
    The person, then the formal background that
-   used to sit on the homepage: education, recognition, programs
+   used to sit on the homepage: education, recognition, learning
    and the resume. This is where someone goes when they want the
    credentials, so this is where the credentials live.
    ============================================================ */

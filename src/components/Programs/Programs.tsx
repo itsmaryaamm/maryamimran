@@ -26,7 +26,7 @@ export function Programs() {
       <div className="shell">
         <div className="section-head__meta programs__meta">
           <h2 id="programs-heading" className="label">
-            Programs
+            Learning
           </h2>
           <p className="label">{programsSorted.length}</p>
         </div>

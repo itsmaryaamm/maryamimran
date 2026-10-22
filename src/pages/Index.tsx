@@ -9,7 +9,7 @@ export default function IndexPage() {
   usePageMeta({
     title: 'Everything — Maryam Imran',
     description:
-      'Maryam Imran’s portfolio index: education, projects, leadership, sustainability, programs, awards, speaking and courses.',
+      'Maryam Imran’s portfolio index: education, projects, leadership, sustainability, events, learning, awards, writing and certificates.',
     path: '/index',
   });
 
@@ -19,7 +19,7 @@ export default function IndexPage() {
         index="—"
         kicker="Portfolio index"
         title="Everything."
-        blurb="Education, projects, leadership, sustainability, programs, awards, speaking and courses."
+        blurb="Education, projects, leadership, sustainability, events, learning, awards, writing and certificates."
         count={distinctEntryCount}
       />
 

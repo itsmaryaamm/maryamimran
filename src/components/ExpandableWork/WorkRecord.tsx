@@ -79,7 +79,7 @@ export function WorkRecord({ item }: { item: WorkItem }) {
           {item.phases?.length ? (
             <div className="record__block">
               <h4 className="label record__block-title">How it evolved</h4>
-              <ol className="record__phases">
+              <ol className={`record__phases ${item.id === 'tiin' ? 'record__phases--stepped' : ''}`}>
                 {item.phases.map((phase, i) => (
                   <li key={phase.label} className="record__phase">
                     <span className="record__phase-num mono">{String(i + 1).padStart(2, '0')}</span>

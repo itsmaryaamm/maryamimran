@@ -82,7 +82,7 @@
   opacity: 0.55;
 }
 
-/* --- Phases: a horizontal progression, never a correction --- */
+/* --- Phases --- */
 
 .record__phases {
   display: flex;
@@ -134,7 +134,38 @@
   line-height: 1.4;
 }
 
-@media (max-width: 640px) {
+@media (min-width: 701px) {
+  .record__phases--stepped {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .record__phases--stepped .record__phase:nth-child(3) {
+    grid-column: 2;
+    grid-row: 2;
+  }
+
+  .record__phases--stepped .record__phase:nth-child(4) {
+    grid-column: 3;
+    grid-row: 2;
+  }
+
+  .record__phases--stepped .record__phase:nth-child(2)::after {
+    content: '↓';
+    right: auto;
+    left: 50%;
+    top: auto;
+    bottom: -0.95rem;
+    transform: translateX(-50%);
+  }
+}
+
+@media (max-width: 700px) {
+  .record__phases--stepped {
+    flex-direction: column;
+  }
+
   .record__phase:not(:last-child)::after {
     content: '↓';
     right: auto;

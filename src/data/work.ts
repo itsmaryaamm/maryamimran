@@ -26,18 +26,18 @@ export const work: WorkItem[] = [
     title: 'Tiin',
     titleAlt: 'تِين',
     organization: 'Monsha’at Human Capital Program',
-    year: '2025—NOW',
+    year: '2025–26',
     yearSort: 2025,
-    date: 'Sep 2025 — Present',
+    date: 'Sep 2025 — Sep 2026',
     role: 'Co-Founder & CEO',
     primaryCategory: 'business',
-    secondaryTags: ['build', 'research', 'analyze', 'lead'],
+    secondaryTags: ['build', 'research', 'analyze', 'lead', 'speak'],
     shortDescription:
-      'A data-insights platform for Saudi SMEs — turning the numbers a business already has into answers it can act on.',
+      'Co-founded and led Tiin through Monsha’at’s Human Capital Program, from customer discovery and prototypes to presenting the venture at Demo Day.',
     fullDescription: [
       'Tiin started from a straightforward observation: a lot of small businesses in Saudi Arabia have their numbers, but not their answers. The data sits in a point-of-sale system or an accounting tool, and the owner still cannot say whether this month was actually good.',
       'The work has been mostly customer discovery and iteration — talking to owners, watching where the confusion actually lives, and rebuilding the product around what turned out to matter. That moved the idea from analytics dashboards toward financial interpretation: not more charts, but a clear read on business health, cash flow, margins, receivables and expenses, with recommendations an owner can act on this week.',
-      'Tiin is being built through Monsha’at’s Human Capital Program, with guidance from Saudi founders, investors and ecosystem mentors.',
+      'I co-founded and led Tiin through Monsha’at’s Human Capital Program, with guidance from Saudi founders, investors and ecosystem mentors. I shaped the pitch and presented the venture at Demo Day.',
     ],
     contribution: [
       'Ran customer discovery with Saudi SME owners and rebuilt the product thesis around what they actually asked for',
@@ -45,9 +45,7 @@ export const work: WorkItem[] = [
       'Built and vibe-coded working prototypes to test the interpretation layer before committing to a stack',
       'Explored WhatsApp as the delivery channel and Zoho and accounting systems as data sources',
       'Developed the reporting concept: a readable financial report rather than a dashboard to be deciphered',
-    ],
-    externalLinks: [
-      { label: 'Early Equi-Finance project', href: 'https://nonchalant-feast-081.notion.site/1d3b125b7cdd80318123de40e4db15d9' },
+      'Built the Demo Day pitch narrative and presented Tiin to the cohort, mentors and invited guests',
     ],
     phases: [
       { label: 'POS Analytics', note: 'Reading what the till already knows' },
@@ -60,44 +58,43 @@ export const work: WorkItem[] = [
       { src: '/assets/business/tiin-product.jpg', alt: 'Maryam presenting a Tiin product flow on stage', caption: 'Product flow presentation', ratio: '3/2' },
       { src: '/assets/business/tiin-deck.jpg', alt: 'Maryam explaining Tiin’s business model during a presentation', caption: 'Tiin pitch', ratio: '3/2' },
       { src: '/assets/business/tiin-booth.jpg', alt: 'Maryam speaking with a visitor at the Tiin booth', caption: 'Tiin booth', ratio: '3/2' },
+      { src: '/assets/speaking/demo-day-stage.jpg', alt: 'Maryam presenting Tiin at Demo Day', caption: 'Demo Day presentation', ratio: '3/2' },
     ],
     featuredMedia: { src: '/assets/business/tiin-award.jpg', alt: 'Maryam holding an award at the Monsha’at University Startups event', ratio: '4/3' },
     showInIndex: true,
-    showInSpeaking: false,
+    showInSpeaking: true,
     showInRecognition: false,
     order: 1,
     scale: 'lead',
   },
   {
-    id: 'tiin-demo-day',
-    title: 'Tiin Demo Day',
-    organization: 'Monsha’at Human Capital Program',
-    year: '2026',
-    yearSort: 2026,
-    role: 'Pitch',
+    id: 'equi-finance',
+    title: 'EquiFinance',
+    organization: 'UBT Sparkathon',
+    year: '2024',
+    yearSort: 2024,
+    role: 'Project Lead',
     primaryCategory: 'business',
-    secondaryTags: ['speak', 'build'],
+    secondaryTags: ['build', 'research', 'compete'],
     shortDescription:
-      'Pitching Tiin at the end of the programme — the product, the market and what comes next.',
+      'Developed and pitched an SME funding platform at UBT Sparkathon, reaching the top 14 teams.',
     fullDescription: [
-      'Demo Day is where the programme work gets compressed into a few minutes on stage: what the problem is, who has it, what has been built, and why this direction.',
+      'At UBT Sparkathon, I developed a concept to connect small and medium businesses with investors, focused on access to funding, trust and sustainability.',
     ],
     contribution: [
-      'Built the pitch narrative around the SME finance problem rather than the feature list',
-      'Presented Tiin to the cohort, mentors and invited guests',
+      'Researched SME funding challenges and designed the platform’s proposed features',
+      'Developed the business model, financial plan and pitch deck',
+      'Presented the concept at Sparkathon',
     ],
-    images: [
-      { src: '/assets/speaking/demo-day-stage.jpg', alt: 'Maryam presenting Tiin at Demo Day', caption: 'Demo Day', ratio: '3/2' },
-    ],
-    featuredMedia: { src: '/assets/speaking/demo-day-stage.jpg', alt: 'Maryam presenting Tiin at Demo Day', ratio: '4/3' },
+    result: 'TOP 14 TEAMS',
     showInIndex: true,
-    showInSpeaking: true,
+    showInSpeaking: false,
     showInRecognition: false,
     order: 2,
   },
   {
     id: 'food-gala',
-    title: 'Food Gala',
+    title: 'Food Bonanza',
     year: '2023–24',
     yearSort: 2023,
     date: 'Nov 2023 — Jan 2024',
@@ -118,9 +115,6 @@ export const work: WorkItem[] = [
       { value: 'SAR 30,000', label: 'Revenue', verified: true },
       { value: '75', label: 'Students managed', verified: true },
       { value: '8', label: 'Days', verified: true },
-    ],
-    externalLinks: [
-      { label: 'Project page and business plan', href: 'https://nonchalant-feast-081.notion.site/1d5b125b7cdd80d08dbeebfa169f276d' },
     ],
     images: [
       { src: '/assets/business/food-gala-1.jpg', alt: 'Food Gala event operations', ratio: '3/2' },
@@ -205,11 +199,9 @@ export const work: WorkItem[] = [
       'Co-developed a futuristic food sustainability solution with Solar Foods using Solein protein',
       'Delivered pitches and prototypes to judges including global CEOs',
     ],
-    result: 'TOP 7 OF 78',
     metrics: [{ value: 'Top 7 / 78', label: 'Teams', verified: true }],
     externalLinks: [
       { label: 'Watch the final presentation', href: 'https://youtu.be/5KyHnjN5_RQ?t=1635' },
-      { label: 'Project page', href: 'https://nonchalant-feast-081.notion.site/1d3b125b7cdd8095b049fa651dc9103a' },
     ],
     showInIndex: true,
     showInSpeaking: true,
@@ -217,30 +209,15 @@ export const work: WorkItem[] = [
     order: 6,
   },
   {
-    id: 'harvard-crimson-case',
-    title: 'Harvard Crimson Global Case Competition',
-    year: '2025',
-    yearSort: 2025,
-    role: 'Competition',
-    primaryCategory: 'business',
-    secondaryTags: ['compete', 'analyze', 'research'],
-    shortDescription: 'A global case competition — business analysis against a live brief, under time.',
-    /* TODO(maryam): add your placement and what the case was, if you want it public. */
-    showInIndex: true,
-    showInSpeaking: false,
-    showInRecognition: false,
-    order: 7,
-  },
-  {
     id: 'nestle-nxl',
-    title: 'Nestlé NxL',
+    title: 'Nestlé NXplor',
     organization: 'Season 3',
     year: '2025',
     yearSort: 2025,
     role: 'Competition',
     primaryCategory: 'business',
     secondaryTags: ['compete', 'market', 'research'],
-    shortDescription: 'Nestlé’s business challenge programme — strategy and go-to-market against a corporate brief.',
+    shortDescription: 'Participated in Nestlé NXplor Season 3.',
     /* TODO(maryam): add the brief you worked on and your result. */
     showInIndex: true,
     showInSpeaking: false,
@@ -288,9 +265,6 @@ export const work: WorkItem[] = [
     metrics: [
       { value: '3K → 6K', label: 'Instagram followers', verified: true },
       { value: '50%', label: 'Engagement increase', verified: true },
-    ],
-    externalLinks: [
-      { label: 'Experience summary', href: 'https://nonchalant-feast-081.notion.site/1d3b125b7cdd80178f21c9b5999e05ea' },
     ],
     featuredMedia: { src: '/assets/business/silent-kitchen.jpg', alt: 'Silent Kitchen Story brand work', ratio: '4/3' },
     showInIndex: true,
@@ -350,7 +324,7 @@ export const work: WorkItem[] = [
     primaryCategory: 'technology',
     secondaryTags: ['build', 'design', 'compete'],
     shortDescription:
-      'A hackathon demo for AI-agent purchases with spending rules, human approval and a kill switch. 7th place overall.',
+      'As Flaire’s Technical Lead, built the website, demo, visual identity and pitch deck; the team placed 7th at The Garage Challenge.',
     fullDescription: [
       'At The Garage Challenge in Riyadh, our 10-person team worked on Flaire: a proposed permission layer for purchases initiated by AI agents. The starting use case was Saudi small businesses that could let an agent handle routine buying while keeping control over budgets and approved vendors.',
       'I was the team’s Technical Lead. In roughly 48 hours, I built the demo and website, designed the logo and made the pitch deck. The demo walked through three decisions: a purchase within the limit could be approved automatically, one above the limit needed a person, and a kill switch could pause spending.',
@@ -386,7 +360,7 @@ export const work: WorkItem[] = [
     primaryCategory: 'technology',
     secondaryTags: ['learn', 'research', 'build', 'speak', 'compete'],
     shortDescription:
-      'Emerging technology, hackathons, and pitching to Meta’s Oversight Board and the World Economic Forum.',
+      'At TKS, researched emerging technology and built projects spanning Meta AI, World Economic Forum education, Food Connect and a project website.',
     fullDescription: [
       'TKS is structured around going deep on emerging technologies and then having to explain them. The work was research, challenges and hackathons, and presenting the result to people who would ask the obvious hard question.',
       'The rooms were the point as much as the projects: pitching to Meta’s Oversight Board and at the World Economic Forum is a fast way to find out whether an idea survives contact with people who do this professionally.',
@@ -396,10 +370,7 @@ export const work: WorkItem[] = [
       'Pitched to Meta’s Oversight Board and at the World Economic Forum',
       'Developed an air-to-water moonshot project addressing water scarcity in underserved regions',
       'Researched emerging technologies and presented findings',
-    ],
-    externalLinks: [
-      { label: 'Meta AI chatbot project', href: 'https://nonchalant-feast-081.notion.site/1d5b125b7cdd8030bf35df1cbcb44a25' },
-      { label: 'WEF education project', href: 'https://nonchalant-feast-081.notion.site/1d5b125b7cdd808d9552ee25e2c5338e' },
+      'Worked on Food Connect and built a project website',
     ],
     featuredMedia: { src: '/assets/technology/tks.jpg', alt: 'TKS presentation work', ratio: '4/3' },
     showInIndex: true,
@@ -413,14 +384,14 @@ export const work: WorkItem[] = [
     title: 'Agentic AI',
     year: '2026',
     yearSort: 2026,
-    role: 'Session & Workshop',
+    role: 'Online Workshop Presenter',
     primaryCategory: 'technology',
     secondaryTags: ['speak', 'build', 'research'],
     shortDescription:
-      'A working session on agents — what reasoning and tool use actually buy you, and when they do not.',
+      'Designed and delivered an online Agentic AI workshop for UBT AI Club, explaining agent reasoning, tools and workflows.',
     fullDescription: [
       'Most of the interest in agents is in what they can do. The more useful question is when they are worth it. An agent that reasons, picks tools and loops is genuinely better for open-ended work with an unknown number of steps. For a task with a fixed shape, it is a slower and less reliable script.',
-      'The session works through both sides: how agent reasoning and tool use fit together, and the cases where the honest answer is that you did not need an agent.',
+      'I delivered this online session for the UBT AI Club. A separate, in-person Agentic AI presentation followed on Engineering Day.',
     ],
     contribution: [
       'Built and delivered the session on agent reasoning, tools and workflows',
@@ -446,16 +417,15 @@ export const work: WorkItem[] = [
     primaryCategory: 'technology',
     secondaryTags: ['research', 'build'],
     shortDescription:
-      'Atmospheric water generation for underserved regions — the physics, the cost and the honest limits.',
+      'Led an air-to-water moonshot concept at TKS, from the sustainable-energy business model to an Africa deployment strategy and mentor presentation.',
     fullDescription: [
-      'A moonshot project on water scarcity: pulling drinking water out of the air in places where the infrastructure to deliver it does not exist. The interesting work was the constraint side — humidity, energy cost per litre, and being clear about the conditions under which it stops making sense.',
+      'Developed a concept for converting moisture in the air into drinking water for regions facing water scarcity. The project ran through The Knowledge Society from April to May 2024.',
+      'I led ideation, built a business model based on sustainable energy use, developed a market entry approach for Africa, and prepared prototype concepts. The project was selected as a top TKS submission and presented to global mentors.',
     ],
     contribution: [
-      'Researched atmospheric water generation and the conditions under which it works',
-      'Developed the concept as a moonshot addressing water scarcity in underserved regions',
-    ],
-    externalLinks: [
-      { label: 'Abundance project page', href: 'https://nonchalant-feast-081.notion.site/1d5b125b7cdd8080ab47e8cd461d3644' },
+      'Led ideation and created the sustainable-energy business model',
+      'Developed an Africa market entry strategy and prototype concepts',
+      'Presented the project to TKS directors and global mentors',
     ],
     showInIndex: true,
     showInSpeaking: false,
@@ -464,15 +434,15 @@ export const work: WorkItem[] = [
   },
   {
     id: 'engineering-day-ai',
-    title: 'Engineering Day',
+    title: 'Agentic AI — Engineering Day',
     organization: 'UBT',
     year: '2026',
     yearSort: 2026,
-    role: 'AI Presentation',
+    role: 'In-Person Workshop Presenter',
     primaryCategory: 'technology',
     secondaryTags: ['speak', 'research'],
-    shortDescription: 'Presenting AI work to an engineering audience.',
-    contribution: ['Prepared and delivered the AI presentation'],
+    shortDescription: 'Prepared and delivered an in-person Agentic AI session for the Engineering Day audience at UBT.',
+    contribution: ['Prepared and delivered the in-person Agentic AI presentation'],
     featuredMedia: { src: '/assets/speaking/engineering-day.jpg', alt: 'Engineering Day presentation', ratio: '4/3' },
     showInIndex: true,
     showInSpeaking: true,
@@ -482,54 +452,23 @@ export const work: WorkItem[] = [
   {
     id: 'automation-lowcode',
     title: 'Automation & Low-Code',
-    year: '2025—NOW',
+    year: '2025',
     yearSort: 2025,
     role: 'Practice',
     primaryCategory: 'technology',
     secondaryTags: ['build', 'analyze', 'learn'],
     shortDescription:
-      'Zoho Creator, n8n, Zapier and webhooks — the plumbing that gets SME data from where it is to where it is useful.',
+      'Practised AI automation and low-code workflow building in 2025, connecting forms, data and actions across tools.',
     fullDescription: [
-      'The unglamorous half of Tiin, and useful well beyond it: forms, workflows and portals in Zoho Creator, CRM and Flow, n8n and Zapier automations, and the API fundamentals — webhooks, JSON — that let one system tell another what just happened.',
-      'Most of it is data ingestion. Getting a small business’s numbers out of the tools they already use, into a shape something can reason about, without asking them to change how they work.',
+      'In 2025, I practised building low-code workflows that take an input, move information between tools, and trigger a useful next step.',
     ],
     contribution: [
-      'Built SME data ingestion flows across Zoho Creator, CRM and Flow',
-      'Wired automations with n8n and Zapier over webhook and JSON APIs',
-      'Worked with Zia AI and no-code analytics in Zoho Analytics and Google Data Studio',
+      'Built and tested AI automation and low-code workflows',
     ],
     showInIndex: true,
     showInSpeaking: false,
     showInRecognition: false,
     order: 6,
-  },
-  {
-    id: 'hardware-prototyping',
-    title: 'Hardware Prototyping',
-    year: '2025',
-    yearSort: 2025,
-    role: 'Practice',
-    primaryCategory: 'technology',
-    secondaryTags: ['build', 'learn'],
-    shortDescription:
-      'Arduino, Raspberry Pi, sensors and motors — the ongoing habit of getting physical things to work.',
-    fullDescription: [
-      'The running thread underneath VITA and the rest: wiring sensors, driving motors, reading values that make no sense, and finding out why. Hardware is unusually good at telling you when your mental model is wrong.',
-    ],
-    contribution: [
-      'Prototyped on Arduino and Raspberry Pi with sensors, motors and IR tracking',
-      'Debugged circuits that behave differently on the bench and in motion',
-    ],
-    images: [
-      { src: '/assets/technology/prototyping-1.jpg', alt: 'Arduino and sensor prototyping', ratio: '1/1' },
-      { src: '/assets/technology/prototyping-2.jpg', alt: 'Raspberry Pi build in progress', ratio: '3/2' },
-    ],
-    featuredMedia: { src: '/assets/technology/prototyping-1.jpg', alt: 'Arduino and sensor prototyping', ratio: '4/3' },
-    showInIndex: true,
-    showInSpeaking: false,
-    showInRecognition: false,
-    order: 7,
-    scale: 'quiet',
   },
 
   /* ==========================================================
@@ -541,12 +480,12 @@ export const work: WorkItem[] = [
     organization: 'University of Business & Technology',
     year: '2025—NOW',
     yearSort: 2025,
-    date: '27 Feb 2025 — Present',
-    role: 'President',
+    date: 'Jan 2025 — Present',
+    role: 'President (formerly PR Lead)',
     primaryCategory: 'impact',
     secondaryTags: ['lead', 'operate', 'market'],
     shortDescription:
-      'Running the club — strategy, outreach, and a relaunched LinkedIn that hit 5,000+ impressions in a month.',
+      'Led the club’s PR before becoming President, coordinating outreach, volunteers and sustainability events across UBT.',
     fullDescription: [
       'Became President on 27 February 2025, having come up through the PR side. The role spans event planning, volunteer coordination, outreach and communications across the university.',
       'Most of the visible progress has been outreach. Relaunching the club’s LinkedIn and running it properly moved it from dormant to a real channel — the club now has somewhere to speak from.',
@@ -555,6 +494,7 @@ export const work: WorkItem[] = [
       'Led strategic planning and outreach, boosting the club’s presence and engagement across campus',
       'Relaunched and managed the club’s LinkedIn, growing the following to 100+',
       'Generated 5,000+ impressions in one month from a standing start',
+      'Previously led PR outreach, bringing new members and visitors to club activities and supporting sponsor proposals',
     ],
     metrics: [
       { value: '5,000+', label: 'LinkedIn impressions in one month', verified: true },
@@ -562,6 +502,7 @@ export const work: WorkItem[] = [
     ],
     images: [
       { src: '/assets/impact/club-team.jpg', alt: 'Maryam presenting the UBT Sustainability Club orientation', caption: 'Club orientation', ratio: '3/2' },
+      { src: '/assets/impact/club-orientation.jpg', alt: 'Maryam presenting the Sustainability Club orientation', caption: 'Orientation presentation', ratio: '3/2' },
     ],
     featuredMedia: { src: '/assets/impact/club-team.jpg', alt: 'Maryam presenting the UBT Sustainability Club orientation', ratio: '4/3' },
     showInIndex: true,
@@ -569,35 +510,6 @@ export const work: WorkItem[] = [
     showInRecognition: false,
     order: 1,
     scale: 'lead',
-  },
-  {
-    id: 'sustainability-club-pr',
-    title: 'Sustainability Club — PR',
-    organization: 'University of Business & Technology',
-    year: '2025',
-    yearSort: 2025,
-    date: 'Jan 2025 — Mar 2025',
-    role: 'PR Team Leader',
-    primaryCategory: 'impact',
-    secondaryTags: ['market', 'lead', 'operate'],
-    shortDescription:
-      'The outreach job before the presidency — membership, event footfall and the club’s first sponsors.',
-    fullDescription: [
-      'Two months of running the club’s outreach before taking it over entirely. The brief was simple and measurable: more members, more people at the booth, and money from somewhere other than the university.',
-    ],
-    contribution: [
-      'Executed an outreach strategy that increased membership by 10+ members',
-      'Attracted 50+ visitors to the club’s event booth',
-      'Supported sponsorship acquisition, securing two sponsors through stakeholder communications and proposals',
-    ],
-    metrics: [
-      { value: '50+', label: 'Booth visitors', verified: true },
-      { value: '2', label: 'Sponsors secured', verified: true },
-    ],
-    showInIndex: true,
-    showInSpeaking: false,
-    showInRecognition: false,
-    order: 2,
   },
   {
     id: 'ui-greenmetric',
@@ -642,7 +554,7 @@ export const work: WorkItem[] = [
     primaryCategory: 'impact',
     secondaryTags: ['lead', 'build', 'design', 'operate'],
     shortDescription:
-      'An interactive campus event — multiple booths, a digital stamp trail, and sustainability made participatory.',
+      'As UBT Sustainability Club President, led and delivered Think Sustainability, with themed booths and a digital participation trail.',
     fullDescription: [
       'A sustainability event that people walk through rather than sit in. Multiple booths, each a different experience and a different discipline’s angle on the same set of problems, tied together by a digital stamp trail that gave people a reason to do all of it rather than one.',
       'Most of the work was planning and coordination: floor plan, booth briefs, teams, university and external collaborators, and the run of the day itself.',
@@ -708,7 +620,7 @@ export const work: WorkItem[] = [
     primaryCategory: 'impact',
     secondaryTags: ['analyze', 'research', 'build'],
     shortDescription:
-      'Measuring what students actually understand about sustainability, rather than assuming.',
+      'As part of the UBT Sustainability Club, designed and analysed a sustainability literacy assessment for students.',
     fullDescription: [
       'A sustainability literacy assessment run across an event: SDGs, climate, ESG, circular economy, responsible consumption, biodiversity, ethical leadership and Vision 2030. The point was to get a baseline instead of guessing what people already know.',
     ],
@@ -755,7 +667,7 @@ export const workById = (id: string): WorkItem | undefined =>
   work.find((w) => w.id === id);
 
 export const workByCategory = (category: WorkItem['primaryCategory']): WorkItem[] =>
-  work.filter((w) => w.primaryCategory === category).sort(byOrder);
+  work.filter((w) => w.primaryCategory === category && w.id !== 'tks').sort(byOrder);
 
 export const indexWork: WorkItem[] = work
   .filter((w) => w.showInIndex)
