@@ -130,7 +130,7 @@ export function WorkHub() {
           with the three categories above it. */}
       <div className="shell">
         <Link to="/index" className="hub__index">
-          <span className="hub__index-label">View complete index</span>
+          <span className="hub__index-label">View everything</span>
           <span className="hub__index-arrow" aria-hidden="true">
             ↗
           </span>

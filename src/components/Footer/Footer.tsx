@@ -37,7 +37,7 @@ export function Footer() {
             </li>
             <li>
               <Link className="textlink textlink--quiet" to="/index">
-                Index
+                Everything
               </Link>
             </li>
             <li>

@@ -14,8 +14,7 @@ import './Navigation.css';
    ============================================================ */
 
 const links = [
-  { label: 'Work', to: '/#work' },
-  { label: 'Index', to: '/index' },
+  { label: 'Everything', to: '/index' },
   { label: 'Writing', to: '/writing' },
   { label: 'About', to: '/about' },
 ];
@@ -87,9 +86,7 @@ export function Navigation() {
                 <NavLink
                   to={link.to}
                   className={({ isActive }) =>
-                    `nav__link ${
-                      (link.label === 'Work' ? location.hash === '#work' || isWorkRoute : isActive) ? 'nav__link--active' : ''
-                    }`
+                    `nav__link ${isActive ? 'nav__link--active' : ''}`
                   }
                 >
                   <span className="nav__dot" aria-hidden="true" />
@@ -174,16 +171,14 @@ export function Navigation() {
                 </Link>
               </li>
             ))}
-            {links
-              .filter((l) => l.label !== 'Work')
-              .map((link, i) => (
-                <li key={link.to} style={{ ['--i' as string]: i + 3 }}>
-                  <Link to={link.to} className="navmenu__link">
-                    <span className="navmenu__num mono">0{i + 4}</span>
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
+            {links.map((link, i) => (
+              <li key={link.to} style={{ ['--i' as string]: i + 3 }}>
+                <Link to={link.to} className="navmenu__link">
+                  <span className="navmenu__num mono">0{i + 4}</span>
+                  {link.label}
+                </Link>
+              </li>
+            ))}
           </ul>
         </nav>
 

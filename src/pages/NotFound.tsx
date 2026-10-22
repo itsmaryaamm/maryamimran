@@ -25,7 +25,7 @@ export default function NotFound() {
             Home
           </Link>
           <Link to="/index" className="textlink">
-            Index
+            Everything
           </Link>
         </div>
       </div>
