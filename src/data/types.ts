@@ -45,6 +45,18 @@ export interface ExternalLink {
   href: string;
 }
 
+export interface DocumentItem {
+  label: string;
+  src: string;
+}
+
+export interface VideoItem {
+  title: string;
+  src: string;
+  kind: 'youtube' | 'file';
+  poster?: string;
+}
+
 /** A phase in a project's evolution. Rendered as a horizontal progression. */
 export interface Phase {
   label: string;
@@ -81,6 +93,8 @@ export interface WorkItem {
   /** The image used for hover previews and grid cards. */
   featuredMedia?: MediaItem;
   externalLinks?: ExternalLink[];
+  documents?: DocumentItem[];
+  videos?: VideoItem[];
   showInIndex: boolean;
   showInSpeaking: boolean;
   showInRecognition: boolean;

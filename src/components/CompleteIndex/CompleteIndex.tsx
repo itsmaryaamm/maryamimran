@@ -11,6 +11,7 @@ import {
   type IndexGroup,
 } from '../../data/indexEntries';
 import { Figure } from '../Media/Figure';
+import { asset } from '../../lib/asset';
 import { WorkRecord } from '../ExpandableWork/WorkRecord';
 import { MaskReveal } from '../Motion/Reveal';
 import { useHasHover } from '../../hooks/useMediaQuery';
@@ -314,7 +315,7 @@ interface RowProps {
 }
 
 function Row({ entry, open, hovered, hasHover, reduced, panelId, onToggle, onHover }: RowProps) {
-  const expandable = Boolean(entry.work || entry.detail);
+  const expandable = Boolean(entry.work || entry.detail || entry.document);
 
   const inner = (
     <>
@@ -395,6 +396,12 @@ function Row({ entry, open, hovered, hasHover, reduced, panelId, onToggle, onHov
                 <p className="prose">{entry.detail}</p>
                 {entry.featuredMedia && (
                   <Figure media={entry.featuredMedia} label={entry.title} className="crow__entry-photo" />
+                )}
+                {entry.document && (
+                  <div className="record__embed">
+                    <a className="textlink" href={asset(entry.document)} target="_blank" rel="noreferrer noopener">Open certificate PDF ↗</a>
+                    <iframe src={`${asset(entry.document)}#toolbar=0`} title={`${entry.title} certificate`} loading="lazy" />
+                  </div>
                 )}
                 {entry.href && (
                   <a

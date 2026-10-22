@@ -29,6 +29,7 @@ export interface IndexEntry {
   work?: WorkItem;
   detail?: string;
   href?: string;
+  document?: string;
 }
 
 interface MasterItem {
@@ -41,6 +42,7 @@ interface MasterItem {
   detail?: string;
   tags?: Tag[];
   media?: MediaItem;
+  document?: string;
 }
 
 export const groupMeta: Record<IndexGroup, { label: string; blurb: string }> = {
@@ -72,11 +74,11 @@ const masterItems: MasterItem[] = [
   { id: 'P02', group: 'projects', title: 'VITA — IE Robotics Project', workId: 'vita', year: '2026', tags: ['build', 'lead'] },
   { id: 'P03', group: 'projects', title: 'Friction — Digital Wellbeing App', year: '2026', meta: 'iOS app concept and prototype', detail: 'A digital wellbeing concept designed to introduce a deliberate pause before opening distracting apps.', tags: ['build', 'design'] },
   { id: 'P04', group: 'projects', title: 'EquiFinance — UBT Sparkathon', workId: 'equi-finance', tags: ['build', 'compete'] },
-  { id: 'P05', group: 'projects', title: 'Meta AI Chatbot — TKS', meta: 'AI project', detail: 'Researched Instagram behaviour and designed a chatbot concept intended to reduce harmful interactions. Created UX flows and response ideas, then pitched the prototype to Meta’s Oversight Board as a top-five TKS project.', tags: ['build', 'research'] },
-  { id: 'P06', group: 'projects', title: 'WEF Education Challenge — TKS', meta: 'Education innovation challenge', detail: 'Researched climate education gaps in underserved South African schools and designed a model combining digital access with community teaching. Built a solution deck and presented the top-five TKS project to World Economic Forum leadership.', tags: ['research', 'compete'] },
+  { id: 'P05', group: 'projects', title: 'Damian — Meta AI Challenge', workId: 'meta-damian', tags: ['build', 'research'] },
+  { id: 'P06', group: 'projects', title: 'WE-Think — WEF Education Challenge', workId: 'we-think', tags: ['research', 'compete'] },
   { id: 'P07', group: 'projects', title: 'Moonshot Pirates — Sustenance', workId: 'moonshot-pirates', tags: ['build', 'compete'] },
   { id: 'P08', group: 'projects', title: 'Moonshot Abundance — Air to Water', workId: 'air-to-water', tags: ['build', 'research'] },
-  { id: 'P09', group: 'projects', title: 'Pharmacy 3D Printing Hackathon', meta: 'Technology hackathon', tags: ['build', 'compete'] },
+  { id: 'P09', group: 'projects', title: 'Pharmacy 3D Printing Hackathon', workId: 'pharmacy-3d', tags: ['build', 'compete'] },
   { id: 'P10', group: 'projects', title: 'Food Connect App — TKS', meta: 'App project', tags: ['build'] },
   { id: 'P11', group: 'projects', title: 'Tiin — Venture & Demo Day', workId: 'tiin', tags: ['build', 'lead', 'speak'] },
 
@@ -110,23 +112,27 @@ const masterItems: MasterItem[] = [
   { id: 'X08', group: 'learning', title: 'Buildspace S5 — Archive', meta: 'Program participation archive', tags: ['learn', 'build'] },
   { id: 'L01', group: 'learning', title: 'Automation & Low-Code Practice', workId: 'automation-lowcode', year: '2025', tags: ['learn', 'build'] },
 
-  { id: 'A01', group: 'awards', title: 'Cambridge Outstanding Learner — Top in Saudi Arabia (AS Economics)', year: '2023', meta: 'Academic award', detail: 'Recognized as the Top in Saudi Arabia student in AS Level Economics.', tags: ['learn'] },
-  { id: 'A02', group: 'awards', title: 'Cambridge Outstanding Learner — Top in Saudi Arabia (A Level Economics)', year: '2024', meta: 'Academic award', detail: 'Recognized as Top in Saudi Arabia in A Level Economics.', tags: ['learn'] },
-  { id: 'A03', group: 'awards', title: 'Nestlé NXplor Season 3', workId: 'nestle-nxl', tags: ['compete'] },
+  { id: 'A01', group: 'awards', title: 'Cambridge Outstanding Learner — Top in Saudi Arabia (AS Economics)', year: '2023', meta: 'Academic award', detail: 'Recognized as the Top in Saudi Arabia student in AS Level Economics.', tags: ['learn'], document: '/assets/certificates/cambridge-as-economics.pdf' },
+  { id: 'A02', group: 'awards', title: 'Cambridge Outstanding Learner — Top in Saudi Arabia (A Level Economics)', year: '2024', meta: 'Academic award', detail: 'Recognized as Top in Saudi Arabia in A Level Economics.', tags: ['learn'], document: '/assets/certificates/cambridge-a-economics.pdf' },
+  { id: 'A03', group: 'awards', title: 'Nestlé NxL — Next Level Season 3', workId: 'nestle-nxl', tags: ['compete'] },
   { id: 'A04', group: 'awards', title: 'L’Oréal Brandstorm', workId: 'loreal-brandstorm', tags: ['compete'] },
-  { id: 'A05', group: 'awards', title: 'UBT Awards and Recognition', meta: 'Recognition collection', tags: ['learn'] },
+  { id: 'A05', group: 'awards', title: 'UBT Awards and Recognition', meta: 'Recognition collection', detail: 'A photograph from a university certificate presentation.', tags: ['learn'], media: { src: '/assets/impact/ubt-certificate-presentation.jpg', alt: 'Maryam with attendees at a university certificate presentation', ratio: '4/3' } },
 
   { id: 'M04', group: 'writing', title: 'LinkedIn Content and Writing', meta: 'Professional writing', detail: 'Posts and reflections on projects, hackathons, AI, sustainability, learning and professional events.', tags: ['write'] },
   { id: 'M05', group: 'writing', title: 'Substack Writing', meta: 'Long-form writing', tags: ['write'] },
   { id: 'M06', group: 'writing', title: 'Motion Graphics and Creative Work', meta: 'Creative media', detail: 'Motion graphics experiments and tutorials, including AI-enabled animation and visual storytelling.', tags: ['design', 'write'] },
 
-  { id: 'C01', group: 'certificates', title: 'IBM Introduction to AI — Coursera', meta: 'Course', tags: ['learn'] },
-  { id: 'C02', group: 'certificates', title: 'IBM Interpersonal Skills — Coursera', meta: 'Course', tags: ['learn'] },
-  { id: 'C03', group: 'certificates', title: 'Leadership — University of Illinois / Coursera', meta: 'Course', tags: ['learn'] },
-  { id: 'C04', group: 'certificates', title: 'Creativity — Imperial College / Coursera', meta: 'Course', tags: ['learn'] },
-  { id: 'C05', group: 'certificates', title: 'Learning How to Learn — Coursera', meta: 'Course', tags: ['learn'] },
+  { id: 'C01', group: 'certificates', title: 'IBM Introduction to AI — Coursera', meta: 'Course', tags: ['learn'], document: '/assets/certificates/ibm-intro-ai.pdf', detail: 'IBM Introduction to Artificial Intelligence course certificate.' },
+  { id: 'C02', group: 'certificates', title: 'IBM Developing Interpersonal Skills — Coursera', meta: 'Course', tags: ['learn'], document: '/assets/certificates/ibm-interpersonal-skills.pdf', detail: 'IBM interpersonal skills course certificate.' },
+  { id: 'C03', group: 'certificates', title: 'Leadership — University of Illinois / Coursera', meta: 'Course', tags: ['learn'], document: '/assets/certificates/illinois-leadership.pdf', detail: 'University of Illinois leadership course certificate.' },
+  { id: 'C04', group: 'certificates', title: 'Introduction to Creative Thinking — Imperial College / Coursera', meta: 'Course', tags: ['learn'], document: '/assets/certificates/imperial-creative-thinking.pdf', detail: 'Imperial College London creative thinking course certificate.' },
+  { id: 'C05', group: 'certificates', title: 'Learning How to Learn — Coursera', meta: 'Course', tags: ['learn'], document: '/assets/certificates/learning-how-to-learn.pdf', detail: 'Learning How to Learn course certificate.' },
   { id: 'C06', group: 'certificates', title: 'McKinsey Forward Certificates', meta: 'Certificates', tags: ['learn'] },
-  { id: 'C07', group: 'certificates', title: 'Other Coursera Certificates', meta: 'Certificate collection', tags: ['learn'] },
+  { id: 'C07', group: 'certificates', title: 'The Science of Well-Being — Yale / Coursera', meta: 'Course', tags: ['learn'], document: '/assets/certificates/yale-wellbeing.pdf', detail: 'Yale University Science of Well-Being course certificate.' },
+  { id: 'C12', group: 'certificates', title: 'Mindshift — McMaster University / Coursera', meta: 'Course', tags: ['learn'], document: '/assets/certificates/mcmaster-mindshift.pdf', detail: 'McMaster University Mindshift course certificate.' },
+  { id: 'C13', group: 'certificates', title: 'Communication in the 21st Century Workplace — UC Irvine / Coursera', meta: 'Course', tags: ['learn'], document: '/assets/certificates/uci-communication.pdf', detail: 'University of California, Irvine workplace communication course certificate.' },
+  { id: 'C14', group: 'certificates', title: 'Effective Problem-Solving and Decision-Making — UC Irvine / Coursera', meta: 'Course', tags: ['learn'], document: '/assets/certificates/uci-problem-solving.pdf', detail: 'University of California, Irvine problem-solving and decision-making course certificate.' },
+  { id: 'C15', group: 'certificates', title: 'Positive Psychology: Resilience Skills — University of Pennsylvania / Coursera', meta: 'Course', tags: ['learn'], document: '/assets/certificates/upenn-resilience.pdf', detail: 'University of Pennsylvania resilience skills course certificate.' },
   { id: 'C08', group: 'certificates', title: 'TKS Certificates', meta: 'Certificate collection', tags: ['learn'] },
   { id: 'C09', group: 'certificates', title: 'Mawhiba Certificates', meta: 'Certificate collection', tags: ['learn'] },
   { id: 'C10', group: 'certificates', title: 'Workshop and Training Certificates', meta: 'Certificate collection', tags: ['learn'] },
@@ -149,6 +155,7 @@ export const indexEntries: IndexEntry[] = masterItems.map((item) => {
     featuredMedia: item.media ?? work?.featuredMedia,
     work,
     detail: item.detail,
+    document: item.document,
   };
 });
 

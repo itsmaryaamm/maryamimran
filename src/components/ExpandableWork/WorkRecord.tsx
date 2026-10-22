@@ -1,5 +1,6 @@
 import type { WorkItem } from '../../data/types';
 import { Figure } from '../Media/Figure';
+import { asset } from '../../lib/asset';
 import './WorkRecord.css';
 
 /* ============================================================
@@ -139,6 +140,28 @@ export function WorkRecord({ item }: { item: WorkItem }) {
           ))}
         </div>
       )}
+      {item.videos?.map((video) => (
+        <section className="record__embed" key={video.src}>
+          <h4 className="label record__block-title">{video.title}</h4>
+          {video.kind === 'file' ? (
+            <video controls preload="none" playsInline poster={video.poster ? asset(video.poster) : undefined} aria-label={video.title}>
+              <source src={asset(video.src)} type="video/mp4" />
+              Your browser cannot play this video.
+            </video>
+          ) : (
+            <iframe src={asset(video.src)} title={video.title} loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen />
+          )}
+        </section>
+      ))}
+      {item.documents?.map((document) => (
+        <section className="record__embed" key={document.src}>
+          <div className="record__embed-heading">
+            <h4 className="label record__block-title">{document.label}</h4>
+            <a className="textlink textlink--quiet" href={asset(document.src)} target="_blank" rel="noreferrer noopener">Open PDF ↗</a>
+          </div>
+          <iframe src={`${asset(document.src)}#toolbar=0`} title={document.label} loading="lazy" />
+        </section>
+      ))}
     </div>
   );
 }

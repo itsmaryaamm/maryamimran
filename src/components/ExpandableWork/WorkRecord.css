@@ -241,3 +241,30 @@
   gap: clamp(0.75rem, 1.5vw, 1.25rem);
   margin-top: clamp(1.75rem, 3.5vw, 2.75rem);
 }
+
+.record__embed {
+  margin-top: clamp(1.75rem, 3.5vw, 2.75rem);
+}
+
+.record__embed-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.record__embed iframe,
+.record__embed video {
+  display: block;
+  width: 100%;
+  border: 1px solid var(--rule);
+  background: #111;
+}
+
+.record__embed iframe {
+  min-height: min(70vh, 42rem);
+}
+
+.record__embed video {
+  max-height: 70vh;
+}
