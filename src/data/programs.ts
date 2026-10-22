@@ -31,7 +31,7 @@ export const programs: ProgramItem[] = [
     name: 'IE University',
     location: 'Madrid',
     year: '2026',
-    what: 'Breakthrough Robotics Program. Built VITA — infrared following, Arduino and Raspberry Pi, and a hospital logistics research question underneath it.',
+    what: 'Breakthrough Robotics Program in Madrid, July 2026. Led the three-person VITA team, developed the chassis and presentation, and placed first among three teams in the final class competition.',
     relatedWork: ['vita'],
     order: 3,
   },
@@ -70,8 +70,8 @@ export const programs: ProgramItem[] = [
   {
     id: 'mawhiba-metaminds',
     name: 'Mawhiba MetaMinds M3',
-    year: '2023',
-    what: 'Advanced enrichment programme.',
+    year: '2026',
+    what: 'Selected for the MetaMinds M3 cohort in 2026. The Garage Challenge opportunity came through the program.',
     order: 8,
   },
   {

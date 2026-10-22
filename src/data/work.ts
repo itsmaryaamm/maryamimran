@@ -316,15 +316,14 @@ export const work: WorkItem[] = [
       'Visual Infrared Transport Assistant — a hospital robot that follows nurses and carries routine items.',
     fullDescription: [
       'VITA came out of the Breakthrough Robotics Program at IE University in Madrid. The premise: nurses spend a meaningful part of a shift walking things from one place to another. A robot that quietly follows and carries the light, routine items gives some of that time back.',
-      'The build was infrared following on Arduino and Raspberry Pi, driving motors with sensor input, plus the physical problem of a tray that stays level and a robot that stops before it hits anything. Most of the time went into hardware debugging — the gap between a circuit that works on the bench and one that works while moving.',
-      'Alongside the build there was the research question: does this actually fit how a hospital ward runs? That meant reading nurse workflow and hospital logistics, and being honest about where a following robot helps and where it is simply in the way.',
+      'The team developed a nurse-following robotics concept and physical prototype during the two-week program. The proposed following system used infrared-beacon and camera-based tracking.',
+      'I originated the idea, led the three-person team, worked on the chassis and project integration, and developed the story and presentation for the final demonstration.',
     ],
     contribution: [
-      'Worked on the infrared following behaviour — sensors, tracking and motor response',
-      'Built and debugged the physical prototype on Arduino and Raspberry Pi',
-      'Designed the safe-stop and obstacle behaviour so the robot yields rather than pushes',
-      'Researched nurse workflow and hospital logistics to test whether the concept fit the ward',
-      'Worked the product and business case, and pitched with the team',
+      'Originated the VITA concept and defined the problem and proposed solution',
+      'Led the three-person team and coordinated the project components',
+      'Worked on the robot chassis and connected the physical design to the overall concept',
+      'Developed the project narrative and led the final presentation',
     ],
     result: '1ST PLACE',
     images: [
@@ -542,14 +541,14 @@ export const work: WorkItem[] = [
     organization: 'University of Business & Technology',
     year: '2025—NOW',
     yearSort: 2025,
-    date: 'Mar 2025 — Present',
+    date: '27 Feb 2025 — Present',
     role: 'President',
     primaryCategory: 'impact',
     secondaryTags: ['lead', 'operate', 'market'],
     shortDescription:
       'Running the club — strategy, outreach, and a relaunched LinkedIn that hit 5,000+ impressions in a month.',
     fullDescription: [
-      'Took over as President in March 2025, having come up through the PR side. The job is less about sustainability as a topic and more about getting a student organisation to actually run: a calendar that holds, teams that know what they are doing, and communications that make people show up.',
+      'Became President on 27 February 2025, having come up through the PR side. The role spans event planning, volunteer coordination, outreach and communications across the university.',
       'Most of the visible progress has been outreach. Relaunching the club’s LinkedIn and running it properly moved it from dormant to a real channel — the club now has somewhere to speak from.',
     ],
     contribution: [

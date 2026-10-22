@@ -9,7 +9,7 @@ export default function IndexPage() {
   usePageMeta({
     title: 'Everything — Maryam Imran',
     description:
-      'The complete index of projects, roles, programs, talks, writing, competitions and work by Maryam Imran.',
+      'Maryam Imran’s portfolio index: education, projects, leadership, sustainability, programs, awards, speaking and courses.',
     path: '/index',
   });
 
@@ -17,9 +17,9 @@ export default function IndexPage() {
     <>
       <PageHeader
         index="—"
-        kicker="Index"
+        kicker="Portfolio index"
         title="Everything."
-        blurb="Projects, roles, programs, talks, writing, competitions and things I’ve worked on."
+        blurb="Education, projects, leadership, sustainability, programs, awards, speaking and courses."
         count={distinctEntryCount}
       />
 

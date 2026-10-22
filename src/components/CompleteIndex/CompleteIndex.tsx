@@ -22,7 +22,7 @@ import './CompleteIndex.css';
    ------------------------------------------------------------
    A reference system, not a résumé table.
 
-   It opens on a table of contents: seven large editorial rows
+   It opens on a table of contents drawn from the portfolio master
    with counts. Choosing one filters to that group; the default
    view renders every group in sequence under its own heading,
    so nothing is ever presented as one flat chronological list.
@@ -38,7 +38,7 @@ type Era = '2026' | '2025' | '2024' | 'earlier';
 const eras: Era[] = ['2026', '2025', '2024', 'earlier'];
 
 const inEra = (e: IndexEntry, era: Era) =>
-  era === 'earlier' ? e.yearSort < 2024 : e.yearSort === Number(era);
+  era === 'earlier' ? e.yearSort > 0 && e.yearSort < 2024 : e.yearSort === Number(era);
 
 export function CompleteIndex() {
   const [group, setGroup] = useState<IndexGroup | null>(null);
@@ -334,11 +334,11 @@ function Row({ entry, open, hovered, hasHover, reduced, panelId, onToggle, onHov
       <span className="crow__meta">{entry.meta}</span>
       {expandable ? (
         <span className="crow__toggle" aria-hidden="true" />
-      ) : (
+      ) : entry.href ? (
         <span className="crow__link-arrow" aria-hidden="true">
           ↗
         </span>
-      )}
+      ) : null}
     </>
   );
 
@@ -359,7 +359,7 @@ function Row({ entry, open, hovered, hasHover, reduced, panelId, onToggle, onHov
           >
             {inner}
           </button>
-        ) : (
+        ) : entry.href ? (
           <a
             className="crow__trigger"
             href={entry.href}
@@ -369,6 +369,8 @@ function Row({ entry, open, hovered, hasHover, reduced, panelId, onToggle, onHov
           >
             {inner}
           </a>
+        ) : (
+          <span className="crow__trigger crow__trigger--static">{inner}</span>
         )}
       </h4>
 
@@ -384,10 +386,19 @@ function Row({ entry, open, hovered, hasHover, reduced, panelId, onToggle, onHov
             style={{ overflow: 'hidden' }}
           >
             {entry.work ? (
-              <WorkRecord item={entry.work} />
+              <>
+                {entry.detail && <p className="prose crow__source-note">{entry.detail}</p>}
+                {entry.featuredMedia?.src !== entry.work.featuredMedia?.src && entry.featuredMedia && (
+                  <Figure media={entry.featuredMedia} label={entry.title} className="crow__entry-photo" />
+                )}
+                <WorkRecord item={entry.work} />
+              </>
             ) : (
               <div className="crow__detail">
                 <p className="prose">{entry.detail}</p>
+                {entry.featuredMedia && (
+                  <Figure media={entry.featuredMedia} label={entry.title} className="crow__entry-photo" />
+                )}
                 {entry.href && (
                   <a
                     className="textlink"

@@ -392,6 +392,16 @@
   font-size: var(--t-sm);
 }
 
+.crow__source-note {
+  max-width: 42rem;
+  margin-block: 1rem;
+}
+
+.crow__entry-photo {
+  width: min(100%, 34rem);
+  margin-block: 1.25rem;
+}
+
 .crow__toggle {
   position: relative;
   width: 10px;
