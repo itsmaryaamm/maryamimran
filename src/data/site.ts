@@ -23,7 +23,7 @@ export const site = {
   email: 'emailmaryamimran@gmail.com',
   links: {
     linkedin: 'https://www.linkedin.com/in/maryamimranksa/',
-    substack: '', // TODO(maryam): add your Substack URL to show the link.
+    substack: 'https://maryamimran.substack.com/',
   },
 
   /* --- Portrait ------------------------------------------------------- */

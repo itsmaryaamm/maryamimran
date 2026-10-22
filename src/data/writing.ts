@@ -3,13 +3,67 @@ import type { WritingItem } from './types';
 /* ============================================================
    WRITING
    ------------------------------------------------------------
-   TODO(maryam): paste the real URL into `externalLink` for each
-   piece. Entries without a link render as text (no dead links).
-   Dates are placeholders where the exact date wasn't confirmed —
-   correct them here and the ordering follows.
+   Published pieces have real URLs. Earlier note titles stay in this
+   file for later, but are hidden until their original links are added.
+   Some dates on those hidden notes are placeholders.
    ============================================================ */
 
 export const writing: WritingItem[] = [
+  {
+    id: 'progress-that-never-looks-like-progress',
+    title: 'Progress That Never Looks Like Progress',
+    date: '4 Jan 2026',
+    yearSort: 2026,
+    topic: 'Reflection',
+    shortDescription: 'A year-end reflection on Tiin, university, leadership and choosing focus.',
+    platform: 'Substack',
+    externalLink: 'https://maryamimran.substack.com/p/progress-that-never-looks-like-progress',
+    order: 1,
+  },
+  {
+    id: 'hobbies-microbiologist',
+    title: 'I tried a bunch of hobbies, almost became a microbiologist, and still don’t have a team leader',
+    date: '1 Aug 2025',
+    yearSort: 2025,
+    topic: 'Newsletter',
+    shortDescription: 'A personal July update on experiments, interests and work in progress.',
+    platform: 'Substack',
+    externalLink: 'https://maryamimran.substack.com/p/i-tried-a-bunch-of-hobbies-almost',
+    order: 2,
+  },
+  {
+    id: 'one-year-of-newsletters',
+    title: 'One Year of Newsletters!! - June Dump',
+    date: '10 Jul 2025',
+    yearSort: 2025,
+    topic: 'Newsletter',
+    shortDescription: 'One year of monthly updates, looking back at June and the habit of writing.',
+    platform: 'Substack',
+    externalLink: 'https://maryamimran.substack.com/p/one-year-of-newsletters-june-dump',
+    order: 3,
+  },
+  {
+    id: 'april-may-combo-recap',
+    title: 'Skipped April, Survived May: Welcome to the Combo Recap',
+    date: '10 Jun 2025',
+    yearSort: 2025,
+    topic: 'Newsletter',
+    shortDescription: 'An April and May recap from university and life outside the classroom.',
+    platform: 'Substack',
+    externalLink: 'https://maryamimran.substack.com/p/skipped-april-survived-may-welcome',
+    order: 4,
+  },
+  {
+    id: 'march-character-building',
+    title: 'March Was a Character-Building Episode',
+    date: '6 Apr 2025',
+    yearSort: 2025,
+    topic: 'Newsletter',
+    shortDescription: 'A personal March recap and reflection.',
+    platform: 'Substack',
+    externalLink: 'https://maryamimran.substack.com/p/march-was-a-character-building-episode',
+    order: 5,
+  },
   {
     id: 'wrong-quickly',
     title: 'University teaches you to avoid being wrong. Real life rewards you for being wrong quickly.',
@@ -109,6 +163,6 @@ export const writing: WritingItem[] = [
   },
 ];
 
-export const writingSorted: WritingItem[] = [...writing].sort(
+export const writingSorted: WritingItem[] = writing.filter((item) => item.externalLink).sort(
   (a, b) => b.yearSort - a.yearSort || a.order - b.order,
 );

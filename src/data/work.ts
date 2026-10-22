@@ -46,6 +46,9 @@ export const work: WorkItem[] = [
       'Explored WhatsApp as the delivery channel and Zoho and accounting systems as data sources',
       'Developed the reporting concept: a readable financial report rather than a dashboard to be deciphered',
     ],
+    externalLinks: [
+      { label: 'Early Equi-Finance project', href: 'https://nonchalant-feast-081.notion.site/1d3b125b7cdd80318123de40e4db15d9' },
+    ],
     phases: [
       { label: 'POS Analytics', note: 'Reading what the till already knows' },
       { label: 'Business Software', note: 'Where owners asked for help' },
@@ -115,6 +118,9 @@ export const work: WorkItem[] = [
       { value: 'SAR 30,000', label: 'Revenue', verified: true },
       { value: '75', label: 'Students managed', verified: true },
       { value: '8', label: 'Days', verified: true },
+    ],
+    externalLinks: [
+      { label: 'Project page and business plan', href: 'https://nonchalant-feast-081.notion.site/1d5b125b7cdd80d08dbeebfa169f276d' },
     ],
     images: [
       { src: '/assets/business/food-gala-1.jpg', alt: 'Food Gala event operations', ratio: '3/2' },
@@ -201,6 +207,10 @@ export const work: WorkItem[] = [
     ],
     result: 'TOP 7 OF 78',
     metrics: [{ value: 'Top 7 / 78', label: 'Teams', verified: true }],
+    externalLinks: [
+      { label: 'Watch the final presentation', href: 'https://youtu.be/5KyHnjN5_RQ?t=1635' },
+      { label: 'Project page', href: 'https://nonchalant-feast-081.notion.site/1d3b125b7cdd8095b049fa651dc9103a' },
+    ],
     showInIndex: true,
     showInSpeaking: true,
     showInRecognition: true,
@@ -261,13 +271,27 @@ export const work: WorkItem[] = [
   {
     id: 'silent-kitchen-story',
     title: 'Silent Kitchen Story',
-    year: '2023–24',
+    year: '2023',
     yearSort: 2023,
-    role: 'Marketing',
+    date: 'Jul — Aug 2023',
+    role: 'Social Media Intern',
     primaryCategory: 'business',
     secondaryTags: ['market', 'design', 'build'],
-    shortDescription: 'Brand and social work for a food business — voice, content and growth.',
-    contribution: ['Ran the brand voice and content', 'Handled social media and audience growth'],
+    shortDescription: 'Social content for a food business — Instagram following grew from 3,000 to 6,000 during the internship.',
+    fullDescription: [
+      'At Silent Kitchen Story, I made carousels and reels around the brand’s visual identity and what its audience responded to. The work combined content design with search-aware captions and weekly iteration.',
+    ],
+    contribution: [
+      'Designed carousel posts and reels aligned with the brand identity and audience behaviour',
+      'Used search-aware content and audience insights to grow the account from 3,000 to 6,000 followers',
+    ],
+    metrics: [
+      { value: '3K → 6K', label: 'Instagram followers', verified: true },
+      { value: '50%', label: 'Engagement increase', verified: true },
+    ],
+    externalLinks: [
+      { label: 'Experience summary', href: 'https://nonchalant-feast-081.notion.site/1d3b125b7cdd80178f21c9b5999e05ea' },
+    ],
     featuredMedia: { src: '/assets/business/silent-kitchen.jpg', alt: 'Silent Kitchen Story brand work', ratio: '4/3' },
     showInIndex: true,
     showInSpeaking: false,
@@ -368,6 +392,10 @@ export const work: WorkItem[] = [
       'Developed an air-to-water moonshot project addressing water scarcity in underserved regions',
       'Researched emerging technologies and presented findings',
     ],
+    externalLinks: [
+      { label: 'Meta AI chatbot project', href: 'https://nonchalant-feast-081.notion.site/1d5b125b7cdd8030bf35df1cbcb44a25' },
+      { label: 'WEF education project', href: 'https://nonchalant-feast-081.notion.site/1d5b125b7cdd808d9552ee25e2c5338e' },
+    ],
     featuredMedia: { src: '/assets/technology/tks.jpg', alt: 'TKS presentation work', ratio: '4/3' },
     showInIndex: true,
     showInSpeaking: true,
@@ -420,6 +448,9 @@ export const work: WorkItem[] = [
     contribution: [
       'Researched atmospheric water generation and the conditions under which it works',
       'Developed the concept as a moonshot addressing water scarcity in underserved regions',
+    ],
+    externalLinks: [
+      { label: 'Abundance project page', href: 'https://nonchalant-feast-081.notion.site/1d5b125b7cdd8080ab47e8cd461d3644' },
     ],
     showInIndex: true,
     showInSpeaking: false,
