@@ -1,5 +1,5 @@
 import { asset } from '../../lib/asset';
-import { leapLine, leapMode, site } from '../../data/site';
+import { site } from '../../data/site';
 import { MaskReveal } from '../Motion/Reveal';
 import './Contact.css';
 
@@ -17,7 +17,6 @@ export function Contact() {
       <div className="shell contact__inner">
         <div className="section-head__meta contact__meta">
           <p className="label">Contact</p>
-          {leapMode && <p className="label label--accent">{leapLine}</p>}
         </div>
 
         <h2 id="contact-heading" className="contact__headline">
@@ -28,8 +27,9 @@ export function Contact() {
 
         <div className="contact__body">
           <p className="lede contact__lede">
-            If you’re building something interesting, working on a problem I should know
-            about, hiring, collaborating, or just want to connect — reach out.
+            Working on a small-business problem, an applied technology project, or a
+            sustainability initiative? I’d be glad to hear about it. I’m also open to
+            speaking invitations, roles and collaborations.
           </p>
 
           <ul className="contact__links">

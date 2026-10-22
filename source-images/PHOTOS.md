@@ -1,42 +1,18 @@
-# Photographs to add
+# Portfolio photographs
 
-Attach the file to the chat, or drop it in this folder and run `npm run images`.
-Name it with its section prefix and the script files it automatically:
+The October 2026 photo set now covers Tiin, Tiin Demo Day, Flaire, VITA at IE University, and the UBT Sustainability Club orientation. The optimized JPEG and WebP files live in `public/assets/`; originals used during preparation stay out of the build.
 
-    business-tiin-product.png  ->  public/assets/business/tiin-product.jpg + .webp
+The photo of Maryam speaking with students at a Sustainability Club event (`0bcf609b-854a-4369-b003-bc0ffcc4686b.jpg`) was attached in chat but its stated local path was unavailable. Please reattach it or place it in `source-images/` as `impact-club-event.jpg` and run `npm run images`.
 
-Until a file exists the site renders a neutral placeholder carrying the
-project name. Nothing breaks; there is just no photograph yet.
+## Most useful next additions
 
-| Project | Drop in as | Ends up at |
-|---|---|---|
-| Tiin | `business-tiin-product.png` | `/assets/business/tiin-product.jpg` |
-| Tiin | `business-tiin-deck.png` | `/assets/business/tiin-deck.jpg` |
-| Tiin | `business-tiin-accelerator.png` | `/assets/business/tiin-accelerator.jpg` |
-| Tiin | `business-tiin-discovery.png` | `/assets/business/tiin-discovery.jpg` |
-| Tiin Demo Day | `speaking-demo-day-stage.png` | `/assets/speaking/demo-day-stage.jpg` |
-| Food Gala | `business-food-gala-1.png` | `/assets/business/food-gala-1.jpg` |
-| Food Gala | `business-food-gala-2.png` | `/assets/business/food-gala-2.jpg` |
-| L’Oréal Brandstorm | `business-brandstorm.png` | `/assets/business/brandstorm.jpg` |
-| Silent Kitchen Story | `business-silent-kitchen.png` | `/assets/business/silent-kitchen.jpg` |
-| VITA | `technology-vita-prototype.png` | `/assets/technology/vita-prototype.jpg` |
-| VITA | `technology-vita-components.png` | `/assets/technology/vita-components.jpg` |
-| VITA | `technology-vita-lab.png` | `/assets/technology/vita-lab.jpg` |
-| VITA | `technology-vita-team.png` | `/assets/technology/vita-team.jpg` |
-| The Knowledge Society | `technology-tks.png` | `/assets/technology/tks.jpg` |
-| Agentic AI | `speaking-agentic-ai-session.png` | `/assets/speaking/agentic-ai-session.jpg` |
-| Agentic AI | `technology-agentic-ai-deck.png` | `/assets/technology/agentic-ai-deck.jpg` |
-| Engineering Day | `speaking-engineering-day.png` | `/assets/speaking/engineering-day.jpg` |
-| Hardware Prototyping | `technology-prototyping-1.png` | `/assets/technology/prototyping-1.jpg` |
-| Hardware Prototyping | `technology-prototyping-2.png` | `/assets/technology/prototyping-2.jpg` |
-| UBT Sustainability Club | `impact-club-team.png` | `/assets/impact/club-team.jpg` |
-| UBT Sustainability Club | `impact-club-event.png` | `/assets/impact/club-event.jpg` |
-| Sustainability Reporting | `impact-greenmetric-data.png` | `/assets/impact/greenmetric-data.jpg` |
-| Sustainability Reporting | `impact-campus.png` | `/assets/impact/campus.jpg` |
-| Think Sustainability | `impact-think-sustainability-1.png` | `/assets/impact/think-sustainability-1.jpg` |
-| Think Sustainability | `impact-think-sustainability-booths.png` | `/assets/impact/think-sustainability-booths.jpg` |
-| Think Sustainability | `impact-think-sustainability-plan.png` | `/assets/impact/think-sustainability-plan.jpg` |
-| Think Sustainability | `impact-think-sustainability-team.png` | `/assets/impact/think-sustainability-team.jpg` |
-| Sustainability Literacy | `impact-literacy-survey.png` | `/assets/impact/literacy-survey.jpg` |
+1. A clean standalone Tiin product screenshot. The current product image shows a projected screen during a pitch.
+2. A clear Flaire demo or website screenshot. The current images document the pitch and seventh-place result.
+3. A close view of the VITA robot. The current IE photo shows the team holding it.
+4. A Sustainability Club group or event photo, especially the unavailable event photo above.
+5. Photos from the Agentic AI workshop and Engineering Day talk.
+6. Food Gala event or team photos, and a Silent Kitchen Story sample.
+7. Think Sustainability planning, booths, team, or event photos.
+8. A redacted Sustainability Reporting document or relevant campus photo.
 
-28 images in total. Add whichever you have — order does not matter.
+Use a section prefix when adding images. For example, `business-tiin-product.png` becomes `/assets/business/tiin-product.jpg` and `.webp` after `npm run images`. Only label photos with the event or project that they actually show. Avoid private information in screenshots.
