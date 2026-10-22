@@ -30,7 +30,7 @@ export const programs: ProgramItem[] = [
     id: 'ie-university',
     name: 'IE University',
     location: 'Madrid',
-    year: '2025',
+    year: '2026',
     what: 'Breakthrough Robotics Program. Built VITA — infrared following, Arduino and Raspberry Pi, and a hospital logistics research question underneath it.',
     relatedWork: ['vita'],
     order: 3,

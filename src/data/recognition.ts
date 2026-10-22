@@ -82,7 +82,7 @@ export const recognition: RecognitionItem[] = [
     value: '1ST',
     title: 'Breakthrough Robotics Program',
     organization: 'IE University, Madrid',
-    year: '2025',
+    year: '2026',
     detail: 'VITA — Visual Infrared Transport Assistant',
     verified: true,
     group: 'competition',
