@@ -13,7 +13,7 @@ export default function Technology() {
   usePageMeta({
     title: 'Technology — Maryam Imran',
     description:
-      'AI, robotics, emerging technology and prototyping — VITA, agentic AI, Arduino and Raspberry Pi work by Maryam Imran.',
+      'AI, robotics and prototyping — VITA, the Flaire hackathon demo, agentic AI, Arduino and Raspberry Pi work by Maryam Imran.',
     path: '/technology',
   });
 

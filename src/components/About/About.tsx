@@ -66,11 +66,11 @@ export function About() {
                 working across business, technology and impact.
               </p>
               <p>
-                In practice that means building a startup and finding out what small business
-                owners actually need, wiring sensors to a robot that has to physically work,
-                and doing the unglamorous evidence work behind a university’s sustainability
-                reporting. The through-line isn’t a discipline — it’s wanting to know how
-                something works well enough to change it.
+                In practice that means finding out what small business owners need while
+                building Tiin, leading the technical demo for Flaire at a hackathon, wiring
+                sensors to a robot that has to physically work, and assembling the evidence
+                behind a university’s sustainability reporting. The through-line is wanting
+                to know how something works well enough to change it.
               </p>
               <p>
                 I learn by building, testing, reading data, leading teams, speaking,

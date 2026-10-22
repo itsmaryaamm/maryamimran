@@ -99,6 +99,17 @@ export const recognition: RecognitionItem[] = [
     order: 6,
   },
   {
+    id: 'flaire-garage-challenge',
+    value: '7TH',
+    title: 'The Garage Challenge',
+    organization: 'The Garage, Riyadh',
+    year: '2026',
+    detail: 'Flaire — hackathon MVP, 10-person team',
+    verified: true,
+    group: 'competition',
+    order: 7,
+  },
+  {
     id: 'appreciation-letters',
     title: 'Letters of Appreciation',
     organization: 'University of Business & Technology',

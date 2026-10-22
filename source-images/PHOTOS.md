@@ -24,6 +24,10 @@ sharp and well lit. Send the largest original you have; the image script makes
 smaller web versions. Do not add stock images that imply an event or project
 was photographed when it was not.
 
+For Flaire, send a clear screenshot of the working demo, the team or pitch,
+and one clean pitch-deck slide if you have them. Its project entry is already
+written; it intentionally has no image placeholder until those files arrive.
+
 | Project | Drop in as | Ends up at |
 |---|---|---|
 | Tiin | `business-tiin-product.png` | `/assets/business/tiin-product.jpg` |
