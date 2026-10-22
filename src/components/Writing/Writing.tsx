@@ -96,11 +96,7 @@ export function Writing({
                       <span className="wrow__arrow" aria-hidden="true">
                         ↗
                       </span>
-                    ) : (
-                      item.platform && (
-                        <span className="wrow__platform mono">{item.platform}</span>
-                      )
-                    )}
+                    ) : null}
                   </span>
                 </Row>
               </li>

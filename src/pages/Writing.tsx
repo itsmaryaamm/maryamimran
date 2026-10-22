@@ -18,11 +18,11 @@ export default function Writing() {
         index="—"
         kicker="Writing"
         title="Writing."
-        blurb="Short pieces, mostly written to work something out rather than to conclude it."
+        blurb="Notes on building, learning and the questions I’m still working through."
         count={writingSorted.length}
       />
 
-      <WritingSection showQuote sectionIndex="—" heading="All pieces" />
+      <WritingSection showQuote sectionIndex="—" heading="Writing notes" />
       <Contact />
     </>
   );

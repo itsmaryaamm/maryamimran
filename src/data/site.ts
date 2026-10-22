@@ -51,11 +51,3 @@ export const site = {
   },
 
 } as const;
-
-/* ============================================================
-   LEAP — the only time-sensitive thing on the site.
-   Adds one line to Contact. Set to false the day after LEAP and
-   it disappears; nothing else depends on it.
-   ============================================================ */
-export const leapMode = true;
-export const leapLine = 'At LEAP? Say hi.';

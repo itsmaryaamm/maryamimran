@@ -14,7 +14,7 @@ import './Navigation.css';
    ============================================================ */
 
 const links = [
-  { label: 'Work', to: '/business' },
+  { label: 'Work', to: '/#work' },
   { label: 'Index', to: '/index' },
   { label: 'Writing', to: '/writing' },
   { label: 'About', to: '/about' },
@@ -88,7 +88,7 @@ export function Navigation() {
                   to={link.to}
                   className={({ isActive }) =>
                     `nav__link ${
-                      isActive || (link.label === 'Work' && isWorkRoute) ? 'nav__link--active' : ''
+                      (link.label === 'Work' ? location.hash === '#work' || isWorkRoute : isActive) ? 'nav__link--active' : ''
                     }`
                   }
                 >

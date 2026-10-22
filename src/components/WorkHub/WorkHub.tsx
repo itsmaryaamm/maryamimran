@@ -29,7 +29,7 @@ export function WorkHub() {
   const reduced = usePrefersReducedMotion();
 
   return (
-    <section className="section section--tall hub" aria-labelledby="hub-heading">
+    <section id="work" className="section section--tall hub" aria-labelledby="hub-heading">
       <div className="shell">
         <div className="section-head">
           <div className="section-head__meta">

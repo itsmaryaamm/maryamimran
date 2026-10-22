@@ -8,6 +8,22 @@ Name it with its section prefix and the script files it automatically:
 Until a file exists the site renders a neutral placeholder carrying the
 project name. Nothing breaks; there is just no photograph yet.
 
+## Start with five images
+
+You do not need all 28 at once. These five will replace the most visible
+placeholders and show real evidence of the work:
+
+1. `technology-vita-prototype.png` — the finished robot or a clear prototype photo.
+2. `business-tiin-product.png` — a product screen or a clean pitch slide. Hide any private customer data.
+3. `speaking-demo-day-stage.png` — Maryam presenting Tiin, or a photo of the presentation.
+4. `speaking-agentic-ai-session.png` — a workshop or speaking photo.
+5. `impact-club-event.png` — the sustainability club doing the work at an event.
+
+Use original photos or screenshots when possible. A phone photo is fine if it is
+sharp and well lit. Send the largest original you have; the image script makes
+smaller web versions. Do not add stock images that imply an event or project
+was photographed when it was not.
+
 | Project | Drop in as | Ends up at |
 |---|---|---|
 | Tiin | `business-tiin-product.png` | `/assets/business/tiin-product.jpg` |

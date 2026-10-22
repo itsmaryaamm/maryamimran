@@ -45,7 +45,7 @@ src/
     writing.ts       writing pieces
     programs.ts      "Places I've learned"
     recognition.ts   education + awards
-    site.ts          name, links, resume, Now, LEAP toggle
+    site.ts          name, links, resume, portrait settings
     types.ts         the shape of a work item
   components/      ← one folder per section, .tsx + .css together
   pages/           ← one file per route
@@ -115,7 +115,6 @@ before anything reaches the page.
 | Programs and what you did there | `src/data/programs.ts` |
 | Education, awards, grades | `src/data/recognition.ts` |
 | Email, LinkedIn, Substack | `src/data/site.ts` → `site.links` |
-| The LEAP line in Contact | `src/data/site.ts` → `leapMode` (set `false` after LEAP) and `leapLine` |
 | Which part of the hero photo stays in frame | `src/data/site.ts` → `portrait.focus` |
 | Page titles and meta descriptions | each file in `src/pages/` |
 

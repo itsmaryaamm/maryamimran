@@ -26,10 +26,10 @@ export function Intro() {
 
         <Reveal delay={0.15} className="intro__body">
           <p className="lede">
-            I study Business Analytics &amp; Information Systems, and I learn mostly by
-            building things — a startup, robots that have to physically work, sustainability
-            programmes that have to actually run. The breadth is the point: the interesting
-            problems keep turning out to sit between disciplines rather than inside one.
+            I study Business Analytics &amp; Information Systems at UBT in Jeddah. I
+            co-founded Tiin to help Saudi small businesses understand their finances,
+            built a hospital-assistant robot at IE University, and work on sustainability
+            reporting at UBT. I’m drawn to problems that need both analysis and execution.
           </p>
         </Reveal>
       </div>
