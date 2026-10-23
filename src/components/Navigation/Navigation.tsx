@@ -25,6 +25,15 @@ const workLinks = [
   { label: 'Impact', to: '/impact' },
 ];
 
+/* The panel is the whole navigation once the bar has collapsed, so it
+   carries Home and Contact as well as everything in the inline set. */
+const menuLinks = [
+  { label: 'Home', to: '/' },
+  ...workLinks,
+  ...links,
+  { label: 'Contact', to: '/#contact' },
+];
+
 export function Navigation() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -161,34 +170,19 @@ export function Navigation() {
         id="nav-menu"
         ref={panelRef}
         className={`navmenu ${open ? 'navmenu--open' : ''}`}
-        hidden={!open}
       >
-        <nav aria-label="Mobile">
+        <nav aria-label="Menu">
           <ul className="navmenu__list">
-            {workLinks.map((link, i) => (
-              <li key={link.to} style={{ ['--i' as string]: i }}>
+            {menuLinks.map((link, i) => (
+              /* Each row is its own mask: the link slides up out of it, one
+                 after the next, rather than the whole list fading at once. */
+              <li key={link.to} className="navmenu__row" style={{ ['--i' as string]: i }}>
                 <Link to={link.to} className="navmenu__link">
-                  <span className="navmenu__num mono">0{i + 1}</span>
+                  <span className="navmenu__num mono">{String(i + 1).padStart(2, '0')}</span>
                   {link.label}
                 </Link>
               </li>
             ))}
-            {links.map((link, i) => (
-              <li key={link.to} style={{ ['--i' as string]: i + 3 }}>
-                <Link to={link.to} className="navmenu__link">
-                  <span className="navmenu__num mono">0{i + 4}</span>
-                  {link.label}
-                </Link>
-              </li>
-            ))}
-            {/* The inline links collapse into this panel once scrolled, so
-                Contact has to be in here or it becomes unreachable. */}
-            <li style={{ ['--i' as string]: links.length + 3 }}>
-              <Link to="/#contact" className="navmenu__link">
-                <span className="navmenu__num mono">0{links.length + 4}</span>
-                Contact
-              </Link>
-            </li>
           </ul>
         </nav>
 

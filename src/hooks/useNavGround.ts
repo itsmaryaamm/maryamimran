@@ -46,6 +46,18 @@ export function useNavGround(navHeight = 76): NavGround {
       const y = navHeight + 2;
 
       let el = document.elementFromPoint(x, y) as HTMLElement | null;
+
+      /* A photograph has no background-color that describes it, so a
+         section standing on one declares its own treatment instead:
+         data-nav-ground="light" means a bright frame and ink type. */
+      const declared = el?.closest<HTMLElement>('[data-nav-ground]');
+      if (declared) {
+        const dark = declared.dataset.navGround === 'dark';
+        const color = dark ? '#181A1D' : '#F4F2ED';
+        setGround((g) => (g.color === color && g.dark === dark ? g : { color, dark }));
+        return;
+      }
+
       let found: [number, number, number] | null = null;
 
       while (el && el !== document.documentElement) {

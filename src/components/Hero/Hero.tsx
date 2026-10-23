@@ -14,9 +14,9 @@ import './Hero.css';
    the bottom, the positioning line above it, a thin rail of
    metadata at the top. No card, no frame, no container.
 
-   Legibility over photography is handled by two scrims (top and
-   bottom) rather than by darkening the whole image — the shot is
-   bright and airy and should stay that way.
+   Legibility over photography is handled by one scrim at the foot
+   rather than by darkening the whole image — the shot is bright and
+   airy and should stay that way.
 
    Scroll: the image drifts up slowly and the name a little
    faster, so the composition compresses rather than slides.
@@ -44,7 +44,9 @@ export function Hero() {
   const railOpacity = useTransform(scrollYProgress, [0, 0.35], [1, 0]);
 
   return (
-    <section ref={ref} className="hero" aria-label="Introduction">
+    /* The bar cannot sample a photograph, so the hero declares its own
+       treatment: bright frame, ink type. */
+    <section ref={ref} className="hero" aria-label="Introduction" data-nav-ground="light">
       {/* --- The photograph --- */}
       <motion.div
         className="hero__media"
@@ -59,7 +61,8 @@ export function Hero() {
         />
       </motion.div>
 
-      {/* Two soft scrims, not a blanket darkening. */}
+      {/* The foot scrim carries the name; the top one is a paper veil, not
+          the old black band — the navigation runs ink-on-bright up there. */}
       <div className="hero__scrim hero__scrim--top" aria-hidden="true" />
       <div className="hero__scrim hero__scrim--bottom" aria-hidden="true" />
 
