@@ -102,6 +102,14 @@
   white-space: nowrap;
 }
 
+/* The text alone was a 24px target on a phone — at the floor, not above
+   it. The padding is vertical only, so the mark still sits on the gutter. */
+.nav__name {
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+}
+
 .nav__name:hover {
   color: var(--accent);
 }
@@ -215,6 +223,16 @@
 
 .nav__sub-link:hover {
   color: var(--text);
+}
+
+/* 19px is under the 24px floor for a touch target. The extra height is
+   above the label, so the underline stays where it was. */
+@media (max-width: 767px) {
+  .nav__sub-link {
+    display: inline-flex;
+    align-items: flex-end;
+    min-height: 32px;
+  }
 }
 
 .nav__sub-link--active {

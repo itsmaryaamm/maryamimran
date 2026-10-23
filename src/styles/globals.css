@@ -238,6 +238,16 @@ ol {
   flex-wrap: wrap;
 }
 
+/* A standalone quiet link is a 24px target on a phone — exactly at the
+   floor. Touch pointers get a little more to aim at. */
+@media (max-width: 767px) {
+  .textlink--quiet {
+    display: inline-flex;
+    align-items: center;
+    min-height: 36px;
+  }
+}
+
 /* ============================================================
    TEXT LINK — cobalt underline that draws in on hover
    ============================================================ */

@@ -248,11 +248,13 @@
   color: var(--white);
 }
 
-/* The count tells you how much is behind a chip before you press it. */
+/* The count tells you how much is behind a chip before you press it.
+   It used to be 0.85em of an already small label, which measured 9.35px —
+   below the floor the rest of the site holds. Same size now, set back
+   with opacity instead. */
 .chip__count {
-  font-size: 0.85em;
   font-variant-numeric: tabular-nums;
-  opacity: 0.6;
+  opacity: 0.55;
 }
 
 /* --- Active filters --- */
@@ -665,6 +667,14 @@
   .cindex__preview-inner {
     transition: none;
   }
+}
+
+.cindex__preview-title {
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: var(--tr-heading);
+  color: var(--text);
 }
 
 .cindex__preview-name {

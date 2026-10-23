@@ -136,7 +136,11 @@ export function WorkRecord({ item }: { item: WorkItem }) {
 
       {/* --- Media --- */}
       {images.length > 0 && (
-        <div className={`record__media${images.length === 4 ? ' record__media--quad' : ''}${item.id === 'air-to-water' ? ' record__media--contain' : ''}`}>
+        <div
+          className={`record__media${
+            images.length >= 4 && images.length % 2 === 0 ? ' record__media--pairs' : ''
+          }${item.id === 'air-to-water' ? ' record__media--contain' : ''}`}
+        >
           {images.map((img) => (
             <Figure key={img.src} media={img} label={item.title} className="record__figure" />
           ))}

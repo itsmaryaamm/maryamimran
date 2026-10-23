@@ -242,8 +242,14 @@
   margin-top: clamp(1.75rem, 3.5vw, 2.75rem);
 }
 
-.record__media--quad {
+/* An even gallery runs in two columns — four images make 2x2, six make
+   2x3 — and every tile shares a frame so the rows line up. */
+.record__media--pairs {
   grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.record__media--pairs .figure__frame {
+  aspect-ratio: 3 / 2;
 }
 
 .record__media--contain .figure__img {
@@ -251,7 +257,7 @@
 }
 
 @media (max-width: 600px) {
-  .record__media--quad {
+  .record__media--pairs {
     grid-template-columns: 1fr;
   }
 }

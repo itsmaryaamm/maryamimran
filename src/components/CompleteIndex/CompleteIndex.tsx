@@ -152,6 +152,19 @@ export function CompleteIndex() {
   const previewItem =
     visibleEntries.find((e) => e.key === hovered) ?? visibleEntries.find((e) => e.featuredMedia) ?? null;
 
+  /* Whatever is in the panel has to be the row under the cursor. Entries
+     with no featured image used to leave it blank, or — worse — leave the
+     previous row's photograph sitting there, so the panel showed one
+     record while the cursor was on another. Fall through the record's own
+     images first, and when there genuinely is no photograph show its text
+     rather than someone else's picture. */
+  const previewMedia =
+    previewItem &&
+    (previewItem.featuredMedia ??
+      previewItem.images?.[0] ??
+      previewItem.work?.featuredMedia ??
+      previewItem.work?.images?.[0]);
+
   /* The preview used to sit pinned at the top of the column, which meant
      hovering the fortieth row put its photograph somewhere above the
      record you were reading. It now rides down to the row itself, and is
@@ -357,16 +370,22 @@ export function CompleteIndex() {
               style={{ transform: `translateY(${previewTop}px)` }}
             >
               <AnimatePresence mode="wait">
-                {previewItem?.featuredMedia && (
+                {previewItem && (
                   <motion.div
                     key={previewItem.key}
                     initial={reduced ? false : { opacity: 0, y: 8 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={reduced ? {} : { opacity: 0 }}
-                    transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                    transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
                   >
-                    <Figure media={previewItem.featuredMedia} label={previewItem.title} noScale />
-                    <p className="cindex__preview-name mono">{previewItem.shortDescription}</p>
+                    {previewMedia ? (
+                      <Figure media={previewMedia} label={previewItem.title} noScale />
+                    ) : (
+                      <p className="cindex__preview-title">{previewItem.title}</p>
+                    )}
+                    <p className="cindex__preview-name mono">
+                      {previewItem.shortDescription ?? previewItem.meta}
+                    </p>
                   </motion.div>
                 )}
               </AnimatePresence>
@@ -406,19 +425,44 @@ function Row({ entry, open, hovered, hasHover, reduced, panelId, onToggle, onHov
       entry.related?.length,
   );
 
-  /* Opening a row 40 records down should not leave its heading above the
-     sticky toolbar. `block: 'nearest'` plus the row's scroll-margin keeps
-     the heading in view without moving the page when it already is. */
+  /* The list is an accordion, so opening one row closes another — and when
+     the one that closes is ABOVE you, the page loses its height and
+     everything slides up underneath the cursor. Measured at 1440x900 that
+     threw the row you just clicked 1,942px off the top of the screen.
+
+     So: note where the row sits before the state change, then hold it
+     there for the length of the animation. The thing you clicked does not
+     move. The only exception is a row that would end up behind the sticky
+     toolbar, which is brought just clear of it. */
   const toggle = () => {
-    const wasOpen = open;
+    const el = rowRef.current;
+    if (!el) {
+      onToggle();
+      return;
+    }
+
+    const bar = document.querySelector('.cindex__controls');
+    const barBottom = bar ? bar.getBoundingClientRect().bottom : 0;
+    /* Hold the row where it is, unless that is behind the toolbar or below
+       the fold — you opened it to read it, so it has to be on screen. */
+    const anchor = Math.min(
+      Math.max(el.getBoundingClientRect().top, barBottom + 12),
+      Math.max(barBottom + 12, window.innerHeight * 0.45),
+    );
+
     onToggle();
-    if (wasOpen) return;
-    requestAnimationFrame(() => {
-      rowRef.current?.scrollIntoView({
-        behavior: reduced ? 'auto' : 'smooth',
-        block: 'nearest',
-      });
-    });
+
+    const started = performance.now();
+    const hold = () => {
+      const node = rowRef.current;
+      if (!node) return;
+      const delta = node.getBoundingClientRect().top - anchor;
+      if (Math.abs(delta) > 0.5) window.scrollBy(0, delta);
+      // Framer animates the height over ~420ms; keep correcting until it
+      // has settled, or a single frame is correcting against stale layout.
+      if (performance.now() - started < 650) requestAnimationFrame(hold);
+    };
+    requestAnimationFrame(hold);
   };
 
   const inner = (

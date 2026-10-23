@@ -389,8 +389,8 @@ export const work: WorkItem[] = [
       { src: '/assets/technology/vita-components.jpg', alt: 'Circuit board being assembled in the IE University robotics lab', caption: 'Hardware work', ratio: '3/2' },
       { src: '/assets/technology/vita-lab.jpg', alt: 'Maryam and classmates working with electronics in the IE University robotics lab', caption: 'Robotics lab, Madrid', ratio: '3/2' },
       { src: '/assets/technology/vita-team.jpg', alt: 'Maryam receiving an IE University summer school certificate', caption: 'IE University summer school', ratio: '3/2' },
-      { src: '/assets/technology/vita-robot.jpg', alt: 'The finished VITA robot on the lab floor — sensor head above a carrying tray, on a two-wheeled base', caption: 'The build, finished', ratio: '3/4' },
-      { src: '/assets/technology/vita-team-robot.jpg', alt: 'Maryam and her two VITA teammates in the IE University robotics lab, holding the finished robot', caption: 'The three-person team', ratio: '4/3' },
+      { src: '/assets/technology/vita-robot.jpg', alt: 'The finished VITA robot close up — sensor head, carrying tray, and the wiring and boards visible inside the chassis', caption: 'The build, finished', ratio: '3/2', focus: '45% 12%' },
+      { src: '/assets/technology/vita-team-robot.jpg', alt: 'Maryam and her two VITA teammates in the IE University robotics lab, holding the finished robot', caption: 'The three-person team', ratio: '3/2', focus: '50% 38%' },
     ],
     featuredMedia: { src: '/assets/technology/vita-prototype.jpg', alt: 'Maryam and a teammate holding their robotics prototype at IE University', ratio: '4/3' },
     videos: [

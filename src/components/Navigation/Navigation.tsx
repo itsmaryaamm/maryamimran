@@ -105,20 +105,6 @@ export function Navigation() {
                 </NavLink>
               </li>
             ))}
-            {/* Rendered only once the PDF exists — see site.resume.available. */}
-            {site.resume.available && (
-              <li>
-                <a
-                  className="nav__link"
-                  href={asset(site.resume.path)}
-                  target="_blank"
-                  rel="noreferrer noopener"
-                >
-                  <span className="nav__dot" aria-hidden="true" />
-                  Resume
-                </a>
-              </li>
-            )}
             <li>
               <Link to="/#contact" className="nav__link">
                 <span className="nav__dot" aria-hidden="true" />
