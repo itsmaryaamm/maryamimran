@@ -391,7 +391,11 @@ function Row({ entry, open, hovered, hasHover, reduced, panelId, onToggle, onHov
                 {entry.featuredMedia && !entry.images?.length && (
                   <Figure media={entry.featuredMedia} label={entry.title} className="crow__entry-photo" />
                 )}
-                {entry.images?.map((media) => <Figure key={media.src} media={media} label={entry.title} className="crow__entry-photo" />)}
+                {entry.images && entry.images.length === 4 ? (
+                  <div className="crow__media-grid">
+                    {entry.images.map((media) => <Figure key={media.src} media={media} label={entry.title} className="crow__entry-photo" />)}
+                  </div>
+                ) : entry.images?.map((media) => <Figure key={media.src} media={media} label={entry.title} className="crow__entry-photo" />)}
                 {entry.document && (
                   <DocumentViewer document={{ src: entry.document, label: `${entry.title} certificate`, pages: 1 }} />
                 )}
