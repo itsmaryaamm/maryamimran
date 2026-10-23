@@ -11,7 +11,7 @@ import {
   type IndexGroup,
 } from '../../data/indexEntries';
 import { Figure } from '../Media/Figure';
-import { asset } from '../../lib/asset';
+import { DocumentViewer } from '../Media/DocumentViewer';
 import { WorkRecord } from '../ExpandableWork/WorkRecord';
 import { MaskReveal } from '../Motion/Reveal';
 import { useHasHover } from '../../hooks/useMediaQuery';
@@ -398,10 +398,7 @@ function Row({ entry, open, hovered, hasHover, reduced, panelId, onToggle, onHov
                   <Figure media={entry.featuredMedia} label={entry.title} className="crow__entry-photo" />
                 )}
                 {entry.document && (
-                  <div className="record__embed">
-                    <a className="textlink" href={asset(entry.document)} target="_blank" rel="noreferrer noopener">Open certificate PDF ↗</a>
-                    <iframe src={`${asset(entry.document)}#toolbar=0`} title={`${entry.title} certificate`} loading="lazy" />
-                  </div>
+                  <DocumentViewer document={{ src: entry.document, label: `${entry.title} certificate`, pages: 1 }} />
                 )}
                 {entry.href && (
                   <a

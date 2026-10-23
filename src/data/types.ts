@@ -48,6 +48,7 @@ export interface ExternalLink {
 export interface DocumentItem {
   label: string;
   src: string;
+  pages: number;
 }
 
 export interface VideoItem {

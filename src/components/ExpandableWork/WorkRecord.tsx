@@ -1,5 +1,6 @@
 import type { WorkItem } from '../../data/types';
 import { Figure } from '../Media/Figure';
+import { DocumentViewer } from '../Media/DocumentViewer';
 import { asset } from '../../lib/asset';
 import './WorkRecord.css';
 
@@ -153,15 +154,7 @@ export function WorkRecord({ item }: { item: WorkItem }) {
           )}
         </section>
       ))}
-      {item.documents?.map((document) => (
-        <section className="record__embed" key={document.src}>
-          <div className="record__embed-heading">
-            <h4 className="label record__block-title">{document.label}</h4>
-            <a className="textlink textlink--quiet" href={asset(document.src)} target="_blank" rel="noreferrer noopener">Open PDF ↗</a>
-          </div>
-          <iframe src={`${asset(document.src)}#toolbar=0`} title={document.label} loading="lazy" />
-        </section>
-      ))}
+      {item.documents?.map((document) => <DocumentViewer key={document.src} document={document} />)}
     </div>
   );
 }
