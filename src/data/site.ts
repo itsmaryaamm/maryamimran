@@ -32,7 +32,7 @@ export const site = {
        headshot. Run `npm run images` after dropping a new original into
        source-images/ and the responsive set below is regenerated. */
     src: '/assets/portrait/maryam-portrait.jpg',
-    aboutSrc: '/assets/portrait/maryam-about.jpg',
+    aboutSrc: '/assets/portrait/maryam-portrait.jpg',
     /* Widths that exist on disk, smallest first. The browser picks one via
        srcset; `src` above is the fallback. Must match scripts/optimize-images.mjs. */
     widths: [800, 1200, 1796],

@@ -392,6 +392,10 @@
   font-size: var(--t-sm);
 }
 
+.crow__detail .docview { width: 100%; }
+.crow__related { display: flex; flex-wrap: wrap; align-items: baseline; gap: .6rem 1.25rem; margin-block: 1rem; }
+.crow__related button { border: 0; padding: 0; background: none; font: inherit; cursor: pointer; }
+
 .crow__source-note {
   max-width: 42rem;
   margin-block: 1rem;

@@ -4,6 +4,7 @@ import type { Tag } from '../../data/types';
 import {
   distinctEntryCount,
   entriesInGroup,
+  indexEntries,
   groupCounts,
   groupMeta,
   groupOrder,
@@ -23,10 +24,8 @@ import './CompleteIndex.css';
    ------------------------------------------------------------
    A reference system, not a résumé table.
 
-   It opens on a table of contents drawn from the portfolio master
-   with counts. Choosing one filters to that group; the default
-   view renders every group in sequence under its own heading,
-   so nothing is ever presented as one flat chronological list.
+   It opens on every experience. Category buttons filter one shared
+   list, including records that belong in more than one category.
 
    Search, tags, years, hover previews and expandable records
    are all preserved from the previous version. All filtering
@@ -80,17 +79,11 @@ export function CompleteIndex() {
     };
   }, [tag, era, deferredQuery]);
 
-  /* Groups to render, each with its surviving entries. */
-  const sections = useMemo(
-    () =>
-      groupOrder
-        .filter((g) => group === null || g === group)
-        .map((g) => ({ group: g, entries: entriesInGroup(g).filter(matches) }))
-        .filter((s) => s.entries.length > 0),
+  const visibleEntries = useMemo(
+    () => (group ? entriesInGroup(group) : indexEntries).filter(matches),
     [group, matches],
   );
-
-  const total = sections.reduce((n, s) => n + s.entries.length, 0);
+  const total = visibleEntries.length;
   const filtered = group !== null || tag !== null || era !== null || query !== '';
 
   const clear = () => {
@@ -112,9 +105,8 @@ export function CompleteIndex() {
     });
   };
 
-  const allEntries = sections.flatMap((s) => s.entries);
   const previewItem =
-    allEntries.find((e) => e.key === hovered) ?? allEntries.find((e) => e.featuredMedia) ?? null;
+    visibleEntries.find((e) => e.key === hovered) ?? visibleEntries.find((e) => e.featuredMedia) ?? null;
 
   return (
     <div className="cindex">
@@ -223,25 +215,20 @@ export function CompleteIndex() {
 
       {/* ============ GROUPED RESULTS ============ */}
       <div className={`cindex__body ${hasHover ? 'cindex__body--withpreview' : ''}`}>
-        {sections.length > 0 ? (
+        {visibleEntries.length > 0 ? (
           <div className="cindex__groups" onMouseLeave={() => setHovered(null)}>
-            {sections.map((section) => (
-              <section
-                key={section.group}
-                className="cgroup"
-                aria-labelledby={`${baseId}-g-${section.group}`}
-              >
+              <section className="cgroup" aria-labelledby={`${baseId}-results`}>
                 <header className="cgroup__head">
-                  <h3 id={`${baseId}-g-${section.group}`} className="cgroup__title">
-                    {groupMeta[section.group].label}
+                  <h3 id={`${baseId}-results`} className="cgroup__title">
+                    {group ? groupMeta[group].label : 'All experiences'}
                   </h3>
                   <span className="cgroup__count mono">
-                    {String(section.entries.length).padStart(2, '0')}
+                    {String(visibleEntries.length).padStart(2, '0')}
                   </span>
                 </header>
 
                 <ul className="cindex__rows">
-                  {section.entries.map((entry) => (
+                  {visibleEntries.map((entry) => (
                     <Row
                       key={entry.key}
                       entry={entry}
@@ -252,11 +239,15 @@ export function CompleteIndex() {
                       panelId={`${baseId}-${entry.key}`}
                       onToggle={() => setExpanded(expanded === entry.key ? null : entry.key)}
                       onHover={() => hasHover && setHovered(entry.key)}
+                      onRelated={(key) => {
+                        clear();
+                        setExpanded(key);
+                        window.setTimeout(() => document.getElementById(`entry-${key}`)?.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'start' }), 100);
+                      }}
                     />
                   ))}
                 </ul>
               </section>
-            ))}
           </div>
         ) : (
           <div className="cindex__empty">
@@ -312,10 +303,11 @@ interface RowProps {
   panelId: string;
   onToggle: () => void;
   onHover: () => void;
+  onRelated: (key: string) => void;
 }
 
-function Row({ entry, open, hovered, hasHover, reduced, panelId, onToggle, onHover }: RowProps) {
-  const expandable = Boolean(entry.work || entry.detail || entry.document);
+function Row({ entry, open, hovered, hasHover, reduced, panelId, onToggle, onHover, onRelated }: RowProps) {
+  const expandable = Boolean(entry.work || entry.detail || entry.document || entry.documents?.length || entry.images?.length || entry.related?.length);
 
   const inner = (
     <>
@@ -342,6 +334,7 @@ function Row({ entry, open, hovered, hasHover, reduced, panelId, onToggle, onHov
 
   return (
     <li
+      id={`entry-${entry.key}`}
       className={`crow ${open ? 'crow--open' : ''} ${hovered ? 'crow--hover' : ''}`}
       onMouseEnter={onHover}
     >
@@ -389,17 +382,21 @@ function Row({ entry, open, hovered, hasHover, reduced, panelId, onToggle, onHov
                 {entry.featuredMedia?.src !== entry.work.featuredMedia?.src && entry.featuredMedia && (
                   <Figure media={entry.featuredMedia} label={entry.title} className="crow__entry-photo" />
                 )}
+                <RelatedLinks links={entry.related} onRelated={onRelated} />
                 <WorkRecord item={entry.work} />
               </>
             ) : (
               <div className="crow__detail">
                 <p className="prose">{entry.detail}</p>
-                {entry.featuredMedia && (
+                {entry.featuredMedia && !entry.images?.length && (
                   <Figure media={entry.featuredMedia} label={entry.title} className="crow__entry-photo" />
                 )}
+                {entry.images?.map((media) => <Figure key={media.src} media={media} label={entry.title} className="crow__entry-photo" />)}
                 {entry.document && (
                   <DocumentViewer document={{ src: entry.document, label: `${entry.title} certificate`, pages: 1 }} />
                 )}
+                {entry.documents?.map((document) => <DocumentViewer key={document.src} document={document} />)}
+                <RelatedLinks links={entry.related} onRelated={onRelated} />
                 {entry.href && (
                   <a
                     className="textlink"
@@ -423,6 +420,11 @@ function Row({ entry, open, hovered, hasHover, reduced, panelId, onToggle, onHov
       </AnimatePresence>
     </li>
   );
+}
+
+function RelatedLinks({ links, onRelated }: { links?: IndexEntry['related']; onRelated: (key: string) => void }) {
+  if (!links?.length) return null;
+  return <div className="crow__related"><span className="label">Related work</span>{links.map(({ label, key }) => <button type="button" key={key} className="textlink" onClick={() => onRelated(key)}>{label} ↗</button>)}</div>;
 }
 
 function Chip({
