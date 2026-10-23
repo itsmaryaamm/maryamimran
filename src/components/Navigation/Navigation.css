@@ -175,6 +175,12 @@
   color: var(--text);
 }
 
+/* Over a photograph the secondary grey has no contrast to spare — it
+   measured 4.45:1 on the header's blue-grey wall. Full ink there. */
+.nav--onphoto:not(.nav--ondark) .nav__link {
+  color: var(--text);
+}
+
 /* The cobalt current-page indicator. */
 .nav__dot {
   width: 4px;

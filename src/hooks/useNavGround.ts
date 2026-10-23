@@ -5,9 +5,12 @@ export interface NavGround {
   color: string;
   /** True when that ground is dark enough to need light type. */
   dark: boolean;
+  /** True when a section declared its treatment — i.e. the bar is over a
+      photograph, where secondary greys do not have the contrast to spare. */
+  declared: boolean;
 }
 
-const DEFAULT: NavGround = { color: '#F4F2ED', dark: false };
+const DEFAULT: NavGround = { color: '#F4F2ED', dark: false, declared: false };
 
 function parseRgb(value: string): [number, number, number] | null {
   const m = value.match(/rgba?\(([^)]+)\)/);
@@ -54,7 +57,9 @@ export function useNavGround(navHeight = 76): NavGround {
       if (declared) {
         const dark = declared.dataset.navGround === 'dark';
         const color = dark ? '#181A1D' : '#F4F2ED';
-        setGround((g) => (g.color === color && g.dark === dark ? g : { color, dark }));
+        setGround((g) =>
+          g.color === color && g.dark === dark && g.declared ? g : { color, dark, declared: true },
+        );
         return;
       }
 
@@ -75,18 +80,35 @@ export function useNavGround(navHeight = 76): NavGround {
       }
 
       if (!found) {
-        setGround((g) => (g.color === DEFAULT.color ? g : DEFAULT));
+        setGround((g) => (g.color === DEFAULT.color && !g.declared ? g : DEFAULT));
         return;
       }
 
       const color = `rgb(${found[0]}, ${found[1]}, ${found[2]})`;
       const dark = luminance(found) < 0.28;
-      setGround((g) => (g.color === color && g.dark === dark ? g : { color, dark }));
+      setGround((g) =>
+        g.color === color && g.dark === dark && !g.declared ? g : { color, dark, declared: false },
+      );
     };
 
+    /* Sampling means elementFromPoint plus a getComputedStyle walk up the
+       tree, and each of those forces a style recalculation. Running it on
+       every animation frame put that cost inside the scroll itself. The
+       ground under the bar changes at section boundaries, not per frame,
+       so it is throttled — still immediate to the eye, off the hot path. */
+    let last = 0;
+    let timer = 0;
+
     const onScroll = () => {
-      if (frame) return;
-      frame = requestAnimationFrame(sample);
+      if (frame || timer) return;
+      const since = performance.now() - last;
+      const run = () => {
+        timer = 0;
+        last = performance.now();
+        frame = requestAnimationFrame(sample);
+      };
+      if (since >= 140) run();
+      else timer = window.setTimeout(run, 140 - since);
     };
 
     sample();
@@ -95,6 +117,7 @@ export function useNavGround(navHeight = 76): NavGround {
 
     return () => {
       if (frame) cancelAnimationFrame(frame);
+      if (timer) clearTimeout(timer);
       window.removeEventListener('scroll', onScroll);
       window.removeEventListener('resize', onScroll);
     };

@@ -25,12 +25,13 @@ export interface MontageItem {
   punchline?: boolean;
 }
 
-/* STAND-IN. The intended photograph is "WhatsApp Image 2025-11-01 at
-   14.36.06_c967b9b8.jpg", which has not reached the repository yet. Until
-   it does this borrows the environmental portrait so the page reads as
-   finished rather than as a hole; swap `src` and `ratio` when it lands. */
+/* STAND-IN, and now a file of its own. The intended photograph is
+   "WhatsApp Image 2025-11-01 at 14.36.06_c967b9b8.jpg", which has not
+   reached the repository. Until it does this holds the environmental
+   portrait the hero used to carry — copied, not shared, so changing the
+   header no longer changes this page. */
 export const introPortrait: MediaItem = {
-  src: '/assets/portrait/maryam-portrait.jpg',
+  src: '/assets/about/maryam-intro.jpg',
   alt: 'Maryam Imran at the University of Business & Technology in Jeddah',
   ratio: '16/9',
   focus: '48% 28%',

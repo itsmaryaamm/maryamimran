@@ -76,7 +76,7 @@ export function Navigation() {
 
   return (
     <header
-      className={`nav ${scrolled ? 'nav--scrolled' : ''} ${ground.dark ? 'nav--ondark' : ''} ${
+      className={`nav ${scrolled ? 'nav--scrolled' : ''} ${ground.dark ? 'nav--ondark' : ''} ${ground.declared ? 'nav--onphoto' : ''} ${
         open ? 'nav--menuopen' : ''
       }`}
       style={{ ['--nav-ground' as string]: ground.color }}
