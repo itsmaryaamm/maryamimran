@@ -7,8 +7,8 @@
 export const site = {
   name: 'Maryam Imran',
   initials: 'MI',
-  domain: 'mayamirman.com',
-  url: 'https://mayamirman.com',
+  domain: 'maryamimran.com',
+  url: 'https://maryamimran.com',
   positioning: 'Business × Technology × Impact',
   discipline: 'Business Analytics & Information Systems',
   location: 'Jeddah, Saudi Arabia',

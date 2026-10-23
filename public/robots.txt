@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://mayamirman.com/sitemap.xml
+Sitemap: https://maryamimran.com/sitemap.xml

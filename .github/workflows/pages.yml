@@ -32,12 +32,18 @@ jobs:
       - run: npm ci
 
       # A project site is served from /<repo>/, so the build needs that
-      # prefix. A repo named <user>.github.io is served from the root instead.
+      # prefix. A repo named <user>.github.io is served from the root — and
+      # so is a custom domain, which public/CNAME is the marker for. Getting
+      # this wrong points every asset at /<repo>/ on a domain that has no
+      # such folder, so the whole site 404s.
       - name: Work out the base path
         id: base
         run: |
           REPO="${{ github.event.repository.name }}"
-          if [[ "$REPO" == *.github.io ]]; then
+          if [[ -f public/CNAME ]]; then
+            echo "path=/" >> "$GITHUB_OUTPUT"
+            echo "Custom domain $(cat public/CNAME) — serving from the root."
+          elif [[ "$REPO" == *.github.io ]]; then
             echo "path=/" >> "$GITHUB_OUTPUT"
           else
             echo "path=/$REPO/" >> "$GITHUB_OUTPUT"
