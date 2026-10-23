@@ -647,13 +647,24 @@
 
 /* --- Preview --- */
 
+/* The column is only a positioning context; the panel inside it is placed
+   against the hovered row by CompleteIndex, which also keeps it from
+   sliding past the end of the list. */
 .cindex__preview {
-  position: sticky;
-  top: calc(var(--nav-h) + 3rem);
+  position: relative;
+  align-self: stretch;
 }
 
 .cindex__preview-inner {
-  min-height: 12rem;
+  position: absolute;
+  inset: 0 0 auto;
+  transition: transform var(--dur) var(--ease-out);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cindex__preview-inner {
+    transition: none;
+  }
 }
 
 .cindex__preview-name {

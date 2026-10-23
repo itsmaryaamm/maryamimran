@@ -54,6 +54,9 @@ export function CompleteIndex() {
   const baseId = useId();
   const resultsRef = useRef<HTMLDivElement>(null);
   const typeChipsRef = useRef<HTMLDivElement>(null);
+  const bodyRef = useRef<HTMLDivElement>(null);
+  const previewRef = useRef<HTMLDivElement>(null);
+  const [previewTop, setPreviewTop] = useState(0);
 
   /* A link of the form /index#entry-P02 opens that record directly, so
      "open the full record" elsewhere on the site lands on the record
@@ -148,6 +151,24 @@ export function CompleteIndex() {
 
   const previewItem =
     visibleEntries.find((e) => e.key === hovered) ?? visibleEntries.find((e) => e.featuredMedia) ?? null;
+
+  /* The preview used to sit pinned at the top of the column, which meant
+     hovering the fortieth row put its photograph somewhere above the
+     record you were reading. It now rides down to the row itself, and is
+     held inside the list so it never runs past the last entry. */
+  useEffect(() => {
+    if (!hasHover) return;
+    const body = bodyRef.current;
+    const row = previewItem ? document.getElementById(`entry-${previewItem.key}`) : null;
+    if (!body || !row) {
+      setPreviewTop(0);
+      return;
+    }
+    const offset = row.getBoundingClientRect().top - body.getBoundingClientRect().top;
+    const panel = previewRef.current?.offsetHeight ?? 0;
+    const limit = Math.max(0, body.offsetHeight - panel);
+    setPreviewTop(Math.round(Math.min(Math.max(offset, 0), limit)));
+  }, [previewItem, hasHover, expanded, visibleEntries]);
 
   return (
     <div className="cindex">
@@ -277,7 +298,7 @@ export function CompleteIndex() {
       )}
 
       {/* ============ RESULTS ============ */}
-      <div className={`cindex__body ${hasHover ? 'cindex__body--withpreview' : ''}`}>
+      <div className={`cindex__body ${hasHover ? 'cindex__body--withpreview' : ''}`} ref={bodyRef}>
         {visibleEntries.length > 0 ? (
           <div className="cindex__groups" onMouseLeave={() => setHovered(null)}>
             <section className="cgroup" aria-labelledby={`${baseId}-results`}>
@@ -330,7 +351,11 @@ export function CompleteIndex() {
 
         {hasHover && (
           <div className="cindex__preview" aria-hidden="true">
-            <div className="cindex__preview-inner">
+            <div
+              className="cindex__preview-inner"
+              ref={previewRef}
+              style={{ transform: `translateY(${previewTop}px)` }}
+            >
               <AnimatePresence mode="wait">
                 {previewItem?.featuredMedia && (
                   <motion.div
