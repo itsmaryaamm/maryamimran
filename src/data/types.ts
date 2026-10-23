@@ -56,6 +56,10 @@ export interface VideoItem {
   src: string;
   kind: 'youtube' | 'file';
   poster?: string;
+  /** Display ratio as "w / h". Needed because the files are loaded with
+      preload="none", so the browser has no metadata to size the box from
+      and falls back to 2:1 — which letterboxes a phone video badly. */
+  ratio?: string;
 }
 
 /** A phase in a project's evolution. Rendered as a horizontal progression. */

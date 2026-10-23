@@ -8,33 +8,75 @@
   transition: background-color var(--dur) var(--ease-out);
 }
 
-/* A paper wash once scrolled. It holds full opacity behind the bar and
-   only fades below it, so passing content never collides with the links. */
-.nav::before {
-  content: '';
-  position: absolute;
-  inset: 0 0 auto;
-  height: calc(100% + 2.5rem);
-  opacity: 0;
-  /* --nav-ground is sampled from whatever section is under the bar, so the
-     wash matches paper, stone and ink without being told about them. */
-  background: linear-gradient(
-    to bottom,
-    var(--nav-ground, var(--paper)) 0%,
-    var(--nav-ground, var(--paper)) 62%,
-    color-mix(in srgb, var(--nav-ground, var(--paper)) 70%, transparent) 82%,
-    color-mix(in srgb, var(--nav-ground, var(--paper)) 0%, transparent) 100%
-  );
-  pointer-events: none;
-  transition: opacity var(--dur) var(--ease-out);
+/* Scrolled, the bar collapses to two chips — the name and a menu button —
+   each sitting on its own ground rather than on a full-width wash. The
+   ground colour is still sampled from whatever is under the bar, so the
+   chips match paper, stone and ink without being told about them. */
+.nav__name,
+.nav__toggle {
+  border-radius: 999px;
+  transition:
+    background-color var(--dur) var(--ease-out),
+    color var(--dur-fast) var(--ease-out),
+    opacity var(--dur-fast) var(--ease-out),
+    transform var(--dur-fast) var(--ease-out);
 }
 
-.nav--scrolled::before {
-  opacity: 1;
+/* Deliberately inverted rather than tinted to match the page. A chip the
+   same colour as the ground slices the headline passing behind it and
+   reads as a rendering fault; a solid ink chip reads as a control. */
+.nav--scrolled .nav__name,
+.nav--scrolled .nav__toggle {
+  padding: 0.6rem 1rem;
+  background: var(--ink);
+  color: var(--white);
+}
+
+.nav--scrolled .nav__name {
+  margin-inline-start: -1rem;
+}
+
+.nav--scrolled .nav__toggle-glyph span {
+  background: var(--white);
+}
+
+.nav--scrolled .nav__name:hover,
+.nav--scrolled .nav__toggle:hover {
+  background: var(--cobalt);
+  color: var(--white);
+}
+
+.nav--scrolled .nav__toggle:hover .nav__toggle-glyph span {
+  background: var(--white);
+}
+
+/* Over an ink section the chips flip, so they stay visible either way. */
+.nav--scrolled.nav--ondark .nav__name,
+.nav--scrolled.nav--ondark .nav__toggle {
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.nav--scrolled.nav--ondark .nav__toggle-glyph span {
+  background: var(--ink);
+}
+
+.nav--scrolled.nav--ondark .nav__name:hover,
+.nav--scrolled.nav--ondark .nav__toggle:hover {
+  background: var(--cobalt);
+  color: var(--white);
+}
+
+.nav--scrolled.nav--ondark .nav__toggle:hover .nav__toggle-glyph span {
+  background: var(--white);
 }
 
 .nav__inner {
   position: relative;
+  /* The menu panel is a sibling inside this same header and carries
+     --z-menu, so without this the bar — and the Close button on it —
+     paint underneath the open panel and cannot be clicked. */
+  z-index: calc(var(--z-menu) + 1);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -73,6 +115,30 @@
 
 .nav__links {
   display: block;
+  transition:
+    opacity var(--dur-fast) var(--ease-out),
+    transform var(--dur-fast) var(--ease-out);
+}
+
+/* Past the hero the inline links hand over to the menu button. */
+.nav--scrolled .nav__links {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(-0.4rem);
+}
+
+/* The work sub-navigation goes with them; the menu carries those routes. */
+.nav--scrolled .nav__sub {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.nav__sub {
+  transition:
+    opacity var(--dur-fast) var(--ease-out),
+    visibility var(--dur-fast) var(--ease-out);
 }
 
 .nav__list {
@@ -158,12 +224,28 @@
 /* --- Mobile toggle --- */
 
 .nav__toggle {
-  display: none;
+  /* Taken out of the flow so the inline links stay flush right while it
+     is invisible, and so the two never reflow past one another. */
+  position: absolute;
+  right: var(--gutter);
+  top: 50%;
+  display: inline-flex;
   align-items: center;
   gap: 0.6rem;
   font-size: var(--t-sm);
   color: var(--text);
-  padding: 0.25rem 0;
+  padding: 0.5rem 0;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(calc(-50% - 0.4rem));
+}
+
+.nav--scrolled .nav__toggle {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(-50%);
 }
 
 .nav__toggle-label {
@@ -237,6 +319,13 @@
   }
 }
 
+.navmenu > nav,
+.navmenu__foot {
+  width: 100%;
+  max-width: var(--maxw);
+  margin-inline: auto;
+}
+
 .navmenu__list {
   display: flex;
   flex-direction: column;
@@ -293,8 +382,18 @@
     display: none;
   }
 
+  /* No inline links to hand over from, so the button is always there. */
   .nav__toggle {
-    display: inline-flex;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(-50%);
+  }
+
+  .nav--scrolled .nav__sub {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
   }
 
   .nav__name-full {
@@ -314,6 +413,22 @@
   .nav__sub::-webkit-scrollbar {
     display: none;
   }
+}
+
+/* With the menu open the bar sits on the paper panel, whatever was
+   under it before, so the sampled ground no longer applies. */
+.nav--menuopen .nav__name {
+  background: transparent;
+  color: var(--ink);
+}
+
+.nav--menuopen .nav__toggle {
+  background: var(--ink);
+  color: var(--white);
+}
+
+.nav--menuopen .nav__toggle-glyph span {
+  background: var(--white);
 }
 
 /* ============================================================

@@ -58,8 +58,8 @@ export const selected: SelectedItem[] = [
     kicker: 'Workshop presenter · ACM Engineering Day, UBT',
     line: 'Agentic AI for a room that mostly wanted to know whether it was worth it. I took it from agent reasoning — reason, then act — through a live build, and into the cases where an agent genuinely beats a script and the ones where it is only a slower one. I ran the same material online for the UBT AI Club.',
     media: {
-      src: '/assets/technology/acm-workshop-demo.jpg',
-      alt: 'Maryam presenting an agent’s reason-then-act workflow on screen at ACM Engineering Day',
+      src: '/assets/technology/acm-workshop-speaking.jpg',
+      alt: 'Maryam presenting the agentic AI workshop from the podium at ACM Engineering Day, UBT',
       ratio: '3/4',
     },
   },
@@ -70,9 +70,9 @@ export const selected: SelectedItem[] = [
     headline: '7th overall',
     line: 'A permission layer for purchases made by AI agents. In roughly 48 hours I built the demo and website, designed the identity and made the deck — approve under the limit, escalate over it, kill switch on top.',
     media: {
-      src: '/assets/technology/flaire-pitch.jpg',
-      alt: 'Maryam presenting Flaire with a teammate at The Garage Challenge',
-      ratio: '3/2',
+      src: '/assets/technology/flaire-garage-poster.jpg',
+      alt: 'Maryam holding Flaire’s hand-drawn AI concept poster at The Garage Challenge',
+      ratio: '3/4',
     },
   },
   {

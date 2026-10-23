@@ -67,7 +67,9 @@ export function Navigation() {
 
   return (
     <header
-      className={`nav ${scrolled ? 'nav--scrolled' : ''} ${ground.dark ? 'nav--ondark' : ''}`}
+      className={`nav ${scrolled ? 'nav--scrolled' : ''} ${ground.dark ? 'nav--ondark' : ''} ${
+        open ? 'nav--menuopen' : ''
+      }`}
       style={{ ['--nav-ground' as string]: ground.color }}
     >
       <div className="nav__inner">
@@ -179,6 +181,14 @@ export function Navigation() {
                 </Link>
               </li>
             ))}
+            {/* The inline links collapse into this panel once scrolled, so
+                Contact has to be in here or it becomes unreachable. */}
+            <li style={{ ['--i' as string]: links.length + 3 }}>
+              <Link to="/#contact" className="navmenu__link">
+                <span className="navmenu__num mono">0{links.length + 4}</span>
+                Contact
+              </Link>
+            </li>
           </ul>
         </nav>
 

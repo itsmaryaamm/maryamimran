@@ -143,10 +143,20 @@ export function WorkRecord({ item }: { item: WorkItem }) {
         </div>
       )}
       {item.videos?.map((video) => (
-        <section className="record__embed" key={video.src}>
+        <section
+          className={`record__embed ${isPortrait(video.ratio) ? 'record__embed--portrait' : ''}`}
+          key={video.src}
+        >
           <h4 className="label record__block-title">{video.title}</h4>
           {video.kind === 'file' ? (
-            <video controls preload="none" playsInline poster={video.poster ? asset(video.poster) : undefined} aria-label={video.title}>
+            <video
+              controls
+              preload="none"
+              playsInline
+              poster={video.poster ? asset(video.poster) : undefined}
+              aria-label={video.title}
+              style={video.ratio ? { aspectRatio: video.ratio } : undefined}
+            >
               <source src={asset(video.src)} type="video/mp4" />
               Your browser cannot play this video.
             </video>
@@ -158,4 +168,11 @@ export function WorkRecord({ item }: { item: WorkItem }) {
       {item.documents?.map((document) => <DocumentViewer key={document.src} document={document} />)}
     </div>
   );
+}
+
+/** "576 / 784" -> true. A phone video held upright needs a narrower box. */
+function isPortrait(ratio?: string): boolean {
+  if (!ratio) return false;
+  const [w, h] = ratio.split('/').map((n) => Number(n.trim()));
+  return Boolean(w && h && w < h);
 }

@@ -1,6 +1,7 @@
 import { lazy, Suspense } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { Navigation } from './components/Navigation/Navigation';
+import { AboutFloat } from './components/AboutFloat/AboutFloat';
 import { Footer } from './components/Footer/Footer';
 import { ScrollToTop } from './components/ScrollToTop';
 import { PageTransition } from './components/Motion/PageTransition';
@@ -95,6 +96,7 @@ export function App() {
         </Suspense>
       </main>
 
+      <AboutFloat />
       <Footer />
     </>
   );

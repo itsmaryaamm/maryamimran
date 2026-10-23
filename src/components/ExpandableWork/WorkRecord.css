@@ -282,3 +282,9 @@
 .record__embed video {
   max-height: 70vh;
 }
+
+/* A video shot upright gets a column, not a letterboxed strip. */
+.record__embed--portrait video {
+  max-width: min(100%, 24rem);
+  margin-inline: auto;
+}
