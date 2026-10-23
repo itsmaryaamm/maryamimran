@@ -1,7 +1,7 @@
 .docview { margin-top: clamp(1.75rem, 3.5vw, 2.75rem); }
 .docview__heading { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; margin-bottom: .9rem; }
 .docview__frame { display: flex; justify-content: center; width: 100%; background: #fff; border: 1px solid var(--rule); }
-.docview__frame img { display: block; max-width: 100%; max-height: 80vh; width: auto; height: auto; object-fit: contain; }
+.docview__frame img { display: block; width: 100%; height: auto; object-fit: contain; }
 .docview__controls { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding-top: .8rem; font-size: var(--t-sm); }
 .docview__controls button { border: 0; background: none; color: var(--accent); cursor: pointer; padding: .25rem 0; font: inherit; }
 .docview__controls button:disabled { color: var(--text-tertiary); cursor: default; }
