@@ -33,7 +33,7 @@ export const introPortrait: MediaItem = {
   src: '/assets/portrait/maryam-portrait.jpg',
   alt: 'Maryam Imran at the University of Business & Technology in Jeddah',
   ratio: '16/9',
-  focus: '54% 30%',
+  focus: '48% 28%',
 };
 
 export const montage: MontageItem[] = [
