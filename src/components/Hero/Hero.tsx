@@ -61,9 +61,9 @@ export function Hero() {
         />
       </motion.div>
 
-      {/* The foot scrim carries the name; the top one is a paper veil, not
-          the old black band — the navigation runs ink-on-bright up there. */}
-      <div className="hero__scrim hero__scrim--top" aria-hidden="true" />
+      {/* One scrim, at the foot, carrying the name. Nothing at the top:
+          this crop is bright enough across the full width for the
+          navigation to run on ink unaided — measured, not assumed. */}
       <div className="hero__scrim hero__scrim--bottom" aria-hidden="true" />
 
       {/* Self-contained dark pill: legible wherever the photograph is bright. */}
