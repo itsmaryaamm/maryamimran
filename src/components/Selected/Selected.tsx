@@ -20,7 +20,7 @@ import './Selected.css';
 
 /* Four verified signals. No entry appears here that is not already
    marked verified in recognition.ts. */
-const signalIds = ['cgpa', 'ie-robotics-first', 'moonshot-pirates-result', 'outstanding-cambridge-learner'];
+const signalIds = ['cgpa', 'ie-robotics-first', 'flaire-garage-challenge', 'outstanding-cambridge-learner'];
 
 export function Selected() {
   const signals = signalIds

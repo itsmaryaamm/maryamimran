@@ -74,26 +74,17 @@ export const recognition: RecognitionItem[] = [
     order: 2,
   },
   {
+    /* Was two entries — the award and the placing — with the placing held
+       back for wording. Maryam confirmed it, so they are one record now. */
     id: 'outstanding-cambridge-learner',
+    value: 'TOP IN KSA',
     title: 'Outstanding Cambridge Learner',
     organization: 'Cambridge International',
     year: '2024',
-    /* TODO(maryam): the "Top in Saudi Arabia — Economics" recognition goes here once
-       you supply the exact certificate wording. Set verified: true to publish it. */
+    detail: 'Economics, at AS Level and again at A Level',
     verified: true,
     group: 'academic',
     order: 3,
-  },
-  {
-    id: 'top-in-saudi-economics',
-    title: 'Top in Saudi Arabia — Economics',
-    organization: 'Cambridge International',
-    year: '2024',
-    /* TODO(maryam): add `detail` using the exact wording printed on the
-       certificate, then set verified: true to publish this entry. */
-    verified: false,
-    group: 'academic',
-    order: 4,
   },
   {
     id: 'ie-robotics-first',
