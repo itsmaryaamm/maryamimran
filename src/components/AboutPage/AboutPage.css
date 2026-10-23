@@ -1,0 +1,316 @@
+/* ============================================================
+   ABOUT — the person behind the projects
+   ============================================================ */
+
+/* ---------- 01 — intro ---------- */
+
+.abintro__headline {
+  font-size: clamp(2.6rem, 9.5vw, 7.5rem);
+  font-weight: 500;
+  line-height: 0.94;
+  letter-spacing: var(--tr-display);
+}
+
+.abintro__sub {
+  margin-top: clamp(1rem, 2vw, 1.5rem);
+  font-size: clamp(1rem, 1.8vw, 1.35rem);
+  line-height: 1.4;
+  color: var(--text-tertiary);
+}
+
+.abintro__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(2rem, 5vw, 4rem);
+  margin-top: clamp(3rem, 8vw, 6.5rem);
+  align-items: start;
+}
+
+@media (min-width: 860px) {
+  .abintro__grid {
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+    gap: clamp(3rem, 7vw, 7rem);
+  }
+
+  /* The text starts below the top of the photograph rather than level
+     with it — the page should not read as two tidy columns. */
+  .abintro__body {
+    padding-top: clamp(2rem, 6vw, 5rem);
+  }
+}
+
+.abintro__hello {
+  font-size: clamp(1.35rem, 2.6vw, 1.9rem);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: var(--tr-heading);
+  color: var(--text);
+}
+
+.abintro__prose p + p {
+  margin-top: 1.2em;
+}
+
+/* ---------- 02 — montage ---------- */
+
+.abmontage__headline {
+  font-size: clamp(2rem, 6.5vw, 5rem);
+  font-weight: 500;
+  line-height: 0.96;
+  letter-spacing: var(--tr-display);
+}
+
+.abmontage__grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: clamp(1rem, 2.5vw, 2.5rem);
+  row-gap: clamp(2.5rem, 6vw, 5rem);
+  align-items: start;
+  margin-top: clamp(3rem, 8vw, 6rem);
+  list-style: none;
+}
+
+.abshot {
+  grid-column: var(--col);
+  margin-top: var(--drop, 0rem);
+}
+
+.abshot__figure {
+  overflow: hidden;
+}
+
+/* A photograph lifts slightly under the cursor — the only motion here. */
+.abshot__figure .figure__img {
+  transition:
+    transform 900ms var(--ease-out),
+    opacity 0.7s var(--ease-out);
+}
+
+.abshot__figure:hover .figure__img {
+  transform: scale(1.03);
+}
+
+.abshot__caption {
+  margin-top: 0.9rem;
+  max-width: 34ch;
+  font-size: var(--t-sm);
+  line-height: 1.45;
+  color: var(--text-secondary);
+}
+
+/* The punchline gets the italic, and a little more room around it. */
+.abshot--punchline .abshot__caption {
+  font-style: italic;
+  font-size: clamp(1rem, 1.7vw, 1.2rem);
+  color: var(--text);
+}
+
+@media (max-width: 1100px) {
+  .abmontage__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .abshot {
+    grid-column: auto;
+  }
+
+  /* Keep some of the stagger, halved, so it still reads as composed. */
+  .abshot {
+    margin-top: calc(var(--drop, 0rem) / 2);
+  }
+}
+
+@media (max-width: 700px) {
+  .abmontage__grid {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: clamp(2.5rem, 9vw, 4rem);
+  }
+
+  /* One column, but not six identical blocks: the photographs keep
+     different widths and sides so the column still has a rhythm. */
+  .abshot {
+    margin-top: 0;
+    width: 88%;
+  }
+
+  .abshot:nth-child(even) {
+    margin-left: auto;
+    width: 76%;
+  }
+
+  .abshot:nth-child(3n) {
+    width: 100%;
+  }
+
+  .abshot--punchline {
+    width: 100%;
+    margin-left: 0;
+  }
+}
+
+/* ---------- 03 — notes ---------- */
+
+.abnotes__headline {
+  font-size: clamp(2rem, 6.5vw, 5rem);
+  font-weight: 500;
+  line-height: 0.96;
+  letter-spacing: var(--tr-display);
+}
+
+.abnotes__list {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(2.5rem, 5vw, 4rem);
+  margin-top: clamp(3rem, 7vw, 5.5rem);
+  list-style: none;
+  counter-reset: none;
+}
+
+@media (min-width: 900px) {
+  .abnotes__list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: clamp(3rem, 7vw, 7rem);
+    row-gap: clamp(3rem, 6vw, 5rem);
+  }
+
+  /* Staggered rather than aligned: the right column sits lower. */
+  .abnote:nth-child(even) {
+    padding-top: clamp(2rem, 5vw, 4rem);
+  }
+
+  /* The fifth has the row to itself; hold it to a readable measure. */
+  .abnote:last-child {
+    grid-column: 1 / -1;
+    max-width: 46rem;
+  }
+}
+
+.abnote {
+  border-top: 1px solid var(--rule);
+  padding-top: clamp(1rem, 2vw, 1.5rem);
+}
+
+.abnote__num {
+  display: block;
+  font-size: var(--t-label);
+  letter-spacing: var(--tr-label);
+  color: var(--accent);
+}
+
+.abnote__heading {
+  margin-top: 0.8rem;
+  font-size: clamp(1.2rem, 2.4vw, 1.7rem);
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: var(--tr-heading);
+  color: var(--text);
+}
+
+.abnote__body {
+  margin-top: 0.9rem;
+  font-size: var(--t-sm);
+}
+
+/* ---------- 04 — a little deeper ---------- */
+
+.abdeeper__column {
+  max-width: 44rem;
+  margin-inline: auto;
+}
+
+.abdeeper__lead {
+  font-size: clamp(1.75rem, 4.6vw, 3.1rem);
+  font-weight: 500;
+  line-height: 1.02;
+  letter-spacing: var(--tr-display);
+  color: var(--text);
+}
+
+.abdeeper__lead--second {
+  margin-top: clamp(3.5rem, 8vw, 6rem);
+}
+
+.abdeeper__prose {
+  margin-top: clamp(1.75rem, 3.5vw, 2.5rem);
+  max-width: none;
+  font-size: clamp(1rem, 1.5vw, 1.1rem);
+}
+
+.abdeeper__prose p + p {
+  margin-top: 1.3em;
+}
+
+/* The one serif moment on the site. */
+.abdeeper__turn {
+  margin-top: clamp(2.5rem, 5vw, 3.5rem);
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(1.4rem, 3vw, 2.1rem);
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  color: var(--text);
+}
+
+/* ---------- 05 — goodbye ---------- */
+
+.abbye__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: clamp(1.25rem, 2.5vw, 2rem);
+}
+
+.abbye__headline {
+  font-size: clamp(2.25rem, 8vw, 6rem);
+  font-weight: 500;
+  line-height: 0.96;
+  letter-spacing: var(--tr-display);
+}
+
+.abbye__line {
+  max-width: 34rem;
+  font-size: clamp(1rem, 1.8vw, 1.25rem);
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
+
+.abbye__line--quiet {
+  margin-top: 0.75rem;
+  color: var(--text-tertiary);
+}
+
+.abbye__link {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  margin-top: clamp(1rem, 2.5vw, 2rem);
+  font-size: clamp(1.1rem, 2.2vw, 1.5rem);
+  font-weight: 500;
+  letter-spacing: var(--tr-heading);
+  color: var(--text);
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 0.35rem;
+  transition:
+    color var(--dur-fast) var(--ease-out),
+    border-color var(--dur-fast) var(--ease-out);
+}
+
+.abbye__link:hover {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+.abbye__arrow {
+  transition: transform var(--dur-fast) var(--ease-out);
+}
+
+.abbye__link:hover .abbye__arrow {
+  transform: translateX(0.3rem);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .abshot__figure:hover .figure__img,
+  .abbye__link:hover .abbye__arrow {
+    transform: none;
+  }
+}

@@ -38,6 +38,9 @@ export interface MediaItem {
   caption?: string;
   /** Drives the placeholder's shape while no file exists at `src`. */
   ratio?: '1/1' | '4/3' | '3/2' | '16/9' | '3/4';
+  /** object-position, as "x% y%". A tall photograph shown in a wide frame
+      crops from the middle by default, which is where faces usually are. */
+  focus?: string;
 }
 
 export interface ExternalLink {

@@ -436,7 +436,9 @@ export const work: WorkItem[] = [
       { src: '/assets/technology/flaire-seventh-place.jpg', alt: 'The Garage Challenge seventh-place team on stage', caption: 'Seventh place', ratio: '3/2' },
       { src: '/assets/technology/flaire-certificate.jpg', alt: 'Seventh-place certificate from The Garage Challenge', caption: 'Seventh-place certificate', ratio: '3/2' },
     ],
-    featuredMedia: { src: '/assets/technology/flaire-garage-poster.jpg', alt: 'Maryam holding Flaire’s AI business concept poster at The Garage Challenge', ratio: '3/4' },
+    /* Tall frame, wide module: without a focal point the crop lands on the
+       middle of the poster and takes her head off. */
+    featuredMedia: { src: '/assets/technology/flaire-garage-poster.jpg', alt: 'Maryam holding Flaire’s AI business concept poster at The Garage Challenge', ratio: '3/4', focus: '50% 20%' },
     videos: [
       {
         title: 'Idea video',

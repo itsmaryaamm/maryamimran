@@ -52,6 +52,7 @@ export function Figure({
             <source type="image/webp" srcSet={asset(media.src.replace(/\.[^./]+$/, '.webp'))} />
             <img
               className="figure__img"
+              style={media.focus ? { objectPosition: media.focus } : undefined}
               src={asset(media.src)}
               alt={media.alt}
               sizes={sizes}
