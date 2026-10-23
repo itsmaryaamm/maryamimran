@@ -47,7 +47,7 @@ export const site = {
   resume: {
     path: '/resume/Maryam-Imran-Resume.pdf',
     /** Flip to true once the PDF is in place. */
-    available: false,
+    available: true,
   },
 
 } as const;

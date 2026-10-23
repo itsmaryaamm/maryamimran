@@ -390,6 +390,7 @@ export const work: WorkItem[] = [
       { src: '/assets/technology/vita-lab.jpg', alt: 'Maryam and classmates working with electronics in the IE University robotics lab', caption: 'Robotics lab, Madrid', ratio: '3/2' },
       { src: '/assets/technology/vita-team.jpg', alt: 'Maryam receiving an IE University summer school certificate', caption: 'IE University summer school', ratio: '3/2' },
       { src: '/assets/technology/vita-robot.jpg', alt: 'The finished VITA robot on the lab floor — sensor head above a carrying tray, on a two-wheeled base', caption: 'The build, finished', ratio: '3/4' },
+      { src: '/assets/technology/vita-team-robot.jpg', alt: 'Maryam and her two VITA teammates in the IE University robotics lab, holding the finished robot', caption: 'The three-person team', ratio: '4/3' },
     ],
     featuredMedia: { src: '/assets/technology/vita-prototype.jpg', alt: 'Maryam and a teammate holding their robotics prototype at IE University', ratio: '4/3' },
     videos: [
@@ -688,10 +689,10 @@ export const work: WorkItem[] = [
     images: [
       { src: '/assets/impact/think-sustainability-group.jpg', alt: 'Think Sustainability volunteer group with certificates', caption: 'Volunteer team', ratio: '3/2' },
       { src: '/assets/impact/think-sustainability-friends.jpg', alt: 'Students at the Sustainability Club photo frame', caption: 'Students taking part', ratio: '3/2' },
-      { src: '/assets/impact/think-sustainability-booth.jpg', alt: 'Sustainability booth with reusable bottles and plants', caption: 'Club booth', ratio: '3/2' },
+      { src: '/assets/impact/think-sustainability-yussra.jpg', alt: 'Maryam in her Sustainability Club volunteer badge with Dr Yussra, in front of a screen announcing UBT’s solar energy innovation award', caption: 'With Dr Yussra', ratio: '3/2' },
       { src: '/assets/impact/think-sustainability-bottles.jpg', alt: 'Reusable bottles at the event', caption: 'Choose green', ratio: '3/2' },
     ],
-    featuredMedia: { src: '/assets/impact/think-sustainability-booth.jpg', alt: 'UBT Think Sustainability club booth', ratio: '4/3' },
+    featuredMedia: { src: '/assets/impact/think-sustainability-yussra.jpg', alt: 'Maryam with Dr Yussra at Think Sustainability', ratio: '4/3' },
     documents: [{ label: 'Think Sustainability event report', src: '/assets/documents/think-sustainability-report.pdf', pages: 76 }, { label: 'UBT letter of appreciation', src: '/assets/certificates/think-sustainability-certificate.pdf', pages: 1 }],
     showInIndex: true,
     showInSpeaking: false,

@@ -539,7 +539,7 @@ function Row({ entry, open, hovered, hasHover, reduced, panelId, onToggle, onHov
                 <RelatedLinks links={entry.related} onRelated={onRelated} />
                 {entry.href && (
                   <a className="textlink" href={entry.href} target="_blank" rel="noreferrer noopener">
-                    Read it
+                    {entry.hrefLabel ?? 'Read it'}
                     <span className="textlink__arrow" aria-hidden="true">
                       ↗
                     </span>

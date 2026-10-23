@@ -82,8 +82,8 @@ export const selected: SelectedItem[] = [
     headline: '4.9 / 5',
     line: 'Eight interdisciplinary booths and a QR participation trail that required students to cross four of them. 222 participation cards, 443+ booth interactions, and students from all four UBT colleges.',
     media: {
-      src: '/assets/impact/think-sustainability-booth.jpg',
-      alt: 'Four UBT Sustainability Club volunteers behind the Think Sustainability booth, with reusable bottles and plants on the table',
+      src: '/assets/impact/think-sustainability-yussra.jpg',
+      alt: 'Maryam in her Sustainability Club volunteer badge with Dr Yussra at Think Sustainability',
       ratio: '3/2',
     },
   },

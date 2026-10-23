@@ -39,6 +39,8 @@ export interface IndexEntry {
   work?: WorkItem;
   detail?: string;
   href?: string;
+  /** Verb for the outbound link. "Read it" is wrong for a video. */
+  hrefLabel?: string;
   document?: string;
   documents?: DocumentItem[];
   related?: { label: string; key: string }[];
@@ -64,6 +66,7 @@ interface MasterItem {
   documents?: DocumentItem[];
   related?: { label: string; key: string }[];
   href?: string;
+  hrefLabel?: string;
 }
 
 /** `short` is the compact form used on the filter chips; `label` is the
@@ -137,7 +140,7 @@ const masterItems: MasterItem[] = [
 
   { id: 'M04', group: 'writing', title: 'LinkedIn Articles and Posts', year: '2024—NOW', meta: 'Professional writing', detail: 'Posts and longer articles on projects, hackathons, AI, sustainability, student leadership and the events I end up in the middle of. It is where the working-out gets published rather than filed.', body: ['The longest piece so far is on the Fintech Saudi Summer Sessions: eight weeks of talks compressed into what they actually imply for someone building a fintech startup in Saudi Arabia.'], href: 'https://www.linkedin.com/in/maryamimranksa/recent-activity/articles/', tags: ['write'], related: [{ label: 'Fintech Saudi Summer Sessions', key: 'X04' }] },
   { id: 'M05', group: 'writing', title: 'Substack Newsletter', year: '2024—NOW', meta: 'Monthly long-form', detail: 'A monthly newsletter, running since 2024, about what I am actually building and what it is actually like — university, Tiin, leadership, the months that did not go to plan.', body: ['It is deliberately unpolished in a way the rest of this site is not. The archive is public and runs month by month rather than being curated after the fact.'], href: 'https://maryamimran.substack.com/', tags: ['write'] },
-  { id: 'M06', group: 'writing', title: 'Motion Graphics and Creative Work', meta: 'Creative media', detail: 'Motion graphics experiments and tutorials, including AI-assisted animation and visual storytelling. The same instinct as the writing: make the thing legible to someone who was not there.', tags: ['design', 'write'] },
+  { id: 'M06', group: 'writing', title: 'Motion Graphics and Creative Work', meta: 'Creative media', detail: 'Motion graphics experiments and tutorials, including AI-assisted animation and visual storytelling. The same instinct as the writing: make the thing legible to someone who was not there.', href: 'https://lnkd.in/p/drqT7AnX', hrefLabel: 'See it', tags: ['design', 'write'] },
 
   /* Course titles, issuers and completion dates below are transcribed from
      the certificates themselves, which are the files the viewer opens. The
@@ -304,6 +307,7 @@ export const indexEntries: IndexEntry[] = masterItems.map((item) => {
     documents: item.documents,
     related: item.related,
     href: item.href,
+    hrefLabel: item.hrefLabel,
   };
 });
 
