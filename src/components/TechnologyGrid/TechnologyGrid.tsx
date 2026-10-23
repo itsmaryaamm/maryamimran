@@ -6,6 +6,7 @@ import { WorkRecord } from '../ExpandableWork/WorkRecord';
 import { Reveal } from '../Motion/Reveal';
 import { usePrefersReducedMotion } from '../../hooks/useReducedMotion';
 import './TechnologyGrid.css';
+import { tagLabel } from '../../data/labels';
 
 /* ============================================================
    TECHNOLOGY GRID — the lab
@@ -72,7 +73,7 @@ export function TechnologyGrid({ items }: { items: WorkItem[] }) {
                   <div className="tag-row techmod__tags">
                     {item.secondaryTags.slice(0, 4).map((t) => (
                       <span key={t} className="tag">
-                        {t}
+                        {tagLabel[t]}
                       </span>
                     ))}
                   </div>

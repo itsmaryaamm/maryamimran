@@ -3,6 +3,7 @@ import { Figure } from '../Media/Figure';
 import { DocumentViewer } from '../Media/DocumentViewer';
 import { asset } from '../../lib/asset';
 import './WorkRecord.css';
+import { categoryLabel, tagLabel } from '../../data/labels';
 
 /* ============================================================
    WORK RECORD
@@ -41,10 +42,10 @@ export function WorkRecord({ item }: { item: WorkItem }) {
           <div className="record__fact">
             <span className="label">Tags</span>
             <span className="tag-row record__tags">
-              <span className="tag tag--primary">{item.primaryCategory}</span>
+              <span className="tag tag--primary">{categoryLabel[item.primaryCategory]}</span>
               {item.secondaryTags.map((t) => (
                 <span key={t} className="tag">
-                  {t}
+                  {tagLabel[t]}
                 </span>
               ))}
             </span>

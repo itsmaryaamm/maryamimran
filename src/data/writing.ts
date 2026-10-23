@@ -10,6 +10,19 @@ import type { WritingItem } from './types';
 
 export const writing: WritingItem[] = [
   {
+    id: 'fintech-eight-weeks',
+    title: 'What 8 Weeks of Fintech Taught Me About Building a Real Startup in Saudi',
+    date: 'Sep 2025',
+    yearSort: 2025,
+    topic: 'Fintech',
+    shortDescription:
+      'Eight weeks of Fintech Saudi Summer Sessions, compressed into what they actually imply for someone building here: predictive versus generative AI, crowdfunding trust and compliance, embedded finance, insurance, and designing around a real customer need.',
+    platform: 'LinkedIn',
+    externalLink:
+      'https://www.linkedin.com/pulse/what-8-weeks-fintech-taught-me-building-real-startup-saudi-imran-ssyne',
+    order: 0,
+  },
+  {
     id: 'progress-that-never-looks-like-progress',
     title: 'Progress That Never Looks Like Progress',
     date: '4 Jan 2026',
@@ -163,6 +176,9 @@ export const writing: WritingItem[] = [
   },
 ];
 
-export const writingSorted: WritingItem[] = writing.filter((item) => item.externalLink).sort(
-  (a, b) => b.yearSort - a.yearSort || a.order - b.order,
-);
+export const writingSorted: WritingItem[] = writing
+  .filter((item) => item.externalLink)
+  .sort((a, b) => b.yearSort - a.yearSort || a.order - b.order);
+
+/** Pieces that exist but whose original URLs are still missing. Never rendered. */
+export const writingAwaitingLinks: WritingItem[] = writing.filter((item) => !item.externalLink);

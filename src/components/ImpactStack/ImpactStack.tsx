@@ -4,6 +4,7 @@ import { MaskReveal, Reveal } from '../Motion/Reveal';
 import { usePrefersReducedMotion } from '../../hooks/useReducedMotion';
 import { useIsMobile } from '../../hooks/useMediaQuery';
 import './ImpactStack.css';
+import { tagLabel } from '../../data/labels';
 
 /* ============================================================
    IMPACT STACK — scrolling chapters
@@ -96,7 +97,7 @@ export function ImpactStack({ items }: { items: WorkItem[] }) {
                   <div className="tag-row ichapter__tags">
                     {item.secondaryTags.map((t) => (
                       <span key={t} className="tag">
-                        {t}
+                        {tagLabel[t]}
                       </span>
                     ))}
                   </div>

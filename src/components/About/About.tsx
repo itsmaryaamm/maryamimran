@@ -33,16 +33,16 @@ export function About() {
           <div className="about__lead">
             <h2 id="about-heading" className="about__opening">
               <MaskReveal>
-                <span>I’ve always been drawn to people</span>
+                <span>I like problems that need</span>
               </MaskReveal>
               <MaskReveal delay={0.08}>
-                <span>who think something could be</span>
+                <span>someone to build the thing,</span>
               </MaskReveal>
               <MaskReveal delay={0.16}>
-                <span>better — and then actually</span>
+                <span>read the numbers, and get</span>
               </MaskReveal>
               <MaskReveal delay={0.24}>
-                <span>try to make it better.</span>
+                <span>people to actually show up.</span>
               </MaskReveal>
             </h2>
           </div>
@@ -62,23 +62,28 @@ export function About() {
           <Reveal delay={0.1} className="about__body">
             <div className="prose about__prose">
               <p>
-                I’m a {site.discipline} student at the {site.university} in {site.location},
-                working across business, technology and impact.
+                I’m a {site.discipline} student at the {site.university} in {site.location}.
+                I co-founded <strong>Tiin</strong>, a financial interpretation product for
+                Saudi small businesses, and took it through Monsha’at’s Human Capital
+                Program to Demo Day.
               </p>
               <p>
-                In practice that means finding out what small business owners need while
-                building Tiin, leading the technical demo for Flaire at a hackathon, wiring
-                sensors to a robot that has to physically work, and assembling the evidence
-                behind a university’s sustainability reporting. The through-line is wanting
-                to know how something works well enough to change it.
+                I’m president of the <strong>UBT Sustainability Club</strong>, which means
+                running campus events and then writing the reports that have to follow them —
+                including a 30-question sustainability literacy benchmark the university can
+                run each year as evidence for its PRME reporting. At IE University in Madrid
+                I led a three-person team building a hospital robot that follows nurses and
+                carries routine items; it placed first in the final class competition.
               </p>
               <p>
-                I learn by building, testing, reading data, leading teams, speaking,
-                researching and running experiments that sometimes don’t work. The breadth is
-                deliberate. I’d rather find the edges of several things now than pick one
-                early for the sake of a tidy story.
+                The pattern underneath is narrower than the list looks. Each of those needed
+                the same three things: finding out what people actually do rather than
+                assuming, building something testable quickly, and staying for the
+                unglamorous part — the data, the report, the follow-up nobody volunteers for.
               </p>
-              <p className="about__closing">I’m still early in all of this. That’s the exciting part.</p>
+              <p className="about__closing">
+                I’m early in all of this. That’s the part I’d keep.
+              </p>
             </div>
 
             <div className="about__links">
@@ -108,6 +113,17 @@ export function About() {
                 className="textlink"
               >
                 LinkedIn
+                <span className="textlink__arrow" aria-hidden="true">
+                  ↗
+                </span>
+              </a>
+              <a
+                href={site.links.substack}
+                target="_blank"
+                rel="noreferrer noopener"
+                className="textlink"
+              >
+                Substack
                 <span className="textlink__arrow" aria-hidden="true">
                   ↗
                 </span>

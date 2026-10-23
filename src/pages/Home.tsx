@@ -1,5 +1,6 @@
 import { Hero } from '../components/Hero/Hero';
 import { Intro } from '../components/Intro/Intro';
+import { Selected } from '../components/Selected/Selected';
 import { WorkHub } from '../components/WorkHub/WorkHub';
 import { Contact } from '../components/Contact/Contact';
 import { usePageMeta } from '../hooks/usePageMeta';
@@ -10,7 +11,7 @@ import { site } from '../data/site';
    ------------------------------------------------------------
    Four movements:
 
-     hero -> intro -> business / technology / impact -> contact
+     hero -> intro -> selected work -> business / technology / impact -> contact
 
    Writing, Programs, Recognition and the full archive all still
    exist — they live on /writing, /about and /index rather than
@@ -25,6 +26,7 @@ export default function Home() {
     <>
       <Hero />
       <Intro />
+      <Selected />
       <WorkHub />
       <Contact />
     </>

@@ -152,30 +152,64 @@
 
 /* ============================================================
    FILTER CONTROLS
+   ------------------------------------------------------------
+   Sticky, because the list behind it is long enough that having
+   to scroll back to the top to change a filter is the whole
+   problem. Two dimensions only — type and year — plus search.
    ============================================================ */
 
 .cindex__controls {
+  position: sticky;
+  top: var(--nav-h);
+  z-index: 6;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
-  gap: clamp(1.25rem, 2.5vw, 2rem);
-  padding-bottom: clamp(1.5rem, 3vw, 2.25rem);
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(0.6rem, 1.4vw, 0.95rem);
+  padding-block: clamp(0.8rem, 1.6vw, 1.1rem);
+  /* Scrolled to on every filter change, so it parks under the nav. */
+  scroll-margin-top: var(--nav-h);
   border-bottom: 1px solid var(--rule);
+  /* The backdrop has to cover the rows sliding under it, including the
+     page gutters, so the bar bleeds out and pads back in. */
+  background: var(--surface);
+  margin-inline: calc(var(--gutter) * -1);
+  padding-inline: var(--gutter);
+}
+
+@media (min-width: 900px) {
+  .cindex__controls {
+    grid-template-columns: minmax(0, auto) minmax(14rem, 22rem);
+    grid-template-areas:
+      'type   type'
+      'year   search'
+      'active active';
+    align-items: end;
+    column-gap: clamp(1.5rem, 3vw, 3rem);
+    justify-content: space-between;
+  }
+
+  .cfilter--type {
+    grid-area: type;
+  }
+  .cfilter--year {
+    grid-area: year;
+  }
+  .cfilter--search {
+    grid-area: search;
+  }
+  .cactive {
+    grid-area: active;
+  }
 }
 
 .cfilter {
   display: flex;
   flex-direction: column;
-  gap: 0.7rem;
+  gap: 0.55rem;
 }
 
-.cfilter--search {
-  grid-column: 1 / -1;
-}
-
-@media (min-width: 900px) {
-  .cfilter--search {
-    grid-column: auto;
-  }
+.cfilter__legend {
+  color: var(--text-tertiary);
 }
 
 .cfilter__chips {
@@ -185,12 +219,15 @@
 }
 
 .chip {
-  padding: 0.4rem 0.75rem;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.45em;
+  padding: 0.4rem 0.7rem;
   border: 1px solid var(--rule);
   border-radius: 2px;
   font-family: var(--font-mono);
   font-size: var(--t-label);
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--text-tertiary);
   white-space: nowrap;
@@ -209,6 +246,80 @@
   background: var(--accent);
   border-color: var(--accent);
   color: var(--white);
+}
+
+/* The count tells you how much is behind a chip before you press it. */
+.chip__count {
+  font-size: 0.85em;
+  font-variant-numeric: tabular-nums;
+  opacity: 0.6;
+}
+
+/* --- Active filters --- */
+
+.cactive {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 0.9rem;
+  padding-top: 0.2rem;
+}
+
+.cactive__label {
+  gap: 0.4em;
+  color: var(--text);
+}
+
+.cactive__pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.fpill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.25rem 0.3rem 0.25rem 0.6rem;
+  border: 1px solid var(--accent);
+  border-radius: 2px;
+  font-size: var(--t-xs);
+  line-height: 1.2;
+  color: var(--accent);
+  max-width: 18rem;
+}
+
+.fpill__text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.fpill__x {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.15rem;
+  height: 1.15rem;
+  font-size: 1rem;
+  line-height: 1;
+  color: var(--accent);
+  transition: opacity var(--dur-fast) var(--ease-out);
+}
+
+.fpill__x:hover {
+  opacity: 0.6;
+}
+
+.cactive__clear {
+  margin-left: auto;
+  color: var(--accent);
+  white-space: nowrap;
+  transition: opacity var(--dur-fast) var(--ease-out);
+}
+
+.cactive__clear:hover {
+  opacity: 0.6;
 }
 
 /* --- Search --- */
@@ -295,6 +406,14 @@
 
 .crow {
   border-bottom: 1px solid var(--rule);
+  /* Keeps an opened row's heading clear of the nav and the sticky filters. */
+  scroll-margin-top: calc(var(--nav-h) + 12rem);
+}
+
+@media (min-width: 900px) {
+  .crow {
+    scroll-margin-top: calc(var(--nav-h) + 9rem);
+  }
 }
 
 .crow__h {
@@ -393,6 +512,50 @@
 }
 
 .crow__detail .docview { width: 100%; }
+
+/* Syllabus bullets. Set as a list, not prose, because a visitor scans
+   these rather than reading them. */
+.crow__learned {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  max-width: 44rem;
+}
+
+.crow__learned-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  list-style: none;
+}
+
+.crow__learned-list li {
+  position: relative;
+  padding-left: 1.1rem;
+  font-size: var(--t-sm);
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
+
+.crow__result {
+  max-width: 34rem;
+  padding-top: 0.4rem;
+  font-size: clamp(1.05rem, 1.8vw, 1.35rem);
+  line-height: 1.3;
+  letter-spacing: var(--tr-heading);
+  color: var(--text);
+  border-top: 1px solid var(--rule);
+}
+
+.crow__learned-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.62em;
+  width: 0.45rem;
+  height: 1px;
+  background: var(--accent);
+}
 .crow__related { display: flex; flex-wrap: wrap; align-items: baseline; gap: .6rem 1.25rem; margin-block: 1rem; }
 .crow__related button { border: 0; padding: 0; background: none; font: inherit; cursor: pointer; }
 
@@ -567,8 +730,28 @@
     padding-left: 0;
   }
 
-  /* The filter block scrolls horizontally rather than wrapping
-     into a wall of chips. */
+  /* On a phone the sticky bar has to earn its height: the chips are
+     self-describing, so the legends come off and the rows scroll
+     sideways instead of wrapping into a wall. */
+  .cfilter__legend {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  .cindex__controls {
+    gap: 0.6rem;
+  }
+
+  .cactive__clear {
+    margin-left: 0;
+  }
+
   .cfilter__chips {
     flex-wrap: nowrap;
     overflow-x: auto;

@@ -193,7 +193,8 @@ export const work: WorkItem[] = [
     shortDescription:
       'A food sustainability concept built with Solar Foods’ Solein protein — top 7 of 78 teams.',
     fullDescription: [
-      'For the global Shape the Future Challenge, our team of three worked with Solar Foods to design a sustainable eating concept using Solein, a protein made from air, water and renewable energy. We developed the business model, prototype ideas and final pitch.',
+      'The Shape the Future Challenge is a four-week online program that puts small international teams on a sustainable development goal and gives them mentors who have actually built things. Ours worked on SDG 12 and SDG 13.',
+      'Our team of three worked with Solar Foods to design a sustainable eating concept using Solein, a protein made from air, water and renewable energy. We developed the business model, prototype ideas and the final pitch, and presented it to an international panel.',
     ],
     contribution: [
       'Organized team meetings, delegated tasks and helped resolve project challenges',
@@ -201,6 +202,7 @@ export const work: WorkItem[] = [
       'Applied mentorship from global CEOs on ideation, innovation frameworks and pitching',
       'Presented our solution to an international panel of judges',
     ],
+    result: 'Top 7 of 78 teams, certified 22 January 2025.',
     metrics: [{ value: 'Top 7 / 78', label: 'Teams', verified: true }],
     externalLinks: [
       { label: 'Watch the final presentation', href: 'https://youtu.be/5KyHnjN5_RQ?t=1635' },
@@ -222,8 +224,17 @@ export const work: WorkItem[] = [
     yearSort: 2025,
     role: 'Program Participant',
     primaryCategory: 'business',
-    secondaryTags: ['compete', 'market', 'research'],
-    shortDescription: 'Completed Nestlé Next Level (NxL) Season 3.',
+    secondaryTags: ['compete', 'market', 'research', 'learn'],
+    shortDescription:
+      'The third edition of the NxL Youth Empowerment Program, run by Nestlé needs YOUth with L’Oréal for Youth.',
+    fullDescription: [
+      'A youth empowerment program taught by people doing the work: the sessions were delivered by speakers from Nestlé, L’Oréal, Microsoft, Google, Snapchat, Monsha’at and LinkedIn.',
+      'It runs across four modules — Next Gen Skills, The Art of Personal Branding, The Entrepreneur’s Toolkit, and Career Accelerator — which between them cover the gap between being employable and being able to start something.',
+    ],
+    contribution: [
+      'Completed all four modules: Next Gen Skills, The Art of Personal Branding, The Entrepreneur’s Toolkit and Career Accelerator',
+      'Applied the personal branding and entrepreneurship material directly to Tiin’s positioning and pitch',
+    ],
     documents: [{ label: 'Nestlé NxL certificate', src: '/assets/certificates/nestle-nxl-certificate.pdf', pages: 1 }],
     showInIndex: true,
     showInSpeaking: false,
@@ -541,10 +552,12 @@ export const work: WorkItem[] = [
     shortDescription:
       'Practised AI automation and low-code workflow building in 2025, connecting forms, data and actions across tools.',
     fullDescription: [
-      'In 2025, I practised building low-code workflows that take an input, move information between tools, and trigger a useful next step.',
+      'In 2025 I spent time on the unglamorous half of AI: the plumbing that takes an input, moves information between tools, and triggers a useful next step without anyone copying and pasting.',
+      'It is the skill that makes the rest of the work cheaper. A form that files itself, a response that drafts itself, a record that updates in two places at once — none of it is impressive on its own, and all of it is what the difference between an idea and a running process actually looks like.',
     ],
     contribution: [
-      'Built and tested AI automation and low-code workflows',
+      'Built and tested AI automation and low-code workflows connecting forms, data and actions',
+      'Used the same approach on club and coursework processes rather than keeping it to practice projects',
     ],
     showInIndex: true,
     showInSpeaking: false,
@@ -626,20 +639,30 @@ export const work: WorkItem[] = [
     organization: 'UBT',
     year: '2026',
     yearSort: 2026,
+    date: '11 May 2026 · UBT Corniche Campus',
     role: 'Lead & Coordination',
     primaryCategory: 'impact',
     secondaryTags: ['lead', 'build', 'design', 'operate'],
     shortDescription:
-      'As UBT Sustainability Club President, led and delivered Think Sustainability, with themed booths and a digital participation trail.',
+      '“Think Sustainability: From Idea to Impact” — eight interdisciplinary booths and a QR participation trail, led as UBT Sustainability Club President.',
     fullDescription: [
-      'A sustainability event that people walk through rather than sit in. Multiple booths, each a different experience and a different discipline’s angle on the same set of problems, tied together by a digital stamp trail that gave people a reason to do all of it rather than one.',
-      'Most of the work was planning and coordination: floor plan, booth briefs, teams, university and external collaborators, and the run of the day itself.',
+      'A sustainability event that people walk through rather than sit in. Eight booths — Carbon Lab, Engineering, Law, Advertising, Business, Book Exchange, Mental Health & Wellbeing, and the Sustainability Literacy Assessment — each took a different discipline’s angle on the same set of problems.',
+      'The mechanic that held it together was a QR-based digital participation card, borrowed from the café loyalty cards students already use. Rewards required stamps from four of the eight booths, so no one could stay inside a single topic, and tracking it digitally meant no paper cards to print or throw away.',
+      'Most of the work was planning and coordination: floor plan, booth briefs, volunteer teams, an exhibition area with UBT engineering students, the Energy & Water Academy, Dar Al Rowad Model Schools and KSAU-HS, and the run of the day itself. Afterwards I wrote the 76-page event report that documents all of it.',
     ],
     contribution: [
-      'Planned and coordinated the event end to end',
-      'Designed the booth programme across interdisciplinary sustainability themes',
-      'Built the digital stamp and participation mechanic to drive engagement across the full trail',
-      'Coordinated student teams and university and external collaborators',
+      'Planned and coordinated the event end to end, from floor plan to run-of-show',
+      'Designed the eight-booth programme so each UBT college had a stake in it',
+      'Built the QR participation mechanic, set at four booths of eight so students crossed disciplines',
+      'Coordinated student volunteer teams and the external exhibitors',
+      'Ran the post-event evaluation and wrote the 76-page report submitted to the university',
+    ],
+    result:
+      '4.9 / 5 average satisfaction across 71 post-event responses, with students from all four UBT colleges taking part.',
+    metrics: [
+      { value: '222', label: 'Digital participation cards issued', verified: true },
+      { value: '443+', label: 'Recorded booth interactions', verified: true },
+      { value: '4.9/5', label: 'Average satisfaction rating', verified: true },
     ],
     images: [
       { src: '/assets/impact/think-sustainability-group.jpg', alt: 'Think Sustainability volunteer group with certificates', caption: 'Volunteer team', ratio: '3/2' },
@@ -695,19 +718,31 @@ export const work: WorkItem[] = [
     organization: 'UBT',
     year: '2025',
     yearSort: 2025,
-    role: 'Assessment & Analysis',
+    date: '11 October 2025',
+    role: 'Assessment Design & Analysis',
     primaryCategory: 'impact',
     secondaryTags: ['analyze', 'research', 'build'],
     shortDescription:
-      'As part of the UBT Sustainability Club, designed and analysed a sustainability literacy assessment for students.',
+      'A 30-question sustainability literacy benchmark for UBT students, modelled on the UN-endorsed Sulitest and localised to Vision 2030.',
     fullDescription: [
-      'A sustainability literacy assessment run across an event: SDGs, climate, ESG, circular economy, responsible consumption, biodiversity, ethical leadership and Vision 2030. The point was to get a baseline instead of guessing what people already know.',
+      'Universities talk about sustainability literacy without measuring it. This was an attempt to get a baseline instead of guessing: a standardised 30-question instrument covering the SDGs, climate, ESG, circular economy, responsible consumption, biodiversity, ethical leadership and Saudi Vision 2030.',
+      'It is modelled on Sulitest, the instrument recognised by UN DESA and the PRME community, then localised — roughly 40% of the questions sit in a Saudi or UBT context rather than a generic one. The question mix is deliberate too: 40% factual knowledge, 30% reasoning, 20% applied decision-making and 10% ethical reflection, so it measures literacy rather than recall.',
+      'The design work extended to the parts that decide whether results mean anything: plausible distractors drawn from common misconceptions, neutral phrasing with no leading questions, answers distributed evenly across A–D, and a difficulty ramp from easy to reflective. It was built to run in Google Forms or Qualtrics so it auto-scores and produces analysis-ready data for UBT’s PRME progress reporting.',
     ],
     contribution: [
-      'Built the assessment across the SDG, climate, ESG and circular economy themes',
-      'Ran it at the event and analysed the responses',
+      'Designed all 30 questions across the SDG, climate, ESG and circular economy themes',
+      'Localised roughly 40% of the instrument to Saudi Vision 2030 and UBT’s own commitments',
+      'Set the cognitive mix at 40% knowledge, 30% reasoning, 20% application, 10% reflection',
+      'Wrote distractors from real misconceptions and balanced the answer distribution to keep the scoring fair',
+      'Built it to run and auto-score in Google Forms or Qualtrics, and ran it as a booth at Think Sustainability',
+      'Authored the 19-page assessment document submitted to the university',
     ],
-    metrics: [{ value: '~70', label: 'Event responses', verified: false }],
+    result:
+      'A repeatable benchmark UBT can run each year as quantitative evidence for its PRME progress reports.',
+    metrics: [
+      { value: '30', label: 'Questions, all 17 SDGs covered', verified: true },
+      { value: '40%', label: 'Localised to Vision 2030 and UBT', verified: true },
+    ],
     images: [{ src: '/assets/impact/literacy-poster.jpg', alt: 'UBT Sustainability Literacy Test invitation poster', caption: 'Student invitation', ratio: '3/4' }],
     featuredMedia: { src: '/assets/impact/literacy-poster.jpg', alt: 'Sustainability Literacy Test poster', ratio: '3/4' },
     documents: [{ label: 'UBT Sustainability Literacy Assessment (2025 Edition)', src: '/assets/documents/sustainability-literacy-assessment.pdf', pages: 19 }],
@@ -728,7 +763,15 @@ export const work: WorkItem[] = [
     secondaryTags: ['lead', 'research'],
     shortDescription:
       'One of two student representatives on the BAIS advisory board, contributing the student perspective to programme discussions.',
-    contribution: ['Represented students in programme and curriculum discussions', 'Presented a workshop on how BAIS helped shape my learning and opportunities'],
+    fullDescription: [
+      'The advisory board is where the Business Analytics and Information Systems programme gets reviewed by the people who hire from it and teach it. Two seats are held by students, and I hold one of them.',
+      'The useful part of the role is being the person in the room who has actually sat through the courses being discussed — what the sequence feels like from inside it, which parts earn their place, and where students lose the thread.',
+    ],
+    contribution: [
+      'Represented students in programme and curriculum discussions',
+      'Brought the student view on course sequencing and workload into board conversations',
+      'Presented a workshop on how BAIS shaped my own learning and the opportunities that followed',
+    ],
     images: [{ src: '/assets/impact/bais-student-talk.jpg', alt: 'Maryam speaking to UBT students about her BAIS experience', caption: 'Speaking with BAIS students', ratio: '4/3' }, { src: '/assets/impact/ubt-certificate-presentation.jpg', alt: 'Maryam speaking with students at UBT', caption: 'Student representation', ratio: '3/2' }],
     featuredMedia: { src: '/assets/impact/bais-student-talk.jpg', alt: 'Maryam speaking to UBT students about BAIS', ratio: '4/3' },
     showInIndex: true,

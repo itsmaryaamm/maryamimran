@@ -6,6 +6,7 @@ import { WorkRecord } from '../ExpandableWork/WorkRecord';
 import { useHasHover } from '../../hooks/useMediaQuery';
 import { usePrefersReducedMotion } from '../../hooks/useReducedMotion';
 import './WorkIndex.css';
+import { tagLabel } from '../../data/labels';
 
 /* ============================================================
    WORK INDEX
@@ -78,7 +79,7 @@ export function WorkIndex({ items, withPreview = true }: WorkIndexProps) {
                   <span className="windexrow__tags" aria-hidden="true">
                     {item.secondaryTags.slice(0, 3).map((t) => (
                       <span key={t} className="windexrow__tag">
-                        {t}
+                        {tagLabel[t]}
                       </span>
                     ))}
                   </span>

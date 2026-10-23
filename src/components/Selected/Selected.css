@@ -1,0 +1,128 @@
+/* ============================================================
+   SELECTED WORK
+   ============================================================ */
+
+.selected__heading {
+  font-size: clamp(2rem, 6vw, 4.5rem);
+  font-weight: 500;
+  line-height: 0.98;
+  letter-spacing: var(--tr-display);
+  max-width: 16ch;
+}
+
+/* --- Verified signals strip --- */
+
+.signals {
+  margin-bottom: clamp(3rem, 7vw, 6rem);
+}
+
+.signals__list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr));
+  gap: clamp(1.25rem, 3vw, 2.5rem);
+  /* Bottom-aligned, so an entry with no figure still sits on the same
+     line as the ones that have one. */
+  align-items: end;
+  padding-top: clamp(1.25rem, 2.5vw, 2rem);
+  border-top: 1px solid var(--text);
+  list-style: none;
+}
+
+.signal {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.signal__value {
+  font-size: clamp(1.75rem, 3.6vw, 2.75rem);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: var(--tr-display);
+  color: var(--accent);
+}
+
+.signal__title {
+  font-size: var(--t-sm);
+  font-weight: 500;
+  line-height: 1.25;
+  color: var(--text);
+}
+
+.signal__meta {
+  font-size: var(--t-xs);
+  line-height: 1.4;
+  color: var(--text-tertiary);
+}
+
+/* --- The five records --- */
+
+.selected__list {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(3.5rem, 9vw, 8rem);
+  list-style: none;
+  counter-reset: none;
+}
+
+.selitem {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+  align-items: center;
+}
+
+@media (min-width: 860px) {
+  .selitem {
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+    gap: clamp(2.5rem, 6vw, 6rem);
+  }
+
+  /* Alternating sides keep five rows from reading as a table. */
+  .selitem:nth-child(even) .selitem__media {
+    order: 2;
+  }
+}
+
+.selitem__index {
+  gap: 0.6em;
+  color: var(--text-tertiary);
+}
+
+.selitem__title {
+  margin-top: 0.6rem;
+  font-size: clamp(1.9rem, 4.2vw, 3.25rem);
+  font-weight: 500;
+  line-height: 0.98;
+  letter-spacing: var(--tr-display);
+}
+
+.selitem__title-alt {
+  font-weight: 400;
+  color: var(--text-tertiary);
+}
+
+.selitem__kicker {
+  margin-top: 0.7rem;
+  font-size: var(--t-sm);
+  line-height: 1.4;
+  color: var(--text-secondary);
+}
+
+.selitem__headline {
+  margin-top: 1.1rem;
+  font-family: var(--font-mono);
+  font-size: var(--t-label);
+  letter-spacing: var(--tr-label);
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.selitem__line {
+  margin-top: 1.1rem;
+  font-size: var(--t-sm);
+}
+
+.selitem__body .textlink {
+  margin-top: 1.5rem;
+}

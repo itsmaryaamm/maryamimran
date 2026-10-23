@@ -10,7 +10,7 @@ import { usePrefersReducedMotion } from '../../hooks/useReducedMotion';
 import './WorkHub.css';
 
 /* ============================================================
-   WORK HUB — SECTION 03
+   WORK HUB — SECTION 04
    ------------------------------------------------------------
    Three large editorial regions, not cards. Hovering a row
    raises a layered set of previews drawn from the real work in
@@ -34,7 +34,7 @@ export function WorkHub() {
         <div className="section-head">
           <div className="section-head__meta">
             <p className="label">
-              <span className="label__index">02</span> Work
+              <span className="label__index">03</span> Work
             </p>
             <p className="label">Three directions, one body of work</p>
           </div>

@@ -81,6 +81,9 @@ export function Writing({
                 <Row className="wrow__inner" {...linkProps}>
                   <span className="wrow__meta">
                     <span className="wrow__date mono">{item.date}</span>
+                    {/* Where it lives matters as much as what it is about:
+                        the newsletter and the articles read differently. */}
+                    {item.platform && <span className="wrow__platform mono">{item.platform}</span>}
                     <span className="wrow__topic mono">{item.topic}</span>
                   </span>
 
@@ -103,6 +106,35 @@ export function Writing({
             );
           })}
         </ul>
+
+        {/* The two places the writing actually lives, so someone who wants
+            more than this list does not have to go looking for it. */}
+        <div className="writing__dests">
+          <a
+            className="wdest"
+            href={site.links.substack}
+            target="_blank"
+            rel="noreferrer noopener"
+          >
+            <span className="wdest__name">Substack</span>
+            <span className="wdest__note">Monthly newsletter, running since 2024</span>
+            <span className="wdest__arrow" aria-hidden="true">
+              ↗
+            </span>
+          </a>
+          <a
+            className="wdest"
+            href={`${site.links.linkedin}recent-activity/all/`}
+            target="_blank"
+            rel="noreferrer noopener"
+          >
+            <span className="wdest__name">LinkedIn</span>
+            <span className="wdest__note">Articles and posts on projects, AI and sustainability</span>
+            <span className="wdest__arrow" aria-hidden="true">
+              ↗
+            </span>
+          </a>
+        </div>
       </div>
     </section>
   );
