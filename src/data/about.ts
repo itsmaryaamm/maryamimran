@@ -25,19 +25,23 @@ export interface MontageItem {
   punchline?: boolean;
 }
 
+/* STAND-IN. The intended photograph is "WhatsApp Image 2025-11-01 at
+   14.36.06_c967b9b8.jpg", which has not reached the repository yet. Until
+   it does this borrows the environmental portrait so the page reads as
+   finished rather than as a hole; swap `src` and `ratio` when it lands. */
 export const introPortrait: MediaItem = {
-  src: '/assets/about/maryam-intro.jpg',
-  alt: 'Maryam Imran, photographed informally',
-  ratio: '4/3',
+  src: '/assets/portrait/maryam-portrait.jpg',
+  alt: 'Maryam Imran at the University of Business & Technology in Jeddah',
+  ratio: '16/9',
+  focus: '56% 32%',
 };
-/** Original: WhatsApp Image 2025-11-01 at 14.36.06_c967b9b8.jpg */
 
 export const montage: MontageItem[] = [
   {
     file: 'me talking.jpeg',
     media: {
       src: '/assets/about/speaking-business-days.jpg',
-      alt: 'Maryam speaking into a microphone with one arm raised, in front of a room of students at UBT',
+      alt: 'Maryam seated with a microphone at Business Days 2025, mid-sentence and gesturing',
       ratio: '3/4',
     },
     caption: 'Give me a microphone and apparently I have a lot to say.',
@@ -47,7 +51,7 @@ export const montage: MontageItem[] = [
     file: 'WhatsApp Image 2025-05-14 at 16.33.38_d04a5680.jpg',
     media: {
       src: '/assets/about/exhibition-conversation.jpg',
-      alt: 'Maryam mid-conversation with two people on an exhibition floor',
+      alt: 'Maryam laughing mid-conversation with three other people on an exhibition floor',
       ratio: '3/4',
     },
     caption: 'One conversation away from another rabbit hole.',
@@ -58,24 +62,20 @@ export const montage: MontageItem[] = [
     file: 'WhatsApp Image 2026-10-23 at 4.59.29 PM.jpeg',
     media: {
       src: '/assets/about/speaking-mic.jpg',
-      alt: 'Maryam gesturing while speaking with a microphone',
-      ratio: '4/3',
+      alt: 'Maryam speaking into a microphone with one arm raised, in front of a room of students at UBT',
+      ratio: '3/4',
     },
     caption: 'Probably asking everyone to participate in something.',
     column: '2 / span 5',
     drop: 3,
   },
-  {
-    file: 'WhatsApp Image 2025-12-15 at 19.14.14_34983278.jpg',
-    media: {
-      src: '/assets/about/working-quiet.jpg',
-      alt: 'Maryam working at a table',
-      ratio: '1/1',
-    },
-    caption: 'The quieter side. Usually with 37 tabs open.',
-    column: '8 / span 4',
-    drop: 1,
-  },
+
+  /* MISSING. "WhatsApp Image 2025-12-15 at 19.14.14_34983278.jpg" — Maryam
+     working at a table — has not reached the repository. Its caption was
+     "The quieter side. Usually with 37 tabs open." Drop the file at
+     source-images/about-working-quiet.jpg, run `npm run images`, and
+     restore this entry at column '8 / span 4', drop 10, ratio '1/1'. */
+
   {
     file: 'WhatsApp Image 2025-11-13 at 16.56.37_d50c27b5.jpg',
     media: {
@@ -84,19 +84,19 @@ export const montage: MontageItem[] = [
       ratio: '16/9',
     },
     caption: 'I like seeing things go from “what if” to “it actually works.”',
-    column: '1 / span 7',
-    drop: 4,
+    column: '8 / span 5',
+    drop: 10,
   },
   {
     file: 'After 8 hours of ‘networking’.png',
     media: {
       src: '/assets/about/networking-battery.jpg',
-      alt: 'Maryam collapsed on a blue couch at an exhibition, hand over her face',
+      alt: 'Maryam collapsed sideways on a blue couch at an exhibition, one hand over her face',
       ratio: '1/1',
     },
     caption: 'Eight hours of networking. The social battery has left the chat.',
-    column: '8 / span 5',
-    drop: 0,
+    column: '1 / span 7',
+    drop: 2,
     punchline: true,
   },
 ];

@@ -25,7 +25,7 @@ const PORTRAIT_PROFILES = {
 /* Project images are routed by filename prefix, so dropping in
    `business-tiin-product.png` writes public/assets/business/tiin-product.*
    — the exact path work.ts already points at. */
-const SECTIONS = ['business', 'technology', 'impact', 'speaking', 'writing'];
+const SECTIONS = ['business', 'technology', 'impact', 'speaking', 'writing', 'about'];
 const PROJECT_WIDTH = 1600;
 
 function route(name) {
