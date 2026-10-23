@@ -1,0 +1,39 @@
+# Netlify serves the site at the domain root, so no BASE_PATH is set here —
+# vite.config.ts already defaults to "/" when the variable is absent. The
+# GitHub Pages workflow still sets it, because that project site is served
+# from /<repo>/ and needs the prefix.
+
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+# The build emits real HTML for every route, so these are only a fallback for
+# anything the router handles that the build did not pre-render.
+# public/_redirects carries the catch-all; it is kept there so a local
+# `vite preview` behaves the same way.
+
+# Build output is content-hashed, so it can be cached for good.
+[[headers]]
+  for = "/assets/*.js"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/assets/*.css"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/fonts/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Photographs are NOT hashed — they are replaced in place whenever Maryam
+# sends a new one — so they get a short cache, not an immutable one.
+[[headers]]
+  for = "/assets/portrait/*"
+  [headers.values]
+    Cache-Control = "public, max-age=86400, must-revalidate"

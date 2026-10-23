@@ -32,10 +32,11 @@ jobs:
       - run: npm ci
 
       # A project site is served from /<repo>/, so the build needs that
-      # prefix. A repo named <user>.github.io is served from the root — and
-      # so is a custom domain, which public/CNAME is the marker for. Getting
-      # this wrong points every asset at /<repo>/ on a domain that has no
-      # such folder, so the whole site 404s.
+      # prefix. A repo named <user>.github.io is served from the root, and so
+      # is a custom domain on Pages — public/CNAME is the marker for that.
+      # The domain is served by Netlify instead, which builds from the root
+      # with no BASE_PATH at all, so no CNAME lives here and this site keeps
+      # its /<repo>/ prefix.
       - name: Work out the base path
         id: base
         run: |
